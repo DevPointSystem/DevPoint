@@ -1,0 +1,517 @@
+
+
+<div class="msb" id="msb">
+  <nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <div class="brand-wrapper" >
+        <!-- Brand -->
+        <div class="brand-name-wrapper">
+          <a class="navbar-brand" >
+            DevPointSystem
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Main Menu -->
+    <div class="side-menu-container" data-bs-toggle="dropdown" data-bs-auto-close="true" >
+      <ul class="nav navbar-nav">
+
+        <li class="dev" [routerLink]="['']"><a  ><i class="fa fa-dashboard"></i> Dashboard</a></li>
+ 
+        <li class="panel panel-default" id="dropdown" > 
+          <a data-toggle="collapse" href="#GestionCommerciale" class="collapsed" aria-expanded="false" >
+            <i class="fa fa-shopping-cart"></i> Gestion commerciale
+            <span class="caret"></span>
+          </a>
+          <!-- Dropdown level 1 -->
+          <div id="GestionCommerciale" class="panel-collapse collapse" aria-expanded="false" style="">
+            <div class="panel-body">
+              <ul class="nav navbar-nav"> 
+                <!-- Dropdown level 2 -->
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#Achat" data-bs-auto-close="inside">
+                    <i class="fa fa-shopping-cart"></i> Achat <span class="caret"></span>
+                  </a>
+                  <div id="Achat" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <ul class="nav navbar-nav">
+                        <li [routerLink]="['/cbn']" ><a>CBN</a></li>
+                        
+                        <li [routerLink]="['/demande_achat']"><a>Demande Achat</a></li>
+                        <li [routerLink]="['/appel_offre']"><a>Appel D'offre</a></li>
+                        <li [routerLink]="['/order_achat']"><a>Order Achat</a></li>
+                        <li [routerLink]="['/circuit_validation']"><a>Circuit Validation</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="panel panel-default" id="dropdown" >
+                  <a data-toggle="collapse" href="#Vente" >
+                    <i class="fa fa-bag-shopping"></i> Vente <span class="caret"></span>
+                  </a>
+                  <div id="Vente" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <ul class="nav navbar-nav">
+                        <li [routerLink]="['/fiche_technique']" ><a>Fiche Technique</a></li>
+                        <li [routerLink]="['/devis']"><a> <i class="fa fa-shopping-cart"></i>Devis</a></li>
+                        <li [routerLink]="['/facture_vente']"><a>Facture Vente</a></li>
+                        <!-- <li [routerLink]="['/appel_offre']"><a>Appel D'offre</a></li>
+                        <li [routerLink]="['/order_achat']"><a>Order Achat</a></li>
+                        <li [routerLink]="['/circuit_validation']"><a>Circuit Validation</a></li> -->
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+
+
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#ParametrageProduit">
+                    <i class="fa fa-gear"></i> Parametrage Produit <span class="caret"></span>
+                  </a>
+                  <div id="ParametrageProduit" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <ul class="nav navbar-nav">
+                        <li [routerLink]="['/parametrage_produit']" ><a>Produit</a></li>
+                        <li [routerLink]="['/composition']"><a>Composition</a></li>
+                        <li [routerLink]="['/fourniture']"><a>Fourniture</a></li>
+                        <li [routerLink]="['/categorie_produit']"><a>Categorie Produit</a></li>
+                        <li [routerLink]="['/famille_produit']"><a>Famille Produit</a></li>
+                        <!-- <li [routerLink]="['/circuit_validation']"><a>Circuit Validation</a></li> -->
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#Stock">
+                    <i class="fa fa-print"></i>Stock<span class="caret"></span>
+                  </a>
+                  <div id="Stock" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <ul class="nav navbar-nav">
+                        <!-- <li [routerLink]="['/cbn']" ><a>CBN</a></li>
+                        <li [routerLink]="['/devis']"><a> <i class="fa fa-shopping-cart"></i>Devis</a></li>
+                        <li [routerLink]="['/demande_achat']"><a>Demande Achat</a></li>
+                        <li [routerLink]="['/appel_offre']"><a>Appel D'offre</a></li>
+                        <li [routerLink]="['/order_achat']"><a>Order Achat</a></li>
+                        <li [routerLink]="['/circuit_validation']"><a>Circuit Validation</a></li> -->
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#ClientFournisseur">
+                    <i class="fa fa-user"></i>Client & Fournisseur<span class="caret"></span>
+                  </a>
+                  <div id="ClientFournisseur" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <ul class="nav navbar-nav">
+                        <li [routerLink]="['/client']" ><a>Client</a></li>
+                        <li [routerLink]="['/fournisseur']"><a>Fornisseur</a></li>
+                        <!-- <li [routerLink]="['/demande_achat']"><a>Demande Achat</a></li>
+                        <li [routerLink]="['/appel_offre']"><a>Appel D'offre</a></li>
+                        <li [routerLink]="['/order_achat']"><a>Order Achat</a></li>
+                        <li [routerLink]="['/circuit_validation']"><a>Circuit Validation</a></li> -->
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </li>
+
+
+        <!-- <li [routerLink]="['/stock_logistique']" ><a ><i class="fa fa-exchange"></i>Stock et Logistique</a></li> -->
+
+
+        <li class="panel panel-default" id="dropdown">
+          <a data-toggle="collapse" href="#StockLogistique" class="collapsed" aria-expanded="false">
+            <i class="fa fa-institution"></i> Stock et Logistique
+            <span class="caret"></span>
+          </a>
+          <!-- Dropdown level 1 -->
+          <div id="StockLogistique" class="panel-collapse collapse" aria-expanded="false" style="">
+            <div class="panel-body">
+              <ul class="nav navbar-nav"> 
+
+                <!-- Dropdown level 2 -->
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#entrepôts">
+                    <i class="fa fa-home"></i>Gestion des entrepôts<span class="caret"></span>
+                  </a>
+                  <div id="entrepôts" class="panel-collapse collapse">
+                    <div class="panel-body">  
+                      <ul class="nav navbar-nav">
+                        <li [routerLink]="['/client']" ><a>Depots & Entroposages</a></li>
+                        <li [routerLink]="['/fournisseur']"><a>Emplacement</a></li>
+                         <li [routerLink]="['/demande_achat']"><a>Salle</a></li> 
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#Transport">
+                    <i class="glyphicon glyphicon-off"></i>Transport<span class="caret"></span>
+                  </a>
+                  <div id="Transport" class="panel-collapse collapse">
+                    <div class="panel-body">  
+                      <ul class="nav navbar-nav">
+                        <!-- <li [routerLink]="['/client']" ><a>Depots & Entroposages</a></li>
+                        <li [routerLink]="['/fournisseur']"><a>Emplacement</a></li>
+                         <li [routerLink]="['/demande_achat']"><a>Salle</a></li>  -->
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#Mouvement">
+                    <i class="fa fa-random"></i>Mouvement<span class="caret"></span>
+                  </a>
+                  <div id="Mouvement" class="panel-collapse collapse">
+                    <div class="panel-body">  
+                      <ul class="nav navbar-nav">
+                        <li [routerLink]="['/reception']" ><a>Reception</a></li>
+                        <li [routerLink]="['/demande_transfert']"><a>Demande Transfert</a></li>
+                         <li [routerLink]="['/transfert']"><a>Mouvement Transfert</a></li> 
+                         <li [routerLink]="['/avoir_transfert']"><a>Avoir Transfert</a></li> 
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+
+
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#Inventaire">
+                    <i class="fa fa-wpforms"></i>Inventaire<span class="caret"></span>
+                  </a>
+                  <div id="Inventaire" class="panel-collapse collapse">
+                    <div class="panel-body">  
+                      <ul class="nav navbar-nav">
+                        <li [routerLink]="['/inventaire']" ><a>Inventaire</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#retour">
+                    <i class="fa fa-reply-all"></i>Retour<span class="caret"></span>
+                  </a>
+                  <div id="retour" class="panel-collapse collapse">
+                    <div class="panel-body">  
+                      <ul class="nav navbar-nav">
+                        <li [routerLink]="['/retour_fournisseur']"><a>Retour Fournisseur</a></li>
+                         <li [routerLink]="['/retour_client']"><a>Retour Client</a></li> 
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <!-- <li [routerLink]="['/gproduction']" ><a ><i class="fa fa-product-hunt"></i> Gestion de production</a></li> -->
+        <li class="panel panel-default" id="dropdown">
+          <a data-toggle="collapse" href="#GestionProduction" class="collapsed" aria-expanded="false">
+            <i class="fa fa-product-hunt"></i> Gestion de production
+            <span class="caret"></span>
+          </a>
+          <!-- Dropdown level 1 -->
+          <div id="GestionProduction" class="panel-collapse collapse" aria-expanded="false" style="">
+            <div class="panel-body">
+              <ul class="nav navbar-nav">
+                <!-- <li [routerLink]="['/stock_logistique']" ><a>Mail</a></li>
+                <li><a ><i class="fa fa-product-hunt"> </i>Prod</a></li>
+                <li><a href="#">Ecommerce</a></li>
+                <li><a href="#">User</a></li>
+                <li><a href="#">Social</a></li> -->
+
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#chaineProduction">
+                    <i class="fa fa-ellipsis-h"></i>Chaine de Production<span class="caret"></span>
+                  </a>
+                  <div id="chaineProduction" class="panel-collapse collapse">
+                    <div class="panel-body">  
+                      <ul class="nav navbar-nav">
+                        <li [routerLink]="['/planification_of']" ><a>Planification OF</a></li> 
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#Nomenclature">
+                    <i class="fa fa-list-ol"></i>Nomenclature<span class="caret"></span>
+                  </a>
+                  <div id="Nomenclature" class="panel-collapse collapse">
+                    <div class="panel-body">  
+                      <ul class="nav navbar-nav">
+                        <li [routerLink]="['/nomenclature']" ><a>Nomencalture</a></li> 
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#PlanificationSuivie">
+                    <i class="fa fa-th"></i>Planification & Suivie<span class="caret"></span>
+                  </a>
+                  <div id="PlanificationSuivie" class="panel-collapse collapse">
+                    <div class="panel-body">  
+                      <ul class="nav navbar-nav">
+                        <li [routerLink]="['/repartition_of']" ><a>Repartition OF</a></li> 
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#Jalonnement">
+                    <i class="fa fa-hourglass-half"></i>Jalonnement<span class="caret"></span>
+                  </a>
+                  <div id="Jalonnement" class="panel-collapse collapse">
+                    <div class="panel-body">  
+                      <ul class="nav navbar-nav">
+                        <li [routerLink]="['/jolonnement']" ><a>Phase OF</a></li> 
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <!-- <li [routerLink]="['/managment']" ><a ><i class="fa fa-braille"></i> Management</a></li> -->
+
+        <!-- Dropdown-->
+        <li class="panel panel-default" id="dropdown">
+          <a data-toggle="collapse" href="#Management" class="collapsed" aria-expanded="false">
+            <i class="fa fa-braille"></i> Management
+            <span class="caret"></span>
+          </a>
+          <!-- Dropdown level 1 -->
+          <div id="Management" class="panel-collapse collapse" aria-expanded="false" style="">
+            <div class="panel-body">
+              <ul class="nav navbar-nav">
+
+                <!-- Dropdown level 2 -->
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#Qualite">
+                    <i class="fa fa-eye"></i> Qualite <span class="caret"></span>
+                  </a>
+                  <div id="Qualite" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <ul class="nav navbar-nav">
+                        <li><a >Control Produit</a></li> 
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#Securite">
+                    <i class="fa fa-universal-access"></i> Securite <span class="caret"></span>
+                  </a>
+                  <div id="Securite" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <ul class="nav navbar-nav">
+                        <li><a >Control Securite</a></li> 
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#Envirenement">
+                    <i class="fa fa-envira"></i> Envirenement <span class="caret"></span>
+                  </a>
+                  <div id="Envirenement" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <ul class="nav navbar-nav">
+                        <li><a >Control Envirenement</a></li> 
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+
+
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#Hygiene">
+                    <i class="fa fa-snowflake-o"></i> Hygiene <span class="caret"></span>
+                  </a>
+                  <div id="Hygiene" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <ul class="nav navbar-nav">
+                        <li><a >Control Terrain</a></li> 
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#GMAO">
+                    <i class="fa fa-gears"></i> GMAO <span class="caret"></span>
+                  </a>
+                  <div id="GMAO" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <ul class="nav navbar-nav">
+                        <li><a >GMAO</a></li> 
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <!-- <li [routerLink]="['/managment']" ><a ><i class="fa fa-braille"></i>  Comptabilité </a></li> -->
+
+        <!-- Dropdown-->
+        <li class="panel panel-default" id="dropdown">
+          <a data-toggle="collapse" href="#Comptabilité" class="collapsed" aria-expanded="false">
+            <i class="fa fa-money"></i>  Comptabilité 
+            <span class="caret"></span>
+          </a>
+          <!-- Dropdown level 1 -->
+          <div id="Comptabilité" class="panel-collapse collapse" aria-expanded="false" style="">
+            <div class="panel-body">
+              <ul class="nav navbar-nav">
+
+                <!-- Dropdown level 2 -->
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#Comptabilité_G_Aux">
+                    <i class="fa fa-google-wallet"></i>Comptabilité G. & Aux<span class="caret"></span>
+                  </a>
+                  <div id="Comptabilité_G_Aux" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <ul class="nav navbar-nav">
+                        <li><a ><i class="fa fa-square-up-right"></i> Integration</a></li>
+                        <li><a ><i class="fa fa-table-list"></i> Plan Comptable</a></li>
+                        <li><a ><i class="fa fa-people-group"></i> Compte Auxiliaire</a></li>
+                        <li><a ><i class="fa fa-list-check"></i> Rapprochement</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#Comptabilité_Analytique">
+                    <i class="fa fa-google-wallet"></i>Comptabilité Analytique<span class="caret"></span>
+                  </a>
+                  <div id="Comptabilité_Analytique" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <ul class="nav navbar-nav">
+                        <!-- <li><a >Integration</a></li>
+                        <li><a >Plan Comptable</a></li>
+                        <li><a >Compte Auxiliaire</a></li>
+                        <li><a >Rapprochement</a></li> -->
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#Gestion_Paiement">
+                    <i class="fa fa-money-bill-transfer"> </i> Gestion Paiement<span class="caret"></span>
+                  </a>
+                  <div id="Gestion_Paiement" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <ul class="nav navbar-nav">
+                        <li><a ><i class="fa fa-money-check-dollar"></i> Mode Reglement</a></li>
+                        <li><a ><i class="fa fa-building-columns"></i> Banques</a></li>
+                        <li><a ><i class="fa fa-user"></i> Reglement Client</a></li>
+                        <li><a ><i class="fa fa-user"></i> Reglemnt Fournisseur</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <!-- <li [routerLink]="['/gcommercial']" ><a  > <i class="fa fa-line-chart"></i>    Business Intelligence & reporting</a></li> -->
+        <li class="panel panel-default dropdown-toggle" id="dropdown" data-bs-toggle="dropdown" 
+        data-bs-auto-close="outside" 
+        aria-expanded="false" >
+          <a data-toggle="collapse" href="#BiReporting" >
+            <i class="fa fa-line-chart"></i>B.I & reporting<span class="caret"></span>
+          </a>
+          <!-- Dropdown level 1 -->
+          <div id="BiReporting" class="panel-collapse collapse" aria-expanded="false" style="" data-bs-toggle="dropdown" 
+          data-bs-auto-close="outside" 
+          aria-expanded="false">
+            <div class="panel-body">
+              <ul class="nav navbar-nav">
+                <li><a href="#">Mail</a></li>
+                <li><a href="#">Calendar</a></li>
+                <li><a href="#">Ecommerce</a></li>
+                <li><a href="#">User</a></li>
+                <li><a href="#">Social</a></li>
+
+                <!-- Dropdown level 2 -->
+                <!-- <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#dropdown-lvl2">
+                    <i class="glyphicon glyphicon-off"></i> Sub Level <span class="caret"></span>
+                  </a>
+                  <div id="dropdown-lvl2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <ul class="nav navbar-nav">
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+
+           
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </nav> 
+  <div class="btn-group"> 
+    <button class="btn btn-success dropdown-toggle" 
+            type="button" 
+            data-bs-toggle="dropdown" 
+            data-bs-auto-close="outside" 
+            aria-expanded="false"> 
+        GeeksforGeeks AutoClose Outside 
+    </button> 
+    <ul class="dropdown-menu"> 
+        <li><a class="dropdown-item" href="#">Java</a></li> 
+        <li><a class="dropdown-item" href="#"> C++</a></li> 
+        <li><a class="dropdown-item" href="#">C#</a></li> 
+        <li><a class="dropdown-item" href="#">Python</a></li> 
+
+    </ul> 
+</div> 
+</div>
+

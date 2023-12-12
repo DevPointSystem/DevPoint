@@ -1,0 +1,141 @@
+body {
+    font-family: Cairo !important;
+    display: grid;
+    grid-template-areas: "header header header" "nav section aside" "footer footer footer";
+    grid-template-rows: 50px 1fr 20px;
+    grid-template-columns: 240px 1fr 0px;
+    grid-gap: 5px;
+    height: 100vh;
+    margin: 5px;
+    font-size: 15px;
+    overflow-y: scroll !important;
+}
+
+body {
+    margin: 0;
+    font-family: var(--bs-body-font-family);
+    font-size: var(--bs-body-font-size);
+    font-weight: var(--bs-body-font-weight);
+    line-height: var(--bs-body-line-height);
+    color: var(--bs-body-color);
+    text-align: var(--bs-body-text-align);
+    background-color: var(--bs-body-bg);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+header {
+    background: #3f5e66;
+    grid-area: header;
+}
+
+nav {
+    background: #ebeaea;
+    grid-area: nav;
+    border-radius: 15px;
+}
+
+section {
+    background: #f3f3f3;
+    grid-area: section;
+}
+
+aside {
+    background: #e6e6e6;
+    grid-area: aside;
+}
+
+footer {
+    background: #e6e6e6;
+    grid-area: footer;
+}
+
+header,
+nav,
+section,
+aside,
+footer {
+    padding: 5px;
+}
+
+.mat-button,
+.mat-icon-button,
+.mat-stroked-button,
+.mat-flat-button {
+    box-sizing: border-box;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: baseline;
+    text-align: center;
+    margin-right: 100px;
+    min-width: 64px;
+    line-height: 36px;
+    padding: 0 45px;
+    border-radius: 4px;
+    overflow: visible;
+    color: inherit;
+    background: white;
+}
+
+.div-panel {
+    min-width: 138px;
+    max-width: 280px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    max-height: calc(100vh - 48px);
+    border-radius: 4px;
+    outline: 0;
+    min-height: 64px;
+}
+
+.menu-items { 
+}
+
+.menu-btn {
+    direction: rtl;
+    padding: 0px 15px 0px;
+}
+
+:host ::ng-deep .p-menu .p-menuitem-link .p-menuitem-icon {
+    color: #0076df !important;
+    margin-right: 5px;
+    font-size: 19px;
+}
+
+:host ::ng-deep .p-menu .p-menuitem-link .p-menuitem-text {
+ 
+    font-size: 18px;
+    padding-right: 13px;
+    font-weight: bold;
+}
+
+:host ::ng-deep .p-menu {
+    padding: 5px 0;
+    color: #495057;
+    border-radius: 6px;
+    width: 160px;
+    font-family: auto;
+}
+
+:host ::ng-deep .p-button {
+    margin: 0;
+    display: inline-flex;
+    cursor: pointer; 
+    user-select: none;
+    align-items: center;
+    vertical-align: bottom;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    padding: 5px 5px 5px 5px;
+    margin: 2px 1px 1px 1px;
+}
