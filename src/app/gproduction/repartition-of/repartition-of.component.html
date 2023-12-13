@@ -1,1 +1,301 @@
-<p>repartition-of works!</p>
+<body translate="no" class="tt">
+    <!-- Note: This example only works with Windows Insider Preview Builds 16237+. -->
+
+    <!-- <header>
+        <span style="color: white; font-size: 25px;">
+            list filialles
+        </span>
+    </header> -->
+    <aside>
+
+
+
+        <div class="Groupe-Bouton" id="BoutonFacturationInPatient">
+            <div class="flex-row-around" id="div_btn_fac_liste_facturation-InPatient">
+                <button data-backdrop="false" type="button" class="Bouton btn btn-labeled btn-default " data-original-title="Add" data-toggle="modal" data-target="#Modal" (click)="onOpenmodal('addPL')">
+                    <span class="label-btn"><i class="fa-lg fa-fw fa fa-plus"></i> </span>
+                    <div class="bouton_style"> Affectation</div>
+
+                </button>
+            </div>
+            <div class="flex-row-around" id="div_btn_fac_audit_facturation-InPatient">
+                <button type="button" class="Bouton btn btn-labeled btn-default " data-original-title="Edit" data-toggle="modal" data-target="#Modal" (click)="onOpenmodal('edit')">
+
+                    <span class="label-btn"><i class="fa-lg fa fa-pencil"></i> </span>
+                    <div class="bouton_style">Modifier</div>
+                </button>
+
+            </div>
+
+
+            <div class="flex-row-around" id="div_btn_fac_annuler_audit-InPatient">
+                <button type="button" class="Bouton btn btn-labeled btn-default " data-original-title="Delete" data-toggle="modal" data-target="#ModalDelete" (click)="onOpenmodal('delete')">
+                    <span class="label-btn"><i class="fa-lg fa fa-trash-o"></i> </span>
+                    <div class="bouton_style">Supprimer</div>
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+    </aside>
+
+
+
+    <section id="main-container" *ngIf="filaille;else err">
+
+        <!-- <div class="container-fluid" id="main-container"> -->
+
+        <div class="material-table">
+
+
+
+            <!-- [ngModelOptions]="{standalone: true}" -->
+            <div class="card">
+                <!-- <p-table id="myTable" [value]="ActifFilaille" selectionMode="single" dataKey="codeSaisie" [tableStyle]="{'min-width': '50rem'}" [(selection)]="selectedProduct" dataKey="code" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
+                    (click)="selectedRow2()"> -->
+                <p-toast></p-toast>
+                <p-table #dt1 [globalFilterFields]="['designation', 'ville', 'numTlf', 'adress']" [value]="ActifFilaille" selectionMode="single" [(selection)]="selectedProduct" dataKey="code" (onRowSelect)="onRowSelect($event)" [tableStyle]="{'min-width': '50rem'}">
+
+
+
+                    <ng-template pTemplate="caption">
+
+                        <mat-radio-group aria-label="Select an option" class="radio-actif-inactif">
+
+                            <mat-radio-button value="actif" [checked]="check_actif === true" (click)="GetFilialleActif()" (click)="clear(dt1)">Actif</mat-radio-button>
+                            <mat-radio-button [checked]="check_inactif === true" value="InActif" (click)="GetFilialeInActif()" (click)="clear(dt1)">In Actif </mat-radio-button>
+                        </mat-radio-group>
+
+
+
+                        <div class="recherche">
+                            <mat-label class="label-recherche"> البيان : </mat-label>
+                            <span class="p-input-icon-left ml-auto">
+                            <input pInputText class="recherche-value" [(ngModel)]="searchTerm" name="zone-recherche" type="text" (keyup.enter)="dt1.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
+                        </span>
+                            <button type="button" class="Bouton-rechercher btn  btn-default " data-original-title="Add" (click)="dt1.filterGlobal($any($event.target).value, 'contains')">
+                            <div class="bouton_style-2">بحث</div>
+                            <mat-icon class="search-icon">search</mat-icon>
+                        </button>
+                            <button type="button" class="Bouton-rechercher btn  btn-default " data-original-title="Add" (click)="GetFilialleActif()" (click)="clear(dt1)">
+                            <div class="bouton_style-2">تحديث</div>
+                            <mat-icon class="search-icon">refresh</mat-icon>
+                        </button>
+                        </div>
+
+
+                        <!-- </div> -->
+                        <!-- </div> -->
+                    </ng-template>
+
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>الكود</th>
+                            <th>الرمز</th>
+                            <th>البيان</th>
+                            <th>المدينة</th>
+                            <th>رقم الهاتف</th>
+                            <th>العنوان</th>
+                            <th class="act-col">متداول</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-fl>
+                        <tr [pSelectableRow]="fl">
+                            <td>{{fl.code}}</td>
+                            <td>{{fl.codeSaisie}}</td>
+                            <td>{{fl.designation}}</td>
+                            <td>{{fl.ville}}</td>
+                            <td>{{fl.numTlf}}</td>
+                            <td>{{fl.adress}}</td>
+                            <td class="act-col">
+
+                                <p-checkbox [readonly]="true" [(ngModel)]="fl.actif" [binary]="true" inputId="binary">{{fl.actif}}</p-checkbox>
+                            </td>
+
+
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </section>
+    <!-- <aside>aside</aside> -->
+    <footer>footer
+
+        <!-- <div *ngIf="selectedProfile">{{selectedProfile.code}} - {{selectedProfile.designation}}</div> -->
+
+    </footer>
+</body>
+
+
+<ng-template #err>
+    <p class="text-danger"> Error Load Data</p>
+</ng-template>
+
+
+
+
+
+<!-- modal primeNG ADD -->
+<p-dialog styleClass="ModalAdd" id="Modal" header="Header" data-backdrop="false" [(visible)]="visible" [modal]="true" [style]="{width: '46vw'}" [draggable]="false" [resizable]="false">
+    <div class="modal-header">
+        <h3 class="footer-dev">
+            <div class="action">
+                <h2 class="text-center text-default"> {{formHeader}}</h2>
+                <button [disabled]="addForm.invalid" class="btn btn-primary save" data-dismiss="modal" (click)="savePriceListe()">  <i
+                        class="fa-lg fa-fw fa fa-floppy-o "></i>
+                    Sauvgarde </button>
+                <button class="btn btn-danger cancel" :closable="true" (click)="this.clearForm()" (click)="visible = false" (click)="visDelete = false" data-dismiss="modal"> <i
+                        class="fa-lg fa-fw fa fa-sign-out "></i>Fermer
+                </button>
+            </div>
+        </h3>
+    </div>
+    <div class="modal-body">
+        <form action="" #addForm="ngForm">
+            <fieldset>
+                <h3 class="header-dev">Information</h3>
+                <div class="flex-row-space">
+                    <section class="flex-row-space flex-8" disabled="">
+                        <label class="control-label flex-2">Code</label>
+                        <div class="control-input  flex-8">
+                            <input id="codeSaisie" maxlength="10" name="codeSaisie" type="text" class="onlyForCentral form-control-dev input-xs" [(ngModel)]="codeSaisie" required>
+                            <span> </span>
+                        </div>
+                    </section>
+                    <section class="flex-row-space flex-2">
+                        <!-- <label class="control-label">
+                            <input id="actif" name="actif" type="checkbox" unchecked="" class="checkbox"
+                                [(ngModel)]="actif">
+                            <span>متداول</span>
+                        </label> -->
+
+                        <p-checkbox [binary]="true" class="check-box-dte-exp" name="Actif" value="val1" label="Actif" [(ngModel)]="actif"></p-checkbox>
+
+                    </section>
+                </div>
+                <div class="flex-row-space">
+                    <section class="flex-row-space flex-12">
+                        <label class="control-label flex-2">Designation</label>
+                        <div class="control-input flex-10">
+                            <input type="text" id="designation" maxlength="200" name="designation" class="onlyForCentral form-control-dev input-xs" [(ngModel)]="designation" required>
+                        </div>
+
+                    </section>
+                </div>
+                <div class="flex-row-space">
+                    <section class="flex-row-space flex-12">
+                        <label class="control-label flex-2">رقم الهاتف</label>
+                        <div class="control-input flex-10">
+                            <input type="text" id="numTlf" maxlength="200" name="numTlf" class="onlyForCentral form-control-dev input-xs" [(ngModel)]="numTlf" required>
+                        </div>
+                    </section>
+                </div>
+                <div class="flex-row-space">
+                    <section class="flex-row-space flex-12">
+                        <label class="control-label flex-2">المدينة</label>
+                        <div class="control-input flex-10">
+                            <input type="text" id="ville" maxlength="200" name="ville" class="onlyForCentral form-control-dev input-xs" [(ngModel)]="ville" required>
+                        </div>
+                    </section>
+                </div>
+                <div class="flex-row-space">
+                    <section class="flex-row-space flex-12">
+                        <label class="control-label flex-2">العنوان</label>
+                        <div class="control-input flex-10">
+                            <input type="text" id="adress" maxlength="200" name="adress" class="onlyForCentral form-control-dev input-xs" [(ngModel)]="adress" required>
+                        </div>
+                    </section>
+                </div>
+
+
+                <div class="flex-row-space">
+                    <!-- <section class="flex-row-space flex-12">
+                        <label class="control-label flex-2">تاريخ الصلاحية</label>
+                        <div class="control-input flex-10-date">
+                            <input class="date-validation" type="date" id="annee" name="annee" [(ngModel)]="annee" placeholder="dd/MM/yyyy" min="01/01/2010" max="31/12/2099" required />
+                        </div>
+                    </section> -->
+                    <!-- <section>
+
+                        <label class="control-label flex-2-2">صنف</label>
+                        <mat-form-field class="drop-control">
+                            <mat-select [(value)]="selectedProfile">
+                                <mat-option *ngFor="let food of listdrop" [value]="food.code">
+                                    {{food.designation}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div *ngIf="selectedProfile">{{selectedProfile.code}} - {{selectedProfile.designationAr}}</div> 
+                    </section>-->
+
+                </div>
+
+
+            </fieldset>
+            <br>
+            <fieldset>
+                <div class="flex-row-start">
+                    <section class="flex-row-space flex-4">
+                        <label class="control-label">
+                            <input id="compteRendu" name="compteRendu" type="checkbox"
+                                class="onlyForCentral checkbox">
+                            <span> test 1 </span>
+                        </label>
+                    </section>
+                    <section class="flex-row-space flex-4">
+                        <label class="control-label">
+                            <input id="sousTraitance" name="sousTraitance" type="checkbox"
+                                class="onlyForCentral checkbox">
+                            <span> test 2</span>
+                        </label>
+                    </section>
+                </div>
+                <div class="flex-row-start">
+                    <section class="flex-row-space flex-4">
+                        <label class="control-label">
+                            <input id="demandeObligatoire" name="demandeObligatoire" type="checkbox"
+                                class="onlyForCentral checkbox">
+                            <span> test 3</span>
+                        </label>
+                    </section>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</p-dialog>
+<!-- fin modal primeng  -->
+
+
+
+<!-- modal primeNG  Delete-->
+<p-dialog class="modal-delete" styleClass="ModalDelete" data-backdrop="false" id="ModalDelete" header="Header" [(visible)]="visDelete" [modal]="true" [style]="{width: '46vw'}" [draggable]="false" [resizable]="false">
+    <div class="modal-header">
+        <h3 class="footer-dev">
+            <div class="action">
+                <h2 class="text-center text-default"> {{formHeader}}</h2>
+            </div>
+        </h3>
+    </div>
+    <div class="modal-body">
+        <form action="" #addForms="ngForm">
+            <fieldset class="deleteForms">
+                <h4 class="text-delete">هل انت متأكد من الحدف
+                    <button class="btn btn-success save-delete" data-dismiss="modal" (click)="DeleteFilialle(code)"> <i
+                            class="fa-lg fa-fw fa fa-sign-out ">
+                        </i>حذف
+                    </button>
+                    <button class="btn btn-danger cancel-delete" data-dismiss="modal"> <i
+                                class="fa-lg fa-fw fa fa-sign-out "></i>خروج
+                        </button>
+                </h4>
+            </fieldset>
+            <br>
+        </form>
+    </div>
+</p-dialog>
+<!-- fin modal primeng  -->

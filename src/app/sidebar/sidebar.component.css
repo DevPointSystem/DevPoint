@@ -1,7 +1,7 @@
 body {
+  font-family: Cairo !important;
   margin-top: 50px;
-  background-color: #fff;
-  font-family: Arial, sans-serif;
+  background-color: #fff; 
   font-size: 14px;
   letter-spacing: 0.01em;
   color: #39464e;
@@ -14,7 +14,7 @@ body {
 .msb {
   width: 100%;
   /* background-color: #414242; */
-  background-image: linear-gradient(#303030 13%, #1e1e1e 40%, #0c0d11 86%);
+  background-image: linear-gradient(#303030 13%, #1e1e1e 40%, #0c0d11 86%) !important;
   position: relative;
   left: 0;
   top: 0;

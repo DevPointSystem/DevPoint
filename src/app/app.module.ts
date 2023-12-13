@@ -2,6 +2,47 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 
+/// tools//
+import { DropdownModule } from 'primeng/dropdown';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { CalendarModule } from 'primeng/calendar';
+import {  MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { TableModule } from 'primeng/table';
+import { MessagesModule } from 'primeng/messages';
+import { ToastModule } from 'primeng/toast';
+import { CheckboxModule } from 'primeng/checkbox';
+// import { MessagesModule } from "primeng/messages";
+import { MessageModule } from "primeng/message";
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { SpeedDialModule } from 'primeng/speeddial';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { MenuModule } from 'primeng/menu';
+import {MatRadioModule} from '@angular/material/radio';
+
+import {MatMenuModule} from '@angular/material/menu';
+
+import { DialogModule } from 'primeng/dialog';
+import { MatIconModule } from '@angular/material/icon'
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInput, MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table'
+import { FormControlName, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+ 
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -86,10 +127,22 @@ import { JalonnementComponent } from './gproduction/jalonnement/jalonnement.comp
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FontAwesomeModule
+    AppRoutingModule,BrowserAnimationsModule,
+    FontAwesomeModule,
+    MatInputModule, MatTableModule,
+    FormsModule, HttpClientModule, MatIconModule, MatCheckboxModule, MatButtonModule, MatDatepickerModule
+    , MatNativeDateModule, ReactiveFormsModule, MatSelectModule, MatAutocompleteModule, MatSidenavModule
+
+    , MatToolbarModule, MatListModule, MatDialogModule,MatMenuModule,MatRadioModule
+    ,TableModule,DialogModule,MessagesModule,ToastModule,CheckboxModule,MessageModule
+,DropdownModule,AutoCompleteModule,CalendarModule,MatDialogModule,MatFormFieldModule,
+ConfirmDialogModule,RadioButtonModule,SpeedDialModule,SplitButtonModule,MenuModule
   ],
-  providers: [],
+  providers: [
+    ConfirmationService,{ provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
