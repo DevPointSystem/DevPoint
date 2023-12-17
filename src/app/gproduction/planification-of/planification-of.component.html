@@ -148,10 +148,10 @@
             <h3 class="footer-dev">
                 <div class="action">
                     <h2 class="text-center text-default"> {{formHeader}}</h2>
-                    <button class="btn btn-primary save-delete" data-dismiss="modal" (click)="PostDdeAchat()"> <i class="fa-lg fa-fw fa fa-floppy-o "></i>
-                            حقظ </button>
-                    <button class="btn btn-danger cancel-delete" :closable="false" data-dismiss="modal"> <i
-                                class="fa-lg fa-fw fa fa-sign-out "  ></i>خروج
+                    <button class="btn btn-primary save" data-dismiss="modal" (click)="PostDdeAchat()"> <i class="fa-lg fa-fw fa fa-floppy-o "></i>
+                            Sauvgarde </button>
+                    <button class="btn btn-danger cancel" :closable="false" data-dismiss="modal"> <i
+                                class="fa-lg fa-fw fa fa-sign-out "  ></i>Fermer
                         </button>
                     <p-toast key="toast1"></p-toast>
                     <!-- <button type="button" pButton pRipple (click)="show()" label="Show Success" name="notif"></button> -->
@@ -164,28 +164,34 @@
             <!-- <form> -->
             <fieldset>
                 <div class="flex-row-space">
-                    <section class="flex-row-space flex-3" disabled="">
-                        <div class="control-input  flex-8"  >
-                            <!-- <input id="Company" maxlength="10" name="Company" hidden type="text" class="onlyForCentral form-control-dev input-xs" required [(ngModel)]="company.valeur"> -->
-                            <span> </span>
-                        </div>
-                        <label class="control-label flex-4">Cout</label>
+                    <section class="flex-row-space flex-4" disabled="">
+                        
+                        <label class="control-label flex-4">Commande Code</label>
                         <div class="control-input  flex-8">
-                            <input id="codeSaisie" maxlength="10" name="codeSaisie" type="text" class="onlyForCentral form-control-dev input-xs" required [(ngModel)]="codeSaisie">
-                            <span> </span>
+                            <input id="codeSaisie" maxlength="10" name="codeSaisie" type="text" class="onlyForCentral form-control-dev input-xs" required [(ngModel)]="CodeCommande">
+                        
+                        </div>
+
+                    </section>
+                    <section class="flex-row-space flex-4" style="padding-left: 50px;" disabled="">
+                        
+                        <label class="control-label flex-4" style="padding-left: 30px;">Code OF</label>
+                        <div class="control-input  flex-8">
+                            <input id="codeSaisie" maxlength="10" name="codeSaisie" type="text" class="onlyForCentral form-control-dev input-xs" required [(ngModel)]="CodeOF">
+                          
                         </div>
 
                     </section>
 
-                    <section class="flex-row-space flex-2">
-                        <p-checkbox [binary]="true" class="check-actif" name="actif" value="val3" label="متداول" [(ngModel)]="actif"></p-checkbox>
+                    <section class="flex-row-space flex-2"  style="padding-left: 50px;">
+                        <p-checkbox [binary]="true" class="check-actif" name="actif" value="val3" label="Actif" [(ngModel)]="actif"></p-checkbox>
 
                     </section>
                 </div>
                 <div class="flex-row-space">
-                    <section class="flex-row-space flex-12">
-                        <label class="control-label flex-2">البيان بالعربي</label>
-                        <div class="control-input flex-10">
+                    <section class="flex-row-space flex-4">
+                        <label class="control-label flex-4">Designation</label>
+                        <div class="control-input flex-8">
                             <input type="text" id="designation_ar" maxlength="200" name="designation_ar" class="onlyForCentral form-control-dev input-xs" [(ngModel)]="designation" required>
                         </div>
                     </section>
@@ -203,9 +209,9 @@
                     </section> -->
                 </div>
                 <br/>
-                <section class="flex-row-space flex-5">
+                <section class="flex-row-space flex-4">
                     <label class="control-label flex-4">Unite</label>
-                    <div class="dop control-input flex-10">
+                    <div class="dop control-input flex-8">
                         <p-dropdown [resetFilterOnHide]=true [options]="listUnitesrslt" [(ngModel)]="selectedUnites" (onChange)="MouveToTable()" placeholder="Choisir un instrument" [showClear]="true" [filter]="true" filterBy="label,value.name,value.code" [style]="{'width':'100%'}"
                             (onClick)="clickDropDownUp(dropDownList)" #dropDownList [autoDisplayFirst]="true" placeholder="&nbsp;" [required]="true"></p-dropdown>
                         <br/>
@@ -214,7 +220,7 @@
 
                 </section>
                 <section class="flex-row-space flex-6">
-                    <div class="dop control-input flex-12">
+                    <div class="dop control-input flex-5">
                         <!-- <p-table dataKey="qte" editMode="row" [columns]="colsAdd" [value]="listDesig" [scrollable]="true" scrollHeight="200px" selectionMode="single" [resizableColumns]="true" [globalFilterFields]="['codeInstr','desInstr','numSerie']" #dtInstAdd (onEditInit)="onEditInit($event)"
                             (onEditCancel)="onEditCancel($event)" (onEditComplete)="onEditComplete($event)"> -->
                         <p-toast></p-toast>
@@ -226,19 +232,19 @@
                             </ng-template>
                             <ng-template pTemplate="header">
                                 <tr>
-                                    <th *ngFor="let col of colsAdd" pResizableColumn>
+                                    <!-- <th *ngFor="let col of colsAdd" pResizableColumn>
                                         {{col.header}}
-                                    </th>
-                                    <!-- <th>الرمز</th>
-                                    <th>البيان</th>
-                                    <th>الكمية</th> -->
+                                    </th> -->
+                                    <th style="width: 100px">Code</th>
+                                    <th style="width: 250px">Designation</th>
+                                    <th style="width: 80px">Quantite</th>
 
-                                    <th class="col-action"></th>
+                                    <th  style="width: 40px"></th>
                                 </tr>
                             </ng-template>
                             <ng-template pTemplate="body" let-inst let-editing="editing" let-ri="rowIndex">
                                 <tr [pEditableRow]="inst">
-                                    <td>
+                                    <td style="width: 100px">
                                         <p-cellEditor>
                                             <ng-template pTemplate="input">
                                                 <p-inputNumber inputId="integeronly" [(ngModel)]="inst.codeSaisie" #codeSaisie> </p-inputNumber>
@@ -248,7 +254,7 @@
                                             </ng-template>
                                         </p-cellEditor>
                                     </td>
-                                    <td style="direction: ltr;">
+                                    <td style="direction: ltr;" style="width: 250px">
                                         <p-cellEditor>
                                             <ng-template pTemplate="input">
                                                 <p-inputNumber inputId="integeronly" [(ngModel)]="inst.designation" #designation> </p-inputNumber>
@@ -258,7 +264,7 @@
                                             </ng-template>
                                         </p-cellEditor>
                                     </td>
-                                    <td pEditableColumn ArrowNavigation>
+                                    <td pEditableColumn ArrowNavigation style="width: 80px" >
                                         <p-cellEditor>
                                             <ng-template pTemplate="input">
                                                 <p-inputNumber inputId="qte" [(ngModel)]="inst.qtedde" #qtedde> </p-inputNumber>
@@ -281,7 +287,7 @@
                                     </td> -->
                                     <!-- <button *ngIf="!editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onEditComplete(inst)" class="p-button-rounded p-button-text p-button-danger"></button> -->
 
-                                    <td> <button *ngIf="!editing" pButton type="button" pDeleteEditableRow icon="pi pi-trash" class="p-button-item " (click)="remove(ri)"></button>
+                                    <td style="width: 40px"> <button *ngIf="!editing" pButton type="button" pDeleteEditableRow icon="pi pi-trash" class="p-button-item " (click)="remove(ri)"></button>
                                         <!--  -->
                                     </td>
                                 </tr>

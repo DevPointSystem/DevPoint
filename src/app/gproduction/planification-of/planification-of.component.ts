@@ -51,9 +51,9 @@ export class PlanificationOfComponent implements OnInit {
 
     this.Voids();
     this.colsAdd = [
-      { field: 'codeSaisies', header: 'Code', width: '10%', filter: "true" },
-      { field: 'designation', header: 'Designation ', width: '80%', filter: "true" },
-      { field: 'qte', header: 'Quantite', width: '5%', filter: "true" },
+      { field: 'codeSaisies', header: 'Code', width: '10px', filter: "true" ,StylePropertyMap:"CodeSaisie"},
+      { field: 'designation', header: 'Designation ', width: '20px', filter: "true" },
+      { field: 'qte', header: 'Quantite', width: '10px', filter: "true" },
       // { field: 'Action', header: ' ', width: '70px', filter: "true" }
     ];
     // this.exportColumns = this.colsAdd.map((col) => ({ title: col.header, dataKey: col.field }));
@@ -149,7 +149,9 @@ export class PlanificationOfComponent implements OnInit {
   codeSaisie!: string;
   designation!: string;
   actif!: boolean;
-  designation2!: string;
+  // designation2!: string;
+  CodeOF !: string;
+  CodeCommande!:string;
 
   selectedddeAchat!: DDE_ACHAT;
   selectedddeAchat2!: DDE_ACHAT;
@@ -487,11 +489,13 @@ export class PlanificationOfComponent implements OnInit {
     for (var y = 0; y < this.Unitess.length; y++) {
       if (this.selectedUnites != this.Unitess[y].code) {
         exist = false;
+        // console.log(exist);
       } else {
         exist = true;
 
         alterify.set('notifier', 'position', 'top-left');
         alterify.error('Item Used');
+        // console.log(exist);
         break;
       }
     }
@@ -500,6 +504,10 @@ export class PlanificationOfComponent implements OnInit {
         this.Unitess[this.compteur] = xxx;
         this.compteur = this.compteur + 1;
         this.listDesig.push(xxx);
+        console.log(xxx);
+        console.log(this.compteur);
+        console.log(this.Unitess);
+
       })
     }
   }
@@ -525,15 +533,27 @@ export class PlanificationOfComponent implements OnInit {
     });
 
   }
+
+
   public remove(index: number): void {
     this.listDesig.splice(index, 1);
-    this.selectedUnites = null;
-    this.Unitess==null;
-    console.log(index);
+    this.Unitess.splice(index, 1);
+    // this.selectedUnites.index == null;
+    // this.Unitess==null;
+    // this.Unitess ==null
+
+      console.log(index,this.Unitess);
+    
+    
     // 
   }
 
-
+// selectedIndex!:number;
+// RemouveSelected(){
+//   let index :number = this.selectedIndex;
+//   this.listDesig  = [...this.listDesig.splice(index,0)];
+//   this.selectedIndex==null;
+// }
 
   public GetFilialleActif(){
 

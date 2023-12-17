@@ -646,17 +646,18 @@ textarea {
 .flex-4 {
     flex: 4;
     max-width: 33.33%;
+    /* padding-left: 10px; */
 }
 
 .flex-5 {
     flex: 5;
-    max-width: 41.67%;
+    max-width: 42.67%;
 }
 
 .flex-6 {
     flex: 6;
     max-width: 100%;
-    padding: 5px 10px 15px;
+    /* padding: 5px 10px 15px; */
 }
 
 .flex-7 {
@@ -814,8 +815,9 @@ textarea:focus {
     /* padding: 2px 10px; */
     font-size: 16px;
     line-height: 1.5;
-    width: 325px;
+    width: 250px;
 }
+
 
 .checkbox input[type=checkbox].checkbox+span,
 .checkbox-inline input[type=checkbox].checkbox+span,
@@ -1445,14 +1447,18 @@ tr.highlight {
 :host ::ng-deep .p-datatable-thead th {
     /* text-align: right !important; */
     color: rgb(253 253 253) !important;
-    background-color: lightseagreen!important;
+    background-color: #6883BC!important;
     font-size: 15px !important;
     border: 44px solid #bfbfbf !important;
     border-width: 1px 1px 1px 1px !important;
-    height: 29px !important;
+    height: 25px !important;
     padding: 0px 10px 0px !important;
     box-shadow: 4px -8px 20px 0px rgb(179 179 179 / 36%);
     font-family: auto;
+}
+
+:host ::ng-deep th.col-action {
+    width: 10px !important;
 }
 
 :host ::ng-deep .p-checkbox-box {
@@ -1637,3 +1643,21 @@ body.ModalAdd {
     text-align: center;
     height: 15px;
 }
+
+
+
+:host ::ng-deep input#qte {
+    font-size: 12px !important;
+}
+
+:host ::ng-deep .p-datatable-scrollable .p-datatable-thead>tr>th, .p-datatable-scrollable .p-datatable-tbody>tr>td, .p-datatable-scrollable .p-datatable-tfoot>tr>td {
+    display: flex !important;
+    flex: none !important;
+    align-items: center !important;
+}
+
+
+:host ::ng-deep td {
+    flex: none !important;
+}
+ 
