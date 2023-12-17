@@ -22,7 +22,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { MenuModule } from 'primeng/menu';
 import {MatRadioModule} from '@angular/material/radio';
 
-import {MatMenuModule} from '@angular/material/menu';
+import {MatMenuModule} from '@angular/material/menu'; 
 
 import { DialogModule } from 'primeng/dialog';
 import { MatIconModule } from '@angular/material/icon'
@@ -43,6 +43,7 @@ import { MatTableModule } from '@angular/material/table'
 import { FormControlName, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
  
+import { InputNumberModule } from 'primeng/inputnumber';
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -132,7 +133,7 @@ import { JalonnementComponent } from './gproduction/jalonnement/jalonnement.comp
     MatInputModule, MatTableModule,
     FormsModule, HttpClientModule, MatIconModule, MatCheckboxModule, MatButtonModule, MatDatepickerModule
     , MatNativeDateModule, ReactiveFormsModule, MatSelectModule, MatAutocompleteModule, MatSidenavModule
-
+,InputNumberModule
     , MatToolbarModule, MatListModule, MatDialogModule,MatMenuModule,MatRadioModule
     ,TableModule,DialogModule,MessagesModule,ToastModule,CheckboxModule,MessageModule
 ,DropdownModule,AutoCompleteModule,CalendarModule,MatDialogModule,MatFormFieldModule,

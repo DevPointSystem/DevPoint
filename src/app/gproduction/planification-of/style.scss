@@ -2,19 +2,22 @@ body {
     font-family: Cairo !important;
     /* segoe-ui_normal,Segoe UI,Segoe,Segoe WP,Helvetica Neue,Helvetica,sans-serif; */
     display: grid;
-    grid-template-areas: "header header header""nav section aside""footer footer footer";
+    grid-template-areas: "header header header" "nav section aside" "footer footer footer";
     grid-template-rows: 30px 1fr 50px;
-    grid-template-columns: 0% 1fr 10%;
+    grid-template-columns: 0% 1fr 142px;
     grid-gap: 5px;
-    height: 100vh;
+    /* height: 100vh; */
     margin: 5px;
     font-size: 15px;
-    /* direction: rtl !important; */
 }
 
+:host ::ng-deep .add-icon{
+    font-size: 22px;
+    color: darkcyan;
+}
 body {
     margin: 0;
-    /* font-family: var(--bs-body-font-family); */
+    font-family: var(--bs-body-font-family);
     font-size: var(--bs-body-font-size);
     font-weight: var(--bs-body-font-weight);
     line-height: var(--bs-body-line-height);
@@ -53,7 +56,7 @@ aside {
 
 footer {
     background: #e6e6e6;
-    grid-area: footer;
+    // grid-area: footer;
 }
 
 header,
@@ -80,10 +83,10 @@ footer {
     width: 100%;
     display: flex;
     cursor: pointer;
-    border-radius: 5px;
-    border-top-color: #aaaaaa !important;
-    border-right-color: #aaaaaa !important;
-    border-left-color: #aaaaaa !important;
+    border-radius: 0px;
+    border-top-color: #aaaaaa!important;
+    border-right-color: #aaaaaa!important;
+    border-left-color: #aaaaaa!important;
     flex-direction: column;
     align-items: center;
 }
@@ -93,16 +96,16 @@ footer {
 }
 
 .Bouton:active {
-    background-color: #f4f4f4 !important;
+    background-color: #f4f4f4!important;
 }
 
 .Bouton:active .bouton_style {
-    color: #2093b6 !important;
+    color: #2093b6!important;
     border-color: rgb(255, 0, 0);
 }
 
 .Bouton:active .label-btn {
-    color: #2093b6 !important;
+    color: #2093b6!important;
 }
 
 .label-btn {
@@ -116,16 +119,15 @@ footer {
     /* padding: 40px 190px 4px; */
     border-radius: 2px 2px 0 0;
     color: #1293b8;
-    font-size: 20px;    
-    padding-left: 10px;
-    margin: 4px 0px 7px;
+    font-size: 23px;
+    margin: 4px 1px 19px;
     background-color: rgba(158, 158, 158, 0.16);
-    /* text-align: right; */
+    text-align: right;
     /* padding: 10px; */
 }
 
 .Filter-text {
-    border-radius: 0 !important;
+    border-radius: 0!important;
     display: block;
     /* width: 15%; */
     padding: 0.375rem 0.75rem;
@@ -240,7 +242,7 @@ input.mat-input-element {
 }
 
 :focus {
-    outline: 0 !important;
+    outline: 0!important;
 }
 
 .mat-input-element,
@@ -256,7 +258,7 @@ input.mat-input-element {
 }
 
 .search-icon:active {
-    color: #2093b6 !important;
+    color: #2093b6!important;
 }
 
 .mat-header-cell {
@@ -332,7 +334,7 @@ tr.mat-footer-row {
 */
 
 .Bouton:hover {
-    background-color: #f4f4f4 !important;
+    background-color: #f4f4f4!important;
 }
 
 .btn.disabled,
@@ -343,11 +345,11 @@ tr.mat-footer-row {
 }
 
 .Bouton:hover .bouton_style {
-    color: #2093b6 !important;
+    color: #2093b6!important;
 }
 
 .Bouton:hover .label-btn {
-    color: #2093b6 !important;
+    color: #2093b6!important;
 }
 
 .label-btn {
@@ -523,8 +525,9 @@ textarea.form-control-dev {
 
 .control-label {
     font-weight: 400;
-    font-family: Cairo !important;
-    font-size: 15px;
+    /* padding-top: 5px;
+  */
+    font-size: 17px;
     color: black;
 }
 
@@ -613,6 +616,7 @@ input[type=number] {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 5px;
 }
 
 .flex-row-end {
@@ -681,7 +685,7 @@ textarea {
 
 .flex-11 {
     flex: 11;
-    max-width: 88.67%;
+    max-width: 91.67%;
 }
 
 .flex-12 {
@@ -729,7 +733,7 @@ body.mobile-view-activated.hidden-menu {
 }
 
 body.modal-open {
-    overflow: hidden !important;
+    overflow: hidden!important;
 }
 
 a:active,
@@ -748,10 +752,10 @@ h2,
 h3,
 h4 {
     margin: 0;
-    font-family: Cairo !important;
+    font-family: "Open Sans", Arial, Helvetica, Sans-Serif;
     font-weight: 300;
-    font-size: 20px;
-    /* margin-top: 5px; */
+    font-size: 22px;
+    margin-top: 5px;
     color: black;
 }
 
@@ -772,7 +776,7 @@ label {
 }
 
 :focus {
-    outline: 0 !important;
+    outline: 0!important;
 }
 
 
@@ -799,22 +803,22 @@ input[type=week]:focus,
 select:focus,
 textarea:focus {
     outline: 0;
-    box-shadow: none !important;
+    box-shadow: none!important;
 }
 
 .form-control,
 .input-lg,
 .input-sm,
 .input-xs {
-    border-radius: 0 !important;
+    border-radius: 0!important;
 }
 
 .input-xs {
-    height: 20px;
+    height: 25px;
     /* padding: 2px 10px; */
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.5;
-    width: 325px;
+    width: 430px;
 }
 
 .checkbox input[type=checkbox].checkbox+span,
@@ -846,7 +850,7 @@ input[type=checkbox].checkbox+span:before,
 input[type=radio].radiobox+span,
 input[type=radio].radiobox+span:after,
 input[type=radio].radiobox+span:before {
-    box-sizing: content-box !important;
+    box-sizing: content-box!important;
 }
 
 input[type=checkbox].checkbox,
@@ -929,7 +933,7 @@ label input[type=radio].radiobox.style-1+span:before {
     font-size: 9px;
     background: #fff;
     text-shadow: none;
-    box-shadow: none !important;
+    box-shadow: none!important;
     border-width: 1px;
     height: 13px;
     line-height: 13px;
@@ -990,8 +994,8 @@ label input[type=radio][disabled].radiobox+span:before,
 label input[type=radio][disabled].radiobox:checked+span:before,
 label:active input[type=radio][disabled].radiobox:checked+span:before,
 label:hover input[type=radio][disabled].radiobox:checked+span:before {
-    background: #eee !important;
-    border-color: #CCC !important;
+    background: #eee!important;
+    border-color: #CCC!important;
     box-shadow: none;
     color: #A7A7A7;
 }
@@ -1039,7 +1043,7 @@ label input[type=checkbox].checkbox.style-1+span:before {
     color: #333;
     background: #fff;
     text-shadow: none;
-    box-shadow: none !important;
+    box-shadow: none!important;
     border-width: 1px;
     height: 12px;
     line-height: 13px;
@@ -1142,7 +1146,7 @@ label input[type=checkbox][disabled].checkbox:checked+span:before {
 }
 
 .footer-dev {
-    padding: 10px 14px 10px;
+    padding: 4px 16px 4px;
     border-radius: 2px 2px 0 0;
     color: #1293b8;
     font-size: 19px;
@@ -1152,22 +1156,20 @@ label input[type=checkbox][disabled].checkbox:checked+span:before {
 }
 
 button.btn.btn-primary.save {
-    position: fixed;
-    right: 34px;
+    position: relative;
+    right: 295px;
     font-size: 13px;
     /* direction: ltr; */
     white-space: pre-line;
     font-size: 13px;
     text-align: center;
-    top: 20px;
 }
 
 button.btn.btn-danger.cancel {
-    position: fixed;
-    left: 965px;
+    position: relative;
+    right: 300px;
     font-size: 13px;
     direction: ltr;
-    top: 20px;
 }
 
 h2.text-center.text {
@@ -1219,7 +1221,6 @@ table {
 
 .label-recherche {
     padding: 4px 5px 0px;
-    font-family: auto;
 }
 
 .recherche-bar-1 {
@@ -1246,13 +1247,14 @@ table {
     float: left;
 }
 
-.container {
+
+/* .container {
     width: 100%;
     padding-right: 0px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
-}
+} */
 
 .recherche-zone {
     display: contents;
@@ -1260,25 +1262,10 @@ table {
 
 .Bouton-rechercher {
     margin-right: 8px;
-    margin-left: 5px;
     display: flex;
     height: 34px;
     padding: 6px 13px 0px;
     margin-bottom: 3px;
-    position: sticky;
-    left: 540px;
-}
-
-
-.Bouton-refresh {
-    margin-right: 8px;
-    margin-left: 5px;
-    display: flex;
-    height: 34px;
-    padding: 6px 13px 0px;
-    margin-bottom: 3px;
-    position: sticky;
-    left: 670px;
 }
 
 .bouton_style-2 {
@@ -1288,7 +1275,7 @@ table {
 
 .mat-header-cell {
     color: rgb(255 255 255) !important;
-    background-color: lightseagreen !important;
+    background-color: lightseagreen!important;
     font-size: 12px !important;
 }
 
@@ -1304,14 +1291,9 @@ table {
 }
 
 ::ng-deep .cdk-overlay-container {
-    z-index: 9999; 
+    z-index: 9999;
 }
-::ng-deep .p-dialog .p-dialog-content:last-of-type {
-    border-radius: 6px;
-    width: 100% !important;
-   
-    /* direction: rtl; */
-}
+
 .flex-10-date {
     flex: 10;
     max-width: 70.33%;
@@ -1364,7 +1346,7 @@ button.btn.btn-danger.cancel-delete {
     right: 232px;
     font-size: 13px;
     direction: ltr;
-    bottom: 3px;
+    /* bottom: 3px; */
 }
 
 .save-delete {
@@ -1372,19 +1354,32 @@ button.btn.btn-danger.cancel-delete {
     right: 219px;
     font-size: 13px;
     direction: ltr;
-    bottom: 3px;
+    /* bottom: 3px; */
 }
 
 .text-delete {
     margin-right: 8px;
 }
 
+.btn-action {
+    position: relative;
+    left: 5px;
+}
+
 .mat-row:hover .mat-cell {
     background-color: #fff5a2;
 }
 
+.selected {
+    background-color: rgb(206, 206, 206);
+}
+
 .mat-row.highlight {
     background: rgb(0, 187, 250);
+}
+
+.selected {
+    background-color: red;
 }
 
 tr.highlight {
@@ -1392,45 +1387,166 @@ tr.highlight {
     color: #ffffff;
 }
 
-.card {
-    text-align: left;
-    border: 1px solid #a7a7a7;
-    border-width: 1px 1px 1px 1px;
-    padding: 1rem 1rem;
-}
 
-:host ::ng-deep #myTable .p-datatable-thead {
-    background-color: rgb(30, 255, 0) !important;
-}
+/* ////// 
+ */
 
-:host ::ng-deep .p-dialog-title {
-    display: none;
-}
-
-:host ::ng-deep .p-dialog-titlebar-close {
-    display: none;
-}
-
-:host ::ng-deep .p-dialog-header-close-icon {
-    display: none;
-}
-
-:host ::ng-deep .p-dialog-header {
-    display: none;
-}
-
-:host ::ng-deep .p-dialog .p-dialog-content:last-of-type {
-    border-radius: 6px;
+.yourstyle {
     width: 100% !important;
+    background-color: greenyellow;
+}
+
+.btn_saveAndCancel {
+    position: sticky;
+    right: 100px;
+}
+
+:host ::ng-deep .p-dropdown-panel .p-dropdown-header .p-dropdown-filter {
+    padding-right: -0.25rem !important;
+    margin-right: 0.25rem !important;
+}
+
+:host ::ng-deep .p-button .p-button-icon-left {
+    margin-right: 0px;
+    /* padding-right: 10px; */
+    padding: 0px 4px 0px;
+}
+
+:host ::ng-deep .p-button .p-button-label {
+    transition-duration: .15s;
+    font-size: 13px;
+    font-family: "Open Sans", Arial, Helvetica, Sans-Serif;
+}
+
+:host ::ng-deep .p-button.p-button-danger,
+.p-buttonset.p-button-danger>.p-button,
+.p-splitbutton.p-button-danger>.p-button {
+    color: #ffffff;
+    background: #EF4444;
+    border: 1px solid #EF4444;
+    margin-right: 14px;
+    margin-left: 0px;
+    position: relative;
+    right: 178px;
+    font-size: 13px;
+    white-space: pre-line;
+    font-size: 13px;
+    text-align: center;
+}
+
+:host ::ng-deep .p-button {
+    color: #ffffff;
+    /* background: #3B82F6; */
+    /* border: 1px solid #3B82F6; */
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 6px;
+    right: 222px;
+    bottom: 3px;
+}
+
+:host ::ng-deep .modal-delete {
+    width: 154%;
+}
+
+:host ::ng-deep .deleteForms {
+    border: 1px solid #d9d1d1;
+    padding: 0px 0px 0px !important;
+}
+
+
+/* :host ::ng-deep .save-delete {
+    position: relative;
+    right: 219px;
+    font-size: 13px;
+    direction: ltr;
+    top: 3px;
+} */
+
+:host ::ng-deep .btn-cancel-delete {
+    position: relative;
+    right: 219px !important;
+    font-size: 13px;
+    direction: ltr;
+    bottom: 3px;
+}
+
+:host ::ng-deep .recherche-value {
+    width: 154px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #afafaf;
+    font-family: auto;
+    font-size: 15px;
+}
+
+:host ::ng-deep .label-recherche {
+    /* width: 154px; */
+    /* height: 30px; */
+    /* border-radius: 5px; */
+    /* border: 1px solid #afafaf; */
+    font-family: auto;
+    font-size: 15px;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-header {
+    background: #f8f9fa;
+    color: #343a40;
+    border: 1px solid #dee2e6;
+    border-width: 1px 0 1px 0 !important;
+    padding: 10px 10px 0px 10px;
+    font-weight: 700;
+    /* direction: ltr; */
+    text-align: right;
+}
+
+:host ::ng-deep .radio-actif-inactif {
+    background: #f8f9fa !important;
+    position: relative!important;
+    /* right: 441px !important; */
+    top: 20px !important;
+    font-size: 15px !important;
+    border-radius: 5px !important;
+    border: 1px solid #9595957a !important;
+    padding: 15px 8px 14px 9px !important;
+}
+
+:host ::ng-deep .mat-radio-label-content {
+    padding-right: 8px !important;
+    padding-left: 5px !important;
+}
+
+:host ::ng-deep .recherche {
+    width: 415px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid #9595957a;
+    padding: 8px 9px 3px 4px;
+    position: relative!important;
+    right: 181px;
+    bottom: 21px !important;
+    display: flex;
+}
+
+:host ::ng-deep .ModalAdd {
+    border-radius: 6px;
+    width: 850px;
+    font-family: auto;
+}
+
+:host ::ng-deep .ModalDelete {
+    border-radius: 6px;
+    width: 625px;
+    font-family: auto;
 }
 
 :host ::ng-deep .p-datatable-tbody td {
-    /* text-align: right !important; */
+    text-align: right !important;
     border: 1px solid #bfbfbf!important;
     border-width: 1px 1px 1px 1px !important;
-    padding: 0rem 1rem !important;
+    padding: 2px 5px 0px !important;
     font-size: 12px !important;
-    /* font-weight: 500 !important; */
     height: 25px !important;
 }
 
@@ -1438,21 +1554,21 @@ tr.highlight {
     width: 100% !important;
     /* font-family: auto; */
     /* font-size: 15px; */
-    /* direction: rtl !important; */
+    direction: rtl !important;
+    font-family: Cario, "Helvetica Neue", sans-serif;
     /* border: 1px solid #bfbfbf !important; */
 }
 
 :host ::ng-deep .p-datatable-thead th {
-    /* text-align: right !important; */
+    text-align: right !important;
     color: rgb(253 253 253) !important;
-    background-color: lightseagreen!important;
+    background-color: #6883BC!important;
     font-size: 15px !important;
     border: 44px solid #bfbfbf !important;
     border-width: 1px 1px 1px 1px !important;
     height: 29px !important;
     padding: 0px 10px 0px !important;
     box-shadow: 4px -8px 20px 0px rgb(179 179 179 / 36%);
-    font-family: auto;
 }
 
 :host ::ng-deep .p-checkbox-box {
@@ -1472,6 +1588,15 @@ tr.highlight {
     border: 1px solid #bfbfbf !important;
     padding-left: 10px !important;
     width: 68px;
+    text-align-last: center;
+}
+
+:host ::ng-deep .col-action {
+    text-align: center !important;
+    border: 1px solid #bfbfbf !important;
+    padding-left: 10px !important;
+    width: 25px;
+    text-align-last: center;
 }
 
 :host ::ng-deep .p-datatable .p-datatable-tbody>tr.p-highlight {
@@ -1493,96 +1618,28 @@ tr.mat-footer-row {
     left: 297px !important;
 }
 
-:host ::ng-deep .ModalAdd {
-    border-radius: 6px;
-    width: 1200px !important;
-    /* overflow: hidden; */
-    /* position: fixed; */
-}
-
-:host ::ng-deep .ModalDelete {
-    border-radius: 6px;
-    width: 625px !important;
-}
-
-:host ::ng-deep .modal-delete {
-    width: 154%;
-}
-
 :host ::ng-deep .p-dialog-content {
-    overflow-y: initial !important;
-    flex-grow: 1 !important;
+    overflow-y: inherit;
+    flex-grow: inherit;
 }
 
-:host ::ng-deep .p-datatable .p-datatable-header {
-    background: #f8f9fa;
-    color: #343a40;
-    border: 1px solid #dee2e6;
-    border-width: 1px 0 1px 0;
+.card {
+    text-align: left;
+    border: 1px solid #a7a7a7;
+    border-width: 1px 1px 1px 1px;
     padding: 1rem 1rem;
-    font-weight: 700;
-    /* direction: ltr; */
-    /* text-align: right; */
 }
 
-:host ::ng-deep .recherche-value {
-    width: 154px;
-    height: 35px;
-    border-radius: 5px;
-    border: 1px solid #afafaf;
+.container {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: rgba(158, 158, 158, 0.16);
     font-size: 15px;
-    font-family: auto;
-    position: relative;
-    left: 25px;
-}
-
-:host ::ng-deep .p-input-icon-left, .p-input-icon-right {
-    position: relative;
-    display: inline-block;
-    /* left: 340px; */
-}
-
-:host ::ng-deep .label-recherche {
-    /* width: 154px; */
-    /* height: 30px; */
-    /* border-radius: 5px; */
-    /* border: 1px solid #afafaf; */
-    font-size: 15px;
-}
-
-body.ModalAdd {
-    overflow: hidden;
-    position: fixed;
-}
-
-:host ::ng-deep .radio-actif-inactif {
-    background: #f8f9fa !important;
-    position: relative!important;
-    left: 545px !important;
-    top: 20px !important;
-    font-size: 15px !important;
-    border-radius: 5px !important;
-    border: 1px solid #9595957a !important;
-    padding: 15px 8px 14px 9px !important;
-}
-
-:host ::ng-deep .mat-radio-label-content {
-    padding-right: 8px !important;
-    padding-left: 5px !important;
-    font-family: auto;
-}
-
-:host ::ng-deep .recherche {
-    width: 540px;
-    height: 50px;
-    font-size: 15px;
-    border-radius: 5px;
-    border: 1px solid #9595957a;
-    padding: 8px 9px 3px 4px;
-    position: relative!important;
-    /* right: 181px; */
-    bottom: 21px !important;
     display: flex;
+    margin-bottom: 20px;
 }
 
 .mat-radio-button {
@@ -1592,9 +1649,67 @@ body.ModalAdd {
     direction: ltr;
 }
 
+:host ::ng-deep .p-dialog-title {
+    display: none;
+}
+
+:host ::ng-deep .p-dialog-titlebar-close {
+    display: none;
+}
+
+:host ::ng-deep .p-dialog-footer {
+    display: block;
+}
+
+:host ::ng-deep .p-dialog-header-close-icon {
+    display: none;
+}
+
+:host ::ng-deep .p-dialog-header {
+    display: none;
+}
+
+:host ::ng-deep .icon-del {
+    color: rgb(183 1 1 / 65%) !important
+}
+
+.icon_add {
+    color: #008000b5 !important;
+}
+
+.icon_modif {
+    color: #0600ff87 !important;
+    font-size: 20px !important;
+}
+
+.save_btn {
+    font-size: 15px;
+}
+
+:host ::ng-deep .p-dropdown .p-dropdown-clear-icon {
+    position: inherit;
+    right: initial;
+    top: 16px;
+}
+
+.check-box-dte-exp {
+    position: relative;
+    right: 20px;
+}
+
+.check-box-stocked {
+    position: relative;
+    left: 44px;
+}
+
+.check-actif {
+    position: relative;
+    right: 10px;
+}
+
 :host ::ng-deep label.p-checkbox-label.ng-star-inserted {
     font-weight: 400;
-    font-size: 15px;
+    font-size: 17px;
     color: black;
     padding: 3px 4px 0px 0px;
 }
@@ -1624,11 +1739,136 @@ body.ModalAdd {
     color: #ffffff;
 }
 
-:host ::ng-deep label.ng-star-inserted.p-checkbox-label.p-checkbox-label-active {
-    font-weight: bold;
+.act-col-exp {
+    width: 105px;
+    text-align-last: center;
 }
 
-:host ::ng-deep  .p-button.p-button-item, .p-buttonset.p-button-item[_ngcontent-dtt-c121] > .p-button[_ngcontent-dtt-c121], .p-splitbutton.p-button-item[_ngcontent-dtt-c121] > .p-button[_ngcontent-dtt-c121] {
+:host ::ng-deep .p-dropdown.p-dropdown-clearable .p-dropdown-label {
+    padding-right: 1.75rem;
+    color: #555;
+}
+
+.mat-select-panel .mat-optgroup-label,
+.mat-select-panel .mat-option {
+    font-size: inherit !important;
+    line-height: 3em !important;
+    height: 20em !important;
+    width: 32em !important;
+}
+
+:host ::ng-deep .p-button {
+    color: #ffffff;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 6px;
+    right: 60px;
+    bottom: 3px;
+}
+
+.style {
+    border-radius: 6px;
+}
+
+.style th {
+    text-align: right !important;
+    color: rgb(253 253 253) !important;
+    background-color: lightseagreen!important;
+    font-size: 15px !important;
+    border: 44px solid #bfbfbf !important;
+    border-width: 1px 1px 1px 1px !important;
+    height: 29px !important;
+    padding: 0px 10px 0px !important;
+    box-shadow: 4px -8px 20px 0px rgb(179 179 179 / 36%);
+}
+
+.style td input {
+    text-align: right !important;
+    border: 1px solid #bfbfbf!important;
+    border-width: 1px 1px 1px 1px !important;
+    padding: 2px 5px 0px !important;
+    font-size: 12px !important;
+    height: 25px !important;
+}
+
+// :host ::ng-deep .p-datatable .tabs_article   {
+//     border-color: red;
+// }
+:host ::ng-deep .tabs_article {
+    width: 50% !important;
+    /* font-family: auto; */
+    /* font-size: 15px; */
+    // direction: rtl !important;
+    font-family: Cario, "Helvetica Neue", sans-serif;
+    /* border: 1px solid #bfbfbf !important; */
+}
+
+:host ::ng-deep .recherche_art {
+    width: 463px;
+    // font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(149, 149, 149, 0.4784313725);
+    padding: 5px 0px 1px 1px;
+    position: relative !important;
+    bottom: 5px !important;
+    display: flex;
+}
+
+.Bouton-rechercher-art {
+    margin-right: 30px;
+    display: flex;
+    height: 34px;
+    /* padding: 5px 15px 0px; */
+    margin-bottom: 3px;
+}
+
+:host ::ng-deep .tabs_article .tabs_article-tbody>tr.tabs_article-highlight {
+    background: #ff0000 !important;
+    color: #495057 !important;
+    font-weight: bold !important;
+}
+
+.row {
+    display: flex;
+}
+
+.col {
+    width: 200px;
+    text-align: center;
+}
+
+.col:nth-child(1) {
+    text-align: start;
+}
+
+.card_article {
+    // direction: rtl;
+}
+
+:host ::ng-deep .p-picklist .p-picklist-buttons {
+    padding: 1.25rem;
+    display: none !important;
+}
+
+:host ::ng-deep .p-picklist-list-wrapper.p-picklist-target-wrapper {
+    background: aqua;
+}
+
+:host ::ng-deep .card {
+    background: var(--surface-card);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+:host ::ng-deep .delete_item {
+    padding: 10px 10px 10px;
+}
+
+:host ::ng-deep .p-button.p-button-item,
+.p-buttonset.p-button-item>.p-button,
+.p-splitbutton.p-button-item>.p-button {
     color: #EF4444;
     background: #ffffff;
     border: 1px solid #ffffff;
@@ -1636,4 +1876,32 @@ body.ModalAdd {
     right: 0px !important;
     text-align: center;
     height: 15px;
+}
+
+:host ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    font-size: 13px !important;
+    margin: 0;
+    padding: 0.75rem 1.25rem;
+    border: 0 none;
+    color: #495057;
+    background: transparent;
+    transition: box-shadow 0.2s;
+    border-radius: 0;
+}
+
+:host ::ng-deep span.ng-tns-c82-6.p-dropdown-label {
+    font-size: 12px;
+}
+
+p-celleditor.p-element {
+    font-size: 13px;
+}
+
+.icon_valider {
+    color: #0062cc;
+    font-size: 18px;
+}
+
+:host ::ng-deep input#qte {
+    font-size: 13px;
 }

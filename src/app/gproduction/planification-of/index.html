@@ -2,9 +2,7 @@
     <!-- Note: This example only works with Windows Insider Preview Builds 16237+. -->
 
     <header>
-        <span style="color: rgb(0, 0, 0); font-size: 25px;">
-            <label class="header_name">Planification OF</label>
-        </span>
+        <label class="header_name">Planification OF</label>
     </header>
     <aside>
 
@@ -13,7 +11,11 @@
         <div class="Groupe-Bouton" id="BoutonFacturationInPatient">
             <div class="flex-row-around" id="div_btn_fac_liste_facturation-InPatient">
                 <button data-backdrop="false" type="button" class="Bouton btn btn-labeled btn-default " data-original-title="Add" data-toggle="modal" data-target="#Modal" (click)="onOpenModal('add')">
-                    <span class="label-btn"><i class="fa-lg fa-fw fa fa-plus"></i> </span>
+                    <span class="label-btn">
+                        <!-- <mat-icon class="icon_add">new_label</mat-icon> -->
+                        <!-- <i class="fa-solid fa-plus"></i> -->
+                        <i class="add-icon fa-solid fa-square-plus"></i>
+                    </span>
                     <div class="bouton_style"> Cree</div>
 
                 </button>
@@ -21,17 +23,17 @@
             <div class="flex-row-around" id="div_btn_fac_audit_facturation-InPatient">
                 <button type="button" class="Bouton btn btn-labeled btn-default " data-original-title="Edit" data-toggle="modal" data-target="#Modal" (click)="onOpenModal('edit')">
 
-                    <span class="label-btn"><i class="fa-lg fa fa-pencil"></i> </span>
-                    <div class="bouton_style">Modifier</div>
+                    <i class="fa fa-pencil-square-o icon_modif" aria-hidden="true"></i>
+                    <div class="bouton_style">  Modifier</div>
                 </button>
 
             </div>
 
 
             <div class="flex-row-around" id="div_btn_fac_annuler_audit-InPatient">
-                <button type="button" class="Bouton btn btn-labeled btn-default " data-original-title="Delete" data-toggle="modal" data-target="#ModalDelete" (click)="onOpenModal('delete')">
-                    <span class="label-btn"><i class="fa-lg fa fa-trash-o"></i> </span>
-                    <div class="bouton_style">Supprimer</div>
+                <button type="button" class="Bouton btn btn-labeled btn-default " data-original-title="Delete" data-toggle="modal" data-target="#ModalDelete" (click)="onOpenModal('Delete')">
+                    <span class="label-btn"><i class="fa-lg fa fa-trash-o"></i></span>
+                    <div class="bouton_style">  Delete </div>
                 </button>
 
             </div>
@@ -44,47 +46,44 @@
 
 
 
-    <section id="main-container"  >
-
-        <!-- <div class="container-fluid" id="main-container"> -->
+    <section id="main-container">
 
         <div class="material-table">
 
 
-
-            <!-- [ngModelOptions]="{standalone: true}" -->
             <div class="card">
-                <!-- <p-table id="myTable" [value]="ActifFilaille" selectionMode="single" dataKey="codeSaisie" [tableStyle]="{'min-width': '50rem'}" [(selection)]="selectedProduct" dataKey="code" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
+                <!-- <p-table id="myTable" [value]="ActifFilaille" selectionMode="single" dataKey="codeSaisie" [value]="dde_achat" [tableStyle]="{'min-width': '50rem'}" [(selection)]="selectedProduct" dataKey="code" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
                     (click)="selectedRow2()"> -->
                 <p-toast></p-toast>
                 <p-table #dt1 [value]="unitess" [globalFilterFields]="['adressFilialle.designation', 'filialle.designation']" selectionMode="single" [metaKeySelection]="false" [(selection)]="selectedddeAchat" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
                     dataKey="code" [tableStyle]="{'min-width': '50rem'}">
-
-
                     <ng-template pTemplate="caption">
 
                         <mat-radio-group aria-label="Select an option" class="radio-actif-inactif">
 
-                            <mat-radio-button value="actif" [checked]="check_actif === true" (click)="GetFilialleActif()" (click)="clear(dt1)">Actif</mat-radio-button>
-                            <mat-radio-button [checked]="check_inactif === true" value="InActif" (click)="GetFilialeInActif()" (click)="clear(dt1)">In Actif </mat-radio-button>
+                            <!-- <mat-radio-button value="actif" [checked]="check_actif === true" (click)="GetDepotActif()" (click)="clear(dt1)">متدوال</mat-radio-button>
+                            <mat-radio-button value="InActif" [checked]="check_inactif === true" (click)="GetDepotInactif()" (click)="clear(dt1)">غير متداول</mat-radio-button> -->
                         </mat-radio-group>
-                     
+
 
 
                         <div class="recherche">
-                            <mat-label class="label-recherche"> Code OF: </mat-label>
+                            <mat-label class="label-recherche"> البيان : </mat-label>
+                            <!-- <button pButton label="Clear" class="p-button-outlined" (click)="clear(dt1)"></button> -->
                             <span class="p-input-icon-left ml-auto">
-                            <input pInputText class="recherche-value" [(ngModel)]="searchTerm" name="zone-recherche" type="text" (keyup.enter)="dt1.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
-                        </span>
+                                <!-- <i class="pi pi-search"></i> -->
+                                <input pInputText class="recherche-value" [(ngModel)]="searchTerm" name="zone-recherche"
+                                    type="text" (keyup.enter)="dt1.filterGlobal($any($event.target).value, 'contains')"
+                                    placeholder="Search keyword" />
+                            </span>
                             <button type="button" class="Bouton-rechercher btn  btn-default " data-original-title="Add" (click)="dt1.filterGlobal($any($event.target).value, 'contains')">
-                            <div class="bouton_style-2">Recherche</div>
-                            <mat-icon class="search-icon">search</mat-icon>
-                        </button>
-                            <button type="button" class="Bouton-refresh btn  btn-default " data-original-title="Add"   (click)="clear(dt1)">
-                                <!-- <button type="button" class="Bouton-refresh btn  btn-default " data-original-title="Add" (click)="GetFilialleActif()" (click)="clear(dt1)"> -->
-                            <div class="bouton_style-2">Reinitialiser</div>
-                            <mat-icon class="search-icon">refresh</mat-icon>
-                        </button>
+                                <div class="bouton_style-2">بحث</div>
+                                <mat-icon class="search-icon">search</mat-icon>
+                            </button>
+                            <button type="button" class="Bouton-rechercher btn  btn-default " data-original-title="Add"  (click)="clear(dt1)">
+                                <div class="bouton_style-2">تحديث</div>
+                                <mat-icon class="search-icon">refresh</mat-icon>
+                            </button>
                         </div>
 
 
@@ -94,13 +93,11 @@
 
                     <ng-template pTemplate="header">
                         <tr>
-                            <th>Commande Client</th>
-                            <th>Code OF</th>
-                            <th>Produit</th>
-                            <th>Type Produit</th>
-                            <th>Phase</th>
-                            <th>Date Creation</th>
-                            <th class="act-col">Actif</th>
+                            <th>الكود</th>
+                            <th>الرمز</th>
+                            <th>البيان</th>
+
+                            <th class="act-col">متداول</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-fl>
@@ -108,9 +105,6 @@
                             <td>{{fl.code}}</td>
                             <td>{{fl.codeSaisie}}</td>
                             <td>{{fl.designation}}</td>
-                            <td>{{fl.ville}}</td>
-                           <td>{{fl.numTlf}}</td>
-                             <td>{{fl.adress}}</td>
                             <td class="act-col">
 
                                 <p-checkbox [readonly]="true" [(ngModel)]="fl.actif" [binary]="true" inputId="binary">{{fl.actif}}</p-checkbox>
@@ -133,9 +127,6 @@
 </body>
 
 
-<ng-template #err>
-    <p class="text-danger"> Error Load Data</p>
-</ng-template>
 
 
 
