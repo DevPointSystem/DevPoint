@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Table } from 'primeng/table';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import { PlanificationOF } from './planification_of';
@@ -27,7 +27,8 @@ export class PlanificationOfComponent implements OnInit {
   product!: Unites;
 
 
-  constructor(private cdref: ChangeDetectorRef, private confirmationService: ConfirmationService, private param_achat_service: ProductionService, private messageService: MessageService, private http: HttpClient, private fb: FormBuilder, private cdr: ChangeDetectorRef) {
+  constructor(private cdref: ChangeDetectorRef, private confirmationService: ConfirmationService, private param_achat_service: ProductionService, private messageService: MessageService, private http: HttpClient, private fb: FormBuilder, private cdr: ChangeDetectorRef)
+   {
   }
 
   // deleteProduct(product: Unites) {
@@ -51,7 +52,7 @@ export class PlanificationOfComponent implements OnInit {
 
     this.Voids();
     this.colsAdd = [
-      { field: 'codeSaisies', header: 'Code', width: '10px', filter: "true" ,StylePropertyMap:"CodeSaisie"},
+      { field: 'codeSaisies', header: 'Code', width: '10px', filter: "true", StylePropertyMap: "CodeSaisie" },
       { field: 'designation', header: 'Designation ', width: '20px', filter: "true" },
       { field: 'qte', header: 'Quantite', width: '10px', filter: "true" },
       // { field: 'Action', header: ' ', width: '70px', filter: "true" }
@@ -123,6 +124,7 @@ export class PlanificationOfComponent implements OnInit {
   // }
 
   clear(table: Table) {
+    console.log("tab", table)
     table.clear();
   }
 
@@ -151,7 +153,7 @@ export class PlanificationOfComponent implements OnInit {
   actif!: boolean;
   // designation2!: string;
   CodeOF !: string;
-  CodeCommande!:string;
+  CodeCommande!: string;
 
   selectedddeAchat!: DDE_ACHAT;
   selectedddeAchat2!: DDE_ACHAT;
@@ -504,9 +506,9 @@ export class PlanificationOfComponent implements OnInit {
         this.Unitess[this.compteur] = xxx;
         this.compteur = this.compteur + 1;
         this.listDesig.push(xxx);
-        console.log(xxx);
-        console.log(this.compteur);
-        console.log(this.Unitess);
+        // console.log(xxx);
+        console.log("compteur",this.compteur , "unite" ,this.Unitess  , "Desig",this.listDesig);
+         
 
       })
     }
@@ -536,44 +538,72 @@ export class PlanificationOfComponent implements OnInit {
 
 
   public remove(index: number): void {
-    this.listDesig.splice(index, 1);
-    this.Unitess.splice(index, 1);
-    // this.selectedUnites.index == null;
-    // this.Unitess==null;
-    // this.Unitess ==null
+    // this.unitess.splice(index,1);
+    this.listDesig.splice(index, this.selectedUnites);
+    this.Unitess.splice(index, this.selectedUnites);
+    this.selectedUnites = null;
+    console.log(index, "List Unites", this.Unitess, "List Desig", this.listDesig);
 
-      console.log(index,this.Unitess);
-    
-    
+
     // 
   }
-
-// selectedIndex!:number;
-// RemouveSelected(){
-//   let index :number = this.selectedIndex;
-//   this.listDesig  = [...this.listDesig.splice(index,0)];
-//   this.selectedIndex==null;
-// }
-
-  public GetFilialleActif(){
-
+  selectedIndex!: number;
+  removeSelectedRows() {
+    let index: number = this.selectedIndex;
+    this.Unitess = [...this.Unitess.slice(0, index), ...this.Unitess.slice(index + 1)];
+    this.Unitess.fill;
+    this.selectedIndex == null; // This will not be required when position is used to delete element
+  }
+  deleteRow(ri: any) {
+  
+        this.listDesig.splice(ri, 1);
+        this.Unitess.splice(ri, 1);
+        this.compteur = this.compteur-1; 
+        console.log("Unite",this.Unitess,"Desig",this.listDesig);
+        
   }
 
-  public GetFilialeInActif(){
-    
+
+  // selectedIndex!:number;
+  // RemouveSelected(){
+  //   let index :number = this.selectedIndex;
+  //   this.listDesig  = [...this.listDesig.splice(index,0)];
+  //   this.selectedIndex==null;
+  // }
+
+  public GetFilialleActif() {
+
   }
+  
+  public GetFilialeInActif() {
+
+  }
+  selectedProducts?: Unites[];
+  deleteProduct(product: Unites) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + product.designation + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.products = this.products.filter(val => val.code !== product.code);
+        this.product = {};
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+      }
+    });
+  }
+  // }
 
 
 }
 
 
 export interface Unites {
-  code: number;
-  codeSaisie: string;
-  designation: string;
-  actif: boolean;
+  code?: number;
+  codeSaisie?: string;
+  designation?: string;
+  actif?: boolean;
 
-  qtedde: number;
+  qtedde?: number;
 }
 
 export interface DDE_ACHAT {

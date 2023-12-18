@@ -57,7 +57,7 @@
                 <!-- <p-table id="myTable" [value]="ActifFilaille" selectionMode="single" dataKey="codeSaisie" [tableStyle]="{'min-width': '50rem'}" [(selection)]="selectedProduct" dataKey="code" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
                     (click)="selectedRow2()"> -->
                 <p-toast></p-toast>
-                <p-table #dt1 [value]="unitess" [globalFilterFields]="['adressFilialle.designation', 'filialle.designation']" selectionMode="single" [metaKeySelection]="false" [(selection)]="selectedddeAchat" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
+                <p-table [(selection)]="selectedProducts" [rowHover]="true" #dt1 [value]="unitess" [globalFilterFields]="['adressFilialle.designation', 'filialle.designation']" selectionMode="single" [metaKeySelection]="false" [(selection)]="selectedddeAchat" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
                     dataKey="code" [tableStyle]="{'min-width': '50rem'}">
 
 
@@ -242,8 +242,9 @@
                                     <th  style="width: 40px"></th>
                                 </tr>
                             </ng-template>
-                            <ng-template pTemplate="body" let-inst let-editing="editing" let-ri="rowIndex">
+                            <ng-template pTemplate="body" let-inst  let-editing="editing"  let-ri="rowIndex"  >
                                 <tr [pEditableRow]="inst">
+                                    
                                     <td style="width: 100px">
                                         <p-cellEditor>
                                             <ng-template pTemplate="input">
@@ -273,23 +274,16 @@
                                                 {{inst.qtedde}}
                                             </ng-template>
                                         </p-cellEditor>
-                                    </td>
-
-                                    <!-- <td pEditableColumn ArrowNavigation>
-                                        <p-cellEditor>
-                                            <ng-template pTemplate="input">
-                                                <p-inputNumber type="number" [(ngModel)]="inst.qtedde"></p-inputNumber>
-                                            </ng-template>
-                                            <ng-template pTemplate="output">
-                                                {{inst.qtedde}}
-                                            </ng-template>
-                                        </p-cellEditor>
-                                    </td> -->
-                                    <!-- <button *ngIf="!editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onEditComplete(inst)" class="p-button-rounded p-button-text p-button-danger"></button> -->
-
-                                    <td style="width: 40px"> <button *ngIf="!editing" pButton type="button" pDeleteEditableRow icon="pi pi-trash" class="p-button-item " (click)="remove(ri)"></button>
+                                    </td> 
+                                    <td style="width: 40px">
+                                        <!-- <mat-row *matRowDef="let row; let i = index; columns: colsAdd;" (click)="selectedIndex = i">
+                                        </mat-row> -->
+                                         <!-- <button focusable="false" *ngIf="!editing" pButton type="button" pDeleteEditableRow icon="pi pi-trash" class="p-button-item " (click)="remove(ri)"></button> -->
                                         <!--  -->
+
+                                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteRow(ri)"></button>
                                     </td>
+                                    
                                 </tr>
                             </ng-template>
                         </p-table>
@@ -338,3 +332,5 @@
     </div>
 </p-dialog>
 <!-- fin modal primeng  -->
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

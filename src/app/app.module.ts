@@ -15,12 +15,13 @@ import { CheckboxModule } from 'primeng/checkbox';
 // import { MessagesModule } from "primeng/messages";
 import { MessageModule } from "primeng/message";
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { MenuModule } from 'primeng/menu';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatChipsModule} from '@angular/material/chips';
 
 import {MatMenuModule} from '@angular/material/menu'; 
 
@@ -133,16 +134,16 @@ import { JalonnementComponent } from './gproduction/jalonnement/jalonnement.comp
     MatInputModule, MatTableModule,
     FormsModule, HttpClientModule, MatIconModule, MatCheckboxModule, MatButtonModule, MatDatepickerModule
     , MatNativeDateModule, ReactiveFormsModule, MatSelectModule, MatAutocompleteModule, MatSidenavModule
-,InputNumberModule
+,InputNumberModule,MatChipsModule
     , MatToolbarModule, MatListModule, MatDialogModule,MatMenuModule,MatRadioModule
     ,TableModule,DialogModule,MessagesModule,ToastModule,CheckboxModule,MessageModule
 ,DropdownModule,AutoCompleteModule,CalendarModule,MatDialogModule,MatFormFieldModule,
 ConfirmDialogModule,RadioButtonModule,SpeedDialModule,SplitButtonModule,MenuModule
   ],
   providers: [
-    ConfirmationService,{ provide: MAT_DIALOG_DATA, useValue: {} },
-    { provide: MatDialogRef, useValue: {} }
-
+    // ConfirmationService,{ provide: MAT_DIALOG_DATA, useValue: {} },
+    // { provide: MatDialogRef, useValue: {} }
+     MessageService, ConfirmationService
   ],
   bootstrap: [AppComponent]
 })
