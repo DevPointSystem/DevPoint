@@ -34,6 +34,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {SelectButtonModule} from 'primeng/selectbutton';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatListModule } from '@angular/material/list';
@@ -43,7 +44,8 @@ import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table'
 import { FormControlName, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
- 
+import {TabViewModule} from 'primeng/tabview';
+
 import { InputNumberModule } from 'primeng/inputnumber';
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -134,7 +136,7 @@ import { JalonnementComponent } from './gproduction/jalonnement/jalonnement.comp
     MatInputModule, MatTableModule,
     FormsModule, HttpClientModule, MatIconModule, MatCheckboxModule, MatButtonModule, MatDatepickerModule
     , MatNativeDateModule, ReactiveFormsModule, MatSelectModule, MatAutocompleteModule, MatSidenavModule
-,InputNumberModule,MatChipsModule
+,InputNumberModule,MatChipsModule,TabViewModule,SelectButtonModule
     , MatToolbarModule, MatListModule, MatDialogModule,MatMenuModule,MatRadioModule
     ,TableModule,DialogModule,MessagesModule,ToastModule,CheckboxModule,MessageModule
 ,DropdownModule,AutoCompleteModule,CalendarModule,MatDialogModule,MatFormFieldModule,

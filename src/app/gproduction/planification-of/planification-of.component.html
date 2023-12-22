@@ -12,14 +12,16 @@
 
         <div class="Groupe-Bouton" id="BoutonFacturationInPatient">
             <div class="flex-row-around" id="div_btn_fac_liste_facturation-InPatient">
-                <button data-backdrop="false" type="button" class="Bouton btn btn-labeled btn-default " data-original-title="Add" data-toggle="modal" data-target="#Modal" (click)="onOpenModal('add')">
+                <button data-backdrop="false" type="button" class="Bouton btn btn-labeled btn-default "
+                    data-original-title="Add" data-toggle="modal" data-target="#Modal" (click)="onOpenModal('add')">
                     <span class="label-btn"><i class="fa-lg fa-fw fa fa-plus"></i> </span>
                     <div class="bouton_style"> Cree</div>
 
                 </button>
             </div>
             <div class="flex-row-around" id="div_btn_fac_audit_facturation-InPatient">
-                <button type="button" class="Bouton btn btn-labeled btn-default " data-original-title="Edit" data-toggle="modal" data-target="#Modal" (click)="onOpenModal('edit')">
+                <button type="button" class="Bouton btn btn-labeled btn-default " data-original-title="Edit"
+                    data-toggle="modal" data-target="#Modal" (click)="onOpenModal('edit')">
 
                     <span class="label-btn"><i class="fa-lg fa fa-pencil"></i> </span>
                     <div class="bouton_style">Modifier</div>
@@ -29,7 +31,8 @@
 
 
             <div class="flex-row-around" id="div_btn_fac_annuler_audit-InPatient">
-                <button type="button" class="Bouton btn btn-labeled btn-default " data-original-title="Delete" data-toggle="modal" data-target="#ModalDelete" (click)="onOpenModal('delete')">
+                <button type="button" class="Bouton btn btn-labeled btn-default " data-original-title="Delete"
+                    data-toggle="modal" data-target="#ModalDelete" (click)="onOpenModal('delete')">
                     <span class="label-btn"><i class="fa-lg fa fa-trash-o"></i> </span>
                     <div class="bouton_style">Supprimer</div>
                 </button>
@@ -44,7 +47,7 @@
 
 
 
-    <section id="main-container"  >
+    <section id="main-container">
 
         <!-- <div class="container-fluid" id="main-container"> -->
 
@@ -57,34 +60,52 @@
                 <!-- <p-table id="myTable" [value]="ActifFilaille" selectionMode="single" dataKey="codeSaisie" [tableStyle]="{'min-width': '50rem'}" [(selection)]="selectedProduct" dataKey="code" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
                     (click)="selectedRow2()"> -->
                 <p-toast></p-toast>
-                <p-table [(selection)]="selectedProducts" [rowHover]="true" #dt1 [value]="unitess" [globalFilterFields]="['adressFilialle.designation', 'filialle.designation']" selectionMode="single" [metaKeySelection]="false" [(selection)]="selectedddeAchat" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
-                    dataKey="code" [tableStyle]="{'min-width': '50rem'}">
+                <p-table [rowHover]="true" [(selection)]="selectedRow" #dt1 [value]="OrderFabricationWithDetails"
+                    [globalFilterFields]="['adressFilialle.designation', 'filialle.designation']" selectionMode="single"
+                    [metaKeySelection]="false" (onRowSelect)="onRowSelect($event)"
+                    (onRowUnselect)="onRowUnselect($event)" dataKey="code" [tableStyle]="{'min-width': '50rem'}">
 
 
                     <ng-template pTemplate="caption">
 
                         <mat-radio-group aria-label="Select an option" class="radio-actif-inactif">
 
-                            <mat-radio-button value="actif" [checked]="check_actif === true" (click)="GetFilialleActif()" (click)="clear(dt1)">Actif</mat-radio-button>
-                            <mat-radio-button [checked]="check_inactif === true" value="InActif" (click)="GetFilialeInActif()" (click)="clear(dt1)">In Actif </mat-radio-button>
+                            <mat-radio-button value="actif" [checked]="check_actif === true"
+                                (click)="GetFilialleActif()" (click)="clear(dt1)">Actif</mat-radio-button>
+                            <mat-radio-button [checked]="check_inactif === true" value="InActif"
+                                (click)="GetFilialeInActif()" (click)="clear(dt1)">In Actif </mat-radio-button>
+
+                            <!-- <p-selectButton [options]="cities" [(ngModel)]="selectedCityCode" optionLabel="designation" optionValue="code"></p-selectButton> -->
                         </mat-radio-group>
-                     
+
+
+                        <!-- <p-selectButton [options]="cities" [(ngModel)]="selectedSatisfactionOF" optionLabel="name"></p-selectButton> -->
+                        <!-- <p-selectButton [options]="cities" [(ngModel)]="selectedCity" optionLabel="name"></p-selectButton>
+                        <p-selectButton [options]="cities" [(ngModel)]="selectedCity" optionLabel="name"></p-selectButton> -->
+
 
 
                         <div class="recherche">
                             <mat-label class="label-recherche"> Code OF: </mat-label>
                             <span class="p-input-icon-left ml-auto">
-                            <input pInputText class="recherche-value" [(ngModel)]="searchTerm" name="zone-recherche" type="text" (keyup.enter)="dt1.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
-                        </span>
-                            <button type="button" class="Bouton-rechercher btn  btn-default " data-original-title="Add" (click)="dt1.filterGlobal($any($event.target).value, 'contains')">
-                            <div class="bouton_style-2">Recherche</div>
-                            <mat-icon class="search-icon">search</mat-icon>
-                        </button>
-                            <button type="button" class="Bouton-refresh btn  btn-default " data-original-title="Add"   (click)="clear(dt1)">
+                                <input pInputText class="recherche-value" [(ngModel)]="searchTerm" name="zone-recherche"
+                                    type="text" (keyup.enter)="dt1.filterGlobal($any($event.target).value, 'contains')"
+                                    placeholder="Search keyword" />
+                            </span>
+                            <button type="button" class="Bouton-rechercher btn  btn-default " data-original-title="Add"
+                                (click)="dt1.filterGlobal($any($event.target).value, 'contains')">
+                                <div class="bouton_style-2">Recherche</div>
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                            <button type="button" class="Bouton-refresh btn  btn-default " data-original-title="Add"
+                                (click)="clear(dt1)">
                                 <!-- <button type="button" class="Bouton-refresh btn  btn-default " data-original-title="Add" (click)="GetFilialleActif()" (click)="clear(dt1)"> -->
-                            <div class="bouton_style-2">Reinitialiser</div>
-                            <mat-icon class="search-icon">refresh</mat-icon>
-                        </button>
+                                <div class="bouton_style-2">Reinitialiser</div>
+                                <i class="fa-solid fa-arrows-rotate"></i>
+                                <!-- <mat-icon class="search-icon">refresh</mat-icon> -->
+                            </button>
+                            <!-- <p-selectButton [options]="stateOptions" [(ngModel)]="cities" optionLabel="label" optionValue="code"></p-selectButton> -->
+
                         </div>
 
 
@@ -95,25 +116,28 @@
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Commande Client</th>
-                            <th>Code OF</th>
+                            <th class="col-2"> Code OF</th>
                             <th>Produit</th>
                             <th>Type Produit</th>
-                            <th>Phase</th>
-                            <th>Date Creation</th>
+                            <th class="col-5">Phase</th>
+                            <th>Date Prevu Livraison</th>
+                            <th class="satis">ETAT</th>
                             <th class="act-col">Actif</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-fl>
                         <tr [pSelectableRow]="fl">
-                            <td>{{fl.code}}</td>
-                            <td>{{fl.codeSaisie}}</td>
+                            <td>{{fl.codeCdeClient}}</td>
+                            <td class="col-2">{{fl.codeOF}}</td>
                             <td>{{fl.designation}}</td>
                             <td>{{fl.ville}}</td>
-                           <td>{{fl.numTlf}}</td>
-                             <td>{{fl.adress}}</td>
+                            <td class="col-5">{{fl.numTlf}}</td>
+                            <td>{{fl.datePrevuLivr | date : "dd/MM/yyyy":'GMT+2'}}</td>
+                            <td  class="satis"  >{{fl.satisfaction}}</td>
                             <td class="act-col">
 
-                                <p-checkbox [readonly]="true" [(ngModel)]="fl.actif" [binary]="true" inputId="binary">{{fl.actif}}</p-checkbox>
+                                <p-checkbox [readonly]="true" [(ngModel)]="fl.actif" [binary]="true"
+                                    inputId="binary">{{fl.actif}}</p-checkbox>
                             </td>
 
 
@@ -141,18 +165,20 @@
 
 
 <!-- modal primeNG ADD -->
-<p-dialog id="Modal" header="Header" [(visible)]="visibleModal" data-backdrop="false" [modal]="true" styleClass="ModalAdd" [draggable]="false" [resizable]="false">
+<p-dialog id="Modal" header="Header" [(visible)]="visibleModal" data-backdrop="false" [modal]="true"
+    styleClass="ModalAdd" [draggable]="false" [resizable]="false">
     <div>
         <!-- <ng-template pTemplate="header"> -->
         <div class="modal-header">
             <h3 class="footer-dev">
                 <div class="action">
                     <h2 class="text-center text-default"> {{formHeader}}</h2>
-                    <button class="btn btn-primary save" data-dismiss="modal" (click)="PostDdeAchat()"> <i class="fa-lg fa-fw fa fa-floppy-o "></i>
-                            Sauvgarde </button>
-                    <button class="btn btn-danger cancel" :closable="false" data-dismiss="modal"> <i
-                                class="fa-lg fa-fw fa fa-sign-out "  ></i>Fermer
-                        </button>
+                    <button class="btn btn-primary save" data-dismiss="modal" (click)="PostDdeAchat()"> <i
+                            class="fa-lg fa-fw fa fa-floppy-o "></i>
+                        Sauvgarde </button>
+                    <button class="btn btn-danger cancel" :closable="false" (click)="clearForm(xxx)" data-dismiss="modal"> <i
+                            class="fa-lg fa-fw fa fa-sign-out "></i>Fermer
+                    </button>
                     <p-toast key="toast1"></p-toast>
                     <!-- <button type="button" pButton pRipple (click)="show()" label="Show Success" name="notif"></button> -->
 
@@ -165,26 +191,29 @@
             <fieldset>
                 <div class="flex-row-space">
                     <section class="flex-row-space flex-4" disabled="">
-                        
+
                         <label class="control-label flex-4">Commande Code</label>
                         <div class="control-input  flex-8">
-                            <input id="codeSaisie" maxlength="10" name="codeSaisie" type="text" class="onlyForCentral form-control-dev input-xs" required [(ngModel)]="CodeCommande">
-                        
+                            <input id="codeSaisie" maxlength="10" name="codeSaisie" type="text"
+                                class="onlyForCentral form-control-dev input-xs" required [(ngModel)]="codeCdeClient">
+
                         </div>
 
                     </section>
                     <section class="flex-row-space flex-4" style="padding-left: 50px;" disabled="">
-                        
+
                         <label class="control-label flex-4" style="padding-left: 30px;">Code OF</label>
                         <div class="control-input  flex-8">
-                            <input id="codeSaisie" maxlength="10" name="codeSaisie" type="text" class="onlyForCentral form-control-dev input-xs" required [(ngModel)]="CodeOF">
-                          
+                            <input id="codeSaisie" maxlength="10" name="codeSaisie" type="text"
+                                class="onlyForCentral form-control-dev input-xs" required [(ngModel)]="codeOF">
+
                         </div>
 
                     </section>
 
-                    <section class="flex-row-space flex-2"  style="padding-left: 50px;">
-                        <p-checkbox [binary]="true" class="check-actif" name="actif" value="val3" label="Actif" [(ngModel)]="actif"></p-checkbox>
+                    <section class="flex-row-space flex-2" style="padding-left: 50px;">
+                        <p-checkbox [binary]="true" class="check-actif" name="actif" value="val3" label="Actif"
+                            [(ngModel)]="actif"></p-checkbox>
 
                     </section>
                 </div>
@@ -192,106 +221,135 @@
                     <section class="flex-row-space flex-4">
                         <label class="control-label flex-4">Designation</label>
                         <div class="control-input flex-8">
-                            <input type="text" id="designation_ar" maxlength="200" name="designation_ar" class="onlyForCentral form-control-dev input-xs" [(ngModel)]="designation" required>
+                            <input type="text" id="designation_ar" maxlength="200" name="designation_ar"
+                                class="onlyForCentral form-control-dev input-xs" [(ngModel)]="designation" required>
                         </div>
                     </section>
+                    <section class="flex-row-space flex-6">
+                        <label class="control-label flex-4" style="padding-left: 75px;">Date Livraison Prevu</label>
+                        <div class="dop control-input flex-6">
+                            <p-calendar [(ngModel)]="datePrevuLivr" [showIcon]="true" dateFormat="dd/mm/yy"
+                                [showButtonBar]="true"></p-calendar>
 
-                </div>
-                <div class="flex-row-space">
-                    <!-- <section class="flex-row-space flex-5">
-                        <label class="control-label flex-4">الفرع</label>
-                        <div class="dop control-input flex-10">
-                            <p-dropdown name="depotDde" [resetFilterOnHide]=true class="dropdown" optionLabel="label" optionValue="value" [options]="ListFlRslt" [(ngModel)]="codeFlDde" [filter]="true" [showClear]="true" [style]="{'width':'100%'}" filterBy="label,value" #DropDownFilaille
-                                [autoDisplayFirst]="true" placeholder="&nbsp;" [required]="true" #depotDde="ngModel">
-                            </p-dropdown> 
+
                         </div>
 
-                    </section> -->
+                    </section>
                 </div>
-                <br/>
-                <section class="flex-row-space flex-4">
-                    <label class="control-label flex-4">Unite</label>
-                    <div class="dop control-input flex-8">
-                        <p-dropdown [resetFilterOnHide]=true [options]="listUnitesrslt" [(ngModel)]="selectedUnites" (onChange)="MouveToTable()" placeholder="Choisir un instrument" [showClear]="true" [filter]="true" filterBy="label,value.name,value.code" [style]="{'width':'100%'}"
-                            (onClick)="clickDropDownUp(dropDownList)" #dropDownList [autoDisplayFirst]="true" placeholder="&nbsp;" [required]="true"></p-dropdown>
-                        <br/>
-                        <br/>
-                    </div>
+                <!-- <div class="flex-row-space">
+                    
+                </div> -->
+                <br />
 
-                </section>
-                <section class="flex-row-space flex-6">
-                    <div class="dop control-input flex-5">
-                        <!-- <p-table dataKey="qte" editMode="row" [columns]="colsAdd" [value]="listDesig" [scrollable]="true" scrollHeight="200px" selectionMode="single" [resizableColumns]="true" [globalFilterFields]="['codeInstr','desInstr','numSerie']" #dtInstAdd (onEditInit)="onEditInit($event)"
-                            (onEditCancel)="onEditCancel($event)" (onEditComplete)="onEditComplete($event)"> -->
-                        <p-toast></p-toast>
-                        <p-table dataKey="qte" editMode="row" [columns]="colsAdd" [value]="listDesig" [scrollable]="true" scrollHeight="200px" selectionMode="single" [resizableColumns]="true">
-                            <ng-template pTemplate="caption">
-                                <div style="text-align: right;">
-                                    <i class="pi " style="display:4px 4px 0 0"></i>
-                                </div>
-                            </ng-template>
-                            <ng-template pTemplate="header">
-                                <tr>
-                                    <!-- <th *ngFor="let col of colsAdd" pResizableColumn>
-                                        {{col.header}}
-                                    </th> -->
-                                    <th style="width: 100px">Code</th>
-                                    <th style="width: 250px">Designation</th>
-                                    <th style="width: 80px">Quantite</th>
+                <p-tabView>
+                    <p-tabPanel header="Unite/Quantite" leftIcon="pi pi-bell" rightIcon="pi pi-bookmark">
+                        <section class="flex-row-space flex-4">
+                            <label class="control-label flex-4">Unite</label>
+                            <div class="dop control-input flex-8">
+                                <p-dropdown [resetFilterOnHide]=true [options]="listUnitesrslt"
+                                    [(ngModel)]="selectedUnites" (onChange)="MouveToTable()"
+                                    placeholder="Choisir un instrument" [showClear]="true" [filter]="true"
+                                    filterBy="label,value.name,value.code" [style]="{'width':'100%'}"
+                                    (onClick)="clickDropDownUp(dropDownList)" #dropDownList [autoDisplayFirst]="true"
+                                    placeholder="&nbsp;" [required]="true"></p-dropdown>
+                                <!-- <br/>
+                                <br/> -->
+                            </div>
 
-                                    <th  style="width: 40px"></th>
-                                </tr>
-                            </ng-template>
-                            <ng-template pTemplate="body" let-inst  let-editing="editing"  let-ri="rowIndex"  >
-                                <tr [pEditableRow]="inst">
-                                    
-                                    <td style="width: 100px">
-                                        <p-cellEditor>
-                                            <ng-template pTemplate="input">
-                                                <p-inputNumber inputId="integeronly" [(ngModel)]="inst.codeSaisie" #codeSaisie> </p-inputNumber>
-                                            </ng-template>
-                                            <ng-template pTemplate="output">
-                                                {{inst.codeSaisie}}
-                                            </ng-template>
-                                        </p-cellEditor>
-                                    </td>
-                                    <td style="direction: ltr;" style="width: 250px">
-                                        <p-cellEditor>
-                                            <ng-template pTemplate="input">
-                                                <p-inputNumber inputId="integeronly" [(ngModel)]="inst.designation" #designation> </p-inputNumber>
-                                            </ng-template>
-                                            <ng-template pTemplate="output">
-                                                {{inst.designation}}
-                                            </ng-template>
-                                        </p-cellEditor>
-                                    </td>
-                                    <td pEditableColumn ArrowNavigation style="width: 80px" >
-                                        <p-cellEditor>
-                                            <ng-template pTemplate="input">
-                                                <p-inputNumber inputId="qte" [(ngModel)]="inst.qtedde" #qtedde> </p-inputNumber>
-                                            </ng-template>
-                                            <ng-template pTemplate="output">
-                                                {{inst.qtedde}}
-                                            </ng-template>
-                                        </p-cellEditor>
-                                    </td> 
-                                    <td style="width: 40px">
-                                        <!-- <mat-row *matRowDef="let row; let i = index; columns: colsAdd;" (click)="selectedIndex = i">
-                                        </mat-row> -->
-                                         <!-- <button focusable="false" *ngIf="!editing" pButton type="button" pDeleteEditableRow icon="pi pi-trash" class="p-button-item " (click)="remove(ri)"></button> -->
-                                        <!--  -->
+                        </section>
+                        <section class="flex-row-space flex-6">
+                            <div class="dop control-input flex-5">
+                                <!-- <p-table dataKey="qte" editMode="row" [columns]="colsAdd" [value]="listDesig" [scrollable]="true" scrollHeight="200px" selectionMode="single" [resizableColumns]="true" [globalFilterFields]="['codeInstr','desInstr','numSerie']" #dtInstAdd (onEditInit)="onEditInit($event)"
+                                    (onEditCancel)="onEditCancel($event)" (onEditComplete)="onEditComplete($event)"> -->
+                                <p-toast></p-toast>
+                                <p-table dataKey="qte" editMode="row" [columns]="colsAdd" [value]="listDesig" 
+                                    [scrollable]="true" scrollHeight="200px" selectionMode="single"
+                                    [resizableColumns]="true">
+                                    <ng-template pTemplate="caption">
+                                        <div style="text-align: right;">
+                                            <i class="pi " style="display:4px 4px 0 0"></i>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <!-- <th *ngFor="let col of colsAdd" pResizableColumn>
+                                                {{col.header}}
+                                            </th> -->
+                                            <th style="width: 100px">Code</th>
+                                            <th style="width: 250px">Designation</th>
+                                            <th style="width: 80px">Quantite</th>
 
-                                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteRow(ri)"></button>
-                                    </td>
-                                    
-                                </tr>
-                            </ng-template>
-                        </p-table>
+                                            <th style="width: 40px"></th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-inst let-editing="editing" let-ri="rowIndex">
+                                        <tr [pEditableRow]="inst">
 
-                        <br/>
-                        <br/>
-                    </div>
-                </section>
+                                            <td style="width: 100px">
+                                                <p-cellEditor>
+                                                    <ng-template pTemplate="input">
+                                                        <p-inputNumber inputId="integeronly"
+                                                            [(ngModel)]="inst.codeSaisie"> </p-inputNumber>
+                                                    </ng-template>
+                                                    <ng-template pTemplate="output"  >
+                                                        {{inst.codeSaisie}}
+                                                    </ng-template>
+                                                </p-cellEditor>
+                                            </td>
+                                            <td style="direction: ltr;" style="width: 250px">
+                                                <p-cellEditor>
+                                                    <ng-template pTemplate="input">
+                                                        <p-inputNumber inputId="integeronly"
+                                                            [(ngModel)]="inst.designation" #designation>
+                                                        </p-inputNumber>
+                                                    </ng-template>
+                                                    <ng-template pTemplate="output">
+                                                        {{inst.designation}}
+                                                    </ng-template>
+                                                </p-cellEditor>
+                                            </td>
+                                            <td pEditableColumn ArrowNavigation style="width: 80px">
+                                                <p-cellEditor>
+                                                    <ng-template pTemplate="input">
+                                                        <p-inputNumber inputId="qte" [(ngModel)]="inst.qtedde" #qtedde>
+                                                        </p-inputNumber>
+                                                    </ng-template>
+                                                    <ng-template pTemplate="output">
+                                                        {{inst.qtedde}}
+                                                    </ng-template>
+                                                </p-cellEditor>
+                                            </td>
+                                            <td style="width: 40px">
+                                                <!-- <mat-row *matRowDef="let row; let i = index; columns: colsAdd;" (click)="selectedIndex = i">
+                                                </mat-row> -->
+                                                <button focusable="false" *ngIf="!editing" pButton type="button"
+                                                    pDeleteEditableRow icon="pi pi-trash" class="p-button-item "
+                                                    (click)="deleteRow(ri)"></button>
+                                                <!--  -->
+
+                                                <!-- <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteRow(ri)"></button> -->
+                                            </td>
+
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+
+                                <br />
+                                <br />
+                            </div>
+                        </section>
+                    </p-tabPanel>
+                    <p-tabPanel header="Header Text" leftIcon="pi pi-bell" rightIcon="pi pi-bookmark">;
+                        Content v2
+                    </p-tabPanel>
+                    <p-tabPanel header="Header Text" leftIcon="pi pi-bell" rightIcon="pi pi-bookmark">;
+                        Content v3
+                    </p-tabPanel>
+                </p-tabView>
+
+
+
+
                 <!-- <section class="flex-row-space flex-12">
                   
                     
@@ -308,7 +366,8 @@
 </p-dialog>
 
 <!-- modal primeNG  Delete-->
-<p-dialog class="modal-delete" id="ModalDelete" data-backdrop="false" header="Header" [(visible)]="visDelete" styleClass="ModalDelete" [modal]="true" [draggable]="false" [resizable]="false">
+<p-dialog class="modal-delete" id="ModalDelete" data-backdrop="false" header="Header" [(visible)]="visDelete"
+    styleClass="ModalDelete" [modal]="true" [draggable]="false" [resizable]="false">
     <div class="modal-header">
         <h3 class="footer-dev">
             <div class="action">
@@ -321,8 +380,10 @@
             <fieldset class="deleteForms">
                 <h4 class="text-delete">هل انت متأكد من الحدف
 
-                    <p-button icon="pi pi-save" data-dismiss="modal" label="حذف" styleClass="save-delete p-button-success" (click)="DeleteddeAchat(code)"></p-button>
-                    <p-button icon="pi pi-sign-out" label="خروج" styleClass="btn-cancel-delete p-button-danger" data-dismiss="modal"> </p-button>
+                    <p-button icon="pi pi-save" data-dismiss="modal" label="حذف"
+                        styleClass="save-delete p-button-success" (click)="DeleteddeAchat(code)"></p-button>
+                    <p-button icon="pi pi-sign-out" label="خروج"  styleClass="btn-cancel-delete p-button-danger"
+                        data-dismiss="modal" > </p-button>
 
 
                 </h4>

@@ -251,11 +251,13 @@ input.mat-input-element {
     -webkit-appearance: none;
 }
 
-.search-icon {
-    margin-right: 10px;
+.fa-solid {
+    left: 5px;
+    top: 5px;
+    position: relative;
 }
 
-.search-icon:active {
+.fa-solid:active {
     color: #2093b6 !important;
 }
 
@@ -813,7 +815,7 @@ textarea:focus {
 .input-xs {
     height: 20px;
     /* padding: 2px 10px; */
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.5;
     width: 250px;
 }
@@ -1268,7 +1270,8 @@ table {
     padding: 6px 13px 0px;
     margin-bottom: 3px;
     position: sticky;
-    left: 540px;
+    left: 555px;
+    width: 105px;
 }
 
 
@@ -1281,6 +1284,7 @@ table {
     margin-bottom: 3px;
     position: sticky;
     left: 670px;
+    width: 115px;
 }
 
 .bouton_style-2 {
@@ -1474,10 +1478,29 @@ tr.highlight {
 } */
 
 :host ::ng-deep .act-col {
-    text-align: center !important;
-    border: 1px solid #bfbfbf !important;
-    padding-left: 10px !important;
+    /* text-align: center !important; */
+    /* border: 1px solid #bfbfbf !important;
+    padding-left: 10px !important; */
+    width: 50px;
+}
+
+:host ::ng-deep .satis {
+    /* text-align: center !important; */
+    /* border: 1px solid #bfbfbf !important;
+    padding-left: 10px !important; */
     width: 68px;
+}
+:host ::ng-deep .col-2 {
+    /* text-align: center !important; */
+    /* border: 1px solid #bfbfbf !important;
+    padding-left: 10px !important; */
+    width: 80px;
+}
+:host ::ng-deep .col-5 {
+    /* text-align: center !important; */
+    /* border: 1px solid #bfbfbf !important;
+    padding-left: 10px !important; */
+    width: 80px;
 }
 
 :host ::ng-deep .p-datatable .p-datatable-tbody>tr.p-highlight {
@@ -1645,6 +1668,30 @@ body.ModalAdd {
 }
 
 
+:host ::ng-deep .p-button {
+    margin: 0;
+    display: inline-flex;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    align-items: center;
+    vertical-align: bottom;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    padding: 5px 5px 5px 5px;
+    /* margin: 2px 1px 1px 1px; */
+    background-color: white;
+    color: black;
+    border-color: darkgray;
+}
+
+
+:host ::ng-deep  .p-button:enabled:hover {
+    background: #ffffff;
+    color: #3B82F6;
+    border-color: darkgray;
+}
 
 :host ::ng-deep input#qte {
     font-size: 12px !important;
@@ -1654,10 +1701,52 @@ body.ModalAdd {
     display: flex !important;
     flex: none !important;
     align-items: center !important;
+    
+}
+
+:host ::ng-deep th{
+    font-weight: 500 !important;
 }
 
 
 :host ::ng-deep td {
     flex: none !important;
 }
+
+:host ::ng-deep li.ng-star-inserted.p-highlight {
+    width: 119px;
+    border: #3B82F6;
+    border-style: solid;
+    border-radius: 6px;
+    border-width: 1px 1px 0px 1px;
+}
  
+
+:host ::ng-deep li.p-tabview-ink-bar {
+    left: 224.16px !important;
+    width: 0px !important;
+}
+
+
+:host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    border: solid #dee2e6;
+    border-width: 0 0 2px 0;
+    border-color: transparent transparent #dee2e6 transparent;
+    background: #ffffff;
+    color: #1d1c1c;
+    padding: 1.25rem;
+    font-weight: 700;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    transition: box-shadow 0.2s;
+    margin: 0 0 -2px 0;
+}
+
+
+:host ::ng-deep .p-calendar-w-btn .p-inputtext {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    font-size: 11px;
+    width: 80px;
+    height: 27px;
+}
