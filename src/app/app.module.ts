@@ -70,7 +70,7 @@ import { CircuitValidationComponent } from './gcommercial/circuit-validation/cir
 import { FicheTechniqueComponent } from './gcommercial/fiche-technique/fiche-technique.component';
 import { FactureVteComponent } from './gcommercial/facture-vte/facture-vte.component';
 import { ParamProduitComponent } from './gcommercial/param-produit/param-produit.component';
-import { CompositionComponent } from './gcommercial/composition/composition.component';
+
 import { FournitureComponent } from './gcommercial/fourniture/fourniture.component';
 import { CategProduitComponent } from './gcommercial/categ-produit/categ-produit.component';
 import { FamProduitComponent } from './gcommercial/fam-produit/fam-produit.component';
@@ -87,7 +87,11 @@ import { RetourCltComponent } from './stock-logistique/retour-clt/retour-clt.com
 import { PlanificationOfComponent } from './gproduction/planification-of/planification-of.component';
 import { NomenclatureComponent } from './gproduction/nomenclature/nomenclature.component';
 import { RepartitionOfComponent } from './gproduction/repartition-of/repartition-of.component';
-import { JalonnementComponent } from './gproduction/jalonnement/jalonnement.component'; 
+import { JalonnementComponent } from './gproduction/jalonnement/jalonnement.component';
+import { TailleComponent } from './gcommercial/param-compo/taille/taille.component'; 
+import { CompositionComponent } from './gcommercial/param-compo/composition/composition.component';
+import { ColorisComponent } from './gcommercial/param-compo/coloris/coloris.component';
+import { CategCompoComponent } from './gcommercial/param-compo/categ-compo/categ-compo.component';
 
 @NgModule({
   declarations: [
@@ -127,7 +131,10 @@ import { JalonnementComponent } from './gproduction/jalonnement/jalonnement.comp
     PlanificationOfComponent,
     NomenclatureComponent,
     RepartitionOfComponent,
-    JalonnementComponent
+    JalonnementComponent,
+    TailleComponent,
+    ColorisComponent,
+    CategCompoComponent
   ],
   imports: [
     BrowserModule,

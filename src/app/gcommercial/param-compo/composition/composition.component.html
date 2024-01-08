@@ -3,7 +3,7 @@
 
     <header>
         <span style="color: rgb(0, 0, 0); font-size: 25px;">
-            <label class="header_name">Parametrage Produit</label>
+            <label class="header_name">Parametrage Composant</label>
         </span>
     </header>
     <aside>
@@ -60,7 +60,7 @@
                 <!-- <p-table id="myTable" [value]="ActifFilaille" selectionMode="single" dataKey="codeSaisie" [tableStyle]="{'min-width': '50rem'}" [(selection)]="selectedProduct" dataKey="code" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
                     (click)="selectedRow2()"> -->
                 <p-toast></p-toast>
-                <p-table [rowHover]="true" [(selection)]="selectedRow" #dt1 [value]="OrderFabricationWithDetails"
+                <p-table [rowHover]="true" [(selection)]="selectedRow" #dt1 [value]="composant"
                     [globalFilterFields]="['adressFilialle.designation', 'filialle.designation']" selectionMode="single"
                     [metaKeySelection]="false" (onRowSelect)="onRowSelect($event)"
                     (onRowUnselect)="onRowUnselect($event)" dataKey="code" [tableStyle]="{'min-width': '50rem'}">
@@ -71,9 +71,9 @@
                         <mat-radio-group aria-label="Select an option" class="radio-actif-inactif">
 
                             <mat-radio-button value="actif" [checked]="check_actif === true"
-                                (click)="GetAllProduitActif()" (click)="clear(dt1)">Actif</mat-radio-button>
+                                (click)="GetAllComposantActif()" (click)="clear(dt1)">Actif</mat-radio-button>
                             <mat-radio-button [checked]="check_inactif === true" value="InActif"
-                                (click)="GetAllProduitInActif()" (click)="clear(dt1)">In Actif </mat-radio-button>
+                                (click)="GetAllComposantInActif()" (click)="clear(dt1)">In Actif </mat-radio-button>
 
                             <!-- <p-selectButton [options]="cities" [(ngModel)]="selectedCityCode" optionLabel="designation" optionValue="code"></p-selectButton> -->
                         </mat-radio-group>
@@ -98,7 +98,7 @@
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
                             <button type="button" class="Bouton-refresh btn  btn-default " data-original-title="Add"
-                                (click)="clear(dt1)" (click)="GetAllProduitActif()">
+                                (click)="clear(dt1)" (click)="GetAllComposantActif()">
                                 <!-- <button type="button" class="Bouton-refresh btn  btn-default " data-original-title="Add" (click)="GetFilialleActif()" (click)="clear(dt1)"> -->
                                 <div class="bouton_style-2">Reinitialiser</div>
                                 <i class="fa-solid fa-arrows-rotate"></i>
@@ -118,23 +118,23 @@
                             <th>Code</th>
                             <th class="col-2">Designation</th>
                             <th>Unite</th>
-                            <th>Marque</th>
-                            <th class="col-5">Nature Produit</th>
+                            <th>Coloris</th>
+                            <!-- <th class="col-5">Nature Produit</th> -->
                             <th class="act-col">Actif</th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-fl>
-                        <tr [pSelectableRow]="fl">
-                            <td>{{fl.codeSaisie}}</td>
-                            <td>{{fl.designation}}</td>
-                            <td class="col-2">{{fl.unite.desigUnite}}</td>
+                    <ng-template pTemplate="body" let-compo>
+                        <tr [pSelectableRow]="compo">
+                            <td>{{compo.codeSaisie}}</td>
+                            <td>{{compo.designation}}</td>
+                            <td class="col-2">{{compo.unite.desigUnite}}</td>
 
-                            <td>{{fl.marque.designation}}</td>
-                            <td class="col-5">{{fl.natureProduit.designation}}</td>
+                            <td>{{compo.codeSaisieColoris}}</td>
+                            <!-- <td class="col-5">{{fl.natureProduit.designation}}</td> -->
                             <td class="act-col">
 
-                                <p-checkbox [readonly]="true" [(ngModel)]="fl.actif" [binary]="true"
-                                    inputId="binary">{{fl.actif}}</p-checkbox>
+                                <p-checkbox [readonly]="true" [(ngModel)]="compo.actif" [binary]="true"
+                                    inputId="binary">{{compo.actif}}</p-checkbox>
                             </td>
 
 
@@ -224,10 +224,10 @@
                     </section> -->
                     <section class="flex-row-space flex-4">
                         <label class="control-label flex-4"
-                            style="padding-left: 30px; width: 256px; position: relative; top: 3px;">Marque</label>
+                            style="padding-left: 30px; width: 256px; position: relative; top: 3px;">Unite</label>
                         <!-- <div class="dop control-input flex-8" > -->
                         <p-dropdown    [resetFilterOnHide]=true optionLabel="label" optionValue="value"
-                            [options]="listMarquesrslt" [(ngModel)]="codeMarque" placeholder="Choisir un produit"
+                            [options]="listUnitesrslt" [(ngModel)]="codeUnite" placeholder="Choisir un Unite"
                             [showClear]="true" [filter]="true" filterBy="label,value.designation,value.code"
                             [style]="{'width': '256px'}" [required]="true"></p-dropdown>
 
@@ -237,159 +237,22 @@
                     </section>
                     <section class="flex-row-space flex-4">
                         <label class="control-label  flex-4"
-                            style="padding-left: 30px; width: 256px; position: relative; top: 3px;">Nature Produit</label>
-                        <!-- <div class="dop control-input"  > -->
-                        <p-dropdown   [resetFilterOnHide]=true optionLabel="label"
-                            optionValue="value" [options]="listNatureProduitrslt" [(ngModel)]="codeNatureProduit"
+                            style="padding-left: 30px; width: 256px; position: relative; top: 3px;">Coloris</label>
+                       
+                        <p-dropdown  [resetFilterOnHide]=true optionLabel="label"
+                            optionValue="value" [options]="listColorisrslt" [(ngModel)]="codeColoris"
                             placeholder="Choisir un produit" [showClear]="true" [filter]="true"
                             filterBy="label,value.name,value.code" [style]="{'width': '256px'}"
                             [required]="true"></p-dropdown>
 
-
-                        <!-- </div> -->
+ 
 
                     </section>
                 </div>
 
                 <br />
 
-                <p-tabView>
-
-                    <p-tabPanel header="Nomenclature" leftIcon="pi pi-list">
-
-                        <p-toast></p-toast>
-                        <section class="flex-row-space flex-4">
-                            <label class="control-label flex-4">Composant</label>
-                            <div class="dop control-input flex-8">
-                                <p-dropdown [resetFilterOnHide]=true [options]="listComposantrslt"
-                                    [(ngModel)]="selectedComposant" (onChange)="MouveToTable()"
-                                    placeholder="Choisir un instrument" [showClear]="true" [filter]="true"
-                                    filterBy="label,value.name,value.code" [style]="{'width': '256px'}"
-                                    (onClick)="clickDropDownUp(dropDownList)" #dropDownList [autoDisplayFirst]="true"
-                                    placeholder="&nbsp;" [required]="true"></p-dropdown>
-                                <!-- <br/>
-                                <br/> -->
-                            </div>
-
-                        </section>
-                        <section class="flex-row-space flex-6">
-                            <div class="dop control-input flex-10">
-                                <!-- <p-table dataKey="qte" editMode="row" [columns]="colsAdd" [value]="listDesig" [scrollable]="true" scrollHeight="200px" selectionMode="single" [resizableColumns]="true" [globalFilterFields]="['codeInstr','desInstr','numSerie']" #dtInstAdd (onEditInit)="onEditInit($event)"
-                                    (onEditCancel)="onEditCancel($event)" (onEditComplete)="onEditComplete($event)"> -->
-                                <p-toast></p-toast>
-                                <p-table dataKey="qte" editMode="row" [value]="listDesigCompo" [scrollable]="true"
-                                    scrollHeight="200px" selectionMode="single" [resizableColumns]="true">
-                                    <ng-template pTemplate="caption">
-                                        <div style="text-align: right;">
-                                            <i class="pi " style="display:4px 4px 0 0"></i>
-                                        </div>
-                                    </ng-template>
-                                    <ng-template pTemplate="header">
-                                        <tr>
-                                            <!-- <th *ngFor="let col of colsAdd" pResizableColumn>
-                                                {{col.header}}
-                                            </th> -->
-                                            <th style="width: 100px">Code</th>
-                                            <th style="width: 250px">Designation</th>
-                                            <th class="Col_select"> Unite</th>
-                                            <th style="width: 80px">Besoin</th>
-                                            <th style="width: 140px">Coloris</th>
-                                            <th style="width: 40px"></th>
-
-                                        </tr>
-                                    </ng-template>
-                                    <ng-template pTemplate="body" let-inst let-editing="editing" let-ri="rowIndex">
-                                        <tr [pEditableRow]="inst">
-
-                                            <td style="width: 100px">
-                                                <p-cellEditor>
-                                                    <ng-template pTemplate="input">
-                                                        <p-inputNumber inputId="integeronly"
-                                                            [(ngModel)]="inst.codeSaisie"> </p-inputNumber>
-                                                    </ng-template>
-                                                    <ng-template pTemplate="output">
-                                                        {{inst.codeSaisie}}
-                                                    </ng-template>
-                                                </p-cellEditor>
-                                            </td>
-                                            <td style="direction: ltr;" style="width: 250px">
-                                                <p-cellEditor>
-                                                    <ng-template pTemplate="input">
-                                                        <p-inputNumber inputId="integeronly"
-                                                            [(ngModel)]="inst.designation" #desigUnite>
-                                                        </p-inputNumber>
-                                                    </ng-template>
-                                                    <ng-template pTemplate="output">
-                                                        {{inst.designation}}
-                                                    </ng-template>
-                                                </p-cellEditor>
-                                            </td>
-                                        
-                                            
-
-                                            <td class="Col_select">
-
-                                                <p-cellEditor>
-                                                    <ng-template pTemplate="input">
-                                                        <p-inputNumber inputId="integeronly"
-                                                            [(ngModel)]="inst.unite.desigUnite" #desigUnite>
-                                                        </p-inputNumber>
-                                                    </ng-template>
-                                                    <ng-template pTemplate="output">
-                                                        {{inst.unite.desigUnite}}
-                                                    </ng-template>
-                                                </p-cellEditor>
-
-
-                                            </td>
-                                            <td pEditableColumn ArrowNavigation style="width: 80px">
-                                                <p-cellEditor>
-                                                    <ng-template pTemplate="input">
-                                                        <p-inputNumber inputId="qte" [(ngModel)]="inst.qteDde" #qtedde>
-                                                        </p-inputNumber>
-                                                    </ng-template>
-                                                    <ng-template pTemplate="output">
-                                                        {{inst.qteDde}}
-                                                    </ng-template>
-                                                </p-cellEditor>
-                                            </td>
-                                            <td style="width: 140px" pEditableColumn ArrowNavigation class="DropColoirs"  >
-
-                                                <p-cellEditor>
-                                                    <ng-template pTemplate="input">
-                                                        <p-dropdown  [showClear]="true" [filter]="true"
-                                                        filterBy="label,value.name,value.code"   [options]="listColorisrslt" (onChange)="GetCodeColoris()" appendTo="body" [(ngModel)]="inst.codeSaisieColoris" [style]="{'width':'100%'}"></p-dropdown>
-                                                    </ng-template>
-                                                    <ng-template pTemplate="output">
-                                                        {{inst.coloris.codeSaisie}}
-                                                    </ng-template>
-                                                </p-cellEditor>
-
-                                            </td>
-
-                                            <td style="width: 40px">
-                                                
-                                                <button focusable="false" *ngIf="!editing" pButton type="button"
-                                                    pDeleteEditableRow icon="pi pi-trash" class="p-button-item "
-                                                    (click)="deleteRow(ri)"></button>
-                                        
-
-                                            </td>
-                                        </tr>
-                                    </ng-template>
-                                </p-table>
-
-                                <br />
-                                <br />
-                            </div>
-                        </section>
-
-
-                    </p-tabPanel>
-                    <p-tabPanel header="Header Text" leftIcon="pi pi-bell" rightIcon="pi pi-bookmark">;
-                        Content v3
-                    </p-tabPanel>
-                </p-tabView>
+                
 
 
 

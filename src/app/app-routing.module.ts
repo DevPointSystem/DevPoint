@@ -5,8 +5,7 @@ import { AppelOffreComponent } from './gcommercial/appel-offre/appel-offre.compo
 import { CategProduitComponent } from './gcommercial/categ-produit/categ-produit.component';
 import { CbnComponent } from './gcommercial/cbn/cbn.component';
 import { CircuitValidationComponent } from './gcommercial/circuit-validation/circuit-validation.component';
-import { CltComponent } from './gcommercial/clt/clt.component';
-import { CompositionComponent } from './gcommercial/composition/composition.component';
+import { CltComponent } from './gcommercial/clt/clt.component'; 
 import { DdeAchatComponent } from './gcommercial/dde-achat/dde-achat.component';
 import { DevisComponent } from './gcommercial/devis/devis.component';
 import { FactureVteComponent } from './gcommercial/facture-vte/facture-vte.component';
@@ -33,6 +32,10 @@ import { MvtTransfertComponent } from './stock-logistique/mvt-transfert/mvt-tran
 import { RetourCltComponent } from './stock-logistique/retour-clt/retour-clt.component';
 import { RetourFrsComponent } from './stock-logistique/retour-frs/retour-frs.component';
 import { StockLogistiqueComponent } from './stock-logistique/stock-logistique.component';
+import { ColorisComponent } from './gcommercial/param-compo/coloris/coloris.component';
+import { TailleComponent } from './gcommercial/param-compo/taille/taille.component';
+import { CategCompoComponent } from './gcommercial/param-compo/categ-compo/categ-compo.component';
+import { CompositionComponent } from './gcommercial/param-compo/composition/composition.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full' , redirectTo: ''},
@@ -68,6 +71,9 @@ const routes: Routes = [
   {path: 'repartition_of', component: RepartitionOfComponent},
   {path: 'jolonnement', component: JalonnementComponent},
   {path: 'param', component: ParamComponent},
+  {path: 'coloris', component: ColorisComponent},
+  {path: 'taille', component: TailleComponent},
+  {path: 'categorie_composant', component: CategCompoComponent},
 ];
 
 @NgModule({

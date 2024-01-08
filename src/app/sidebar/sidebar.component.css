@@ -260,7 +260,7 @@ li:hover{
   color: #ffffff !important;
 }
 a:hover{
-  font-weight: bold;
+  /* font-weight: bold; */
   color: #ffffff !important;
 }
 
@@ -274,7 +274,19 @@ li#dropdown {
   border-bottom: 1px solid #3c3c3c;
   
 }
- 
+.nav-link {
+  color: green;
+}
+
+.nav-item>a:hover {
+  color: green;
+}
+
+/*code to change background color*/
+.nav>.active>a {
+  background-color: #C0C0C0;
+  color: green;
+}
 
 :root {
   --primary: 237, 94%, 81%;

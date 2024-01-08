@@ -1,0 +1,263 @@
+<body translate="no" class="tt">
+    <!-- Note: This example only works with Windows Insider Preview Builds 16237+. -->
+
+    <header>
+        <span style="color: rgb(0, 0, 0); font-size: 25px;">
+            <label class="header_name">Coloris</label>
+        </span>
+    </header>
+    <aside>
+
+
+
+        <div class="Groupe-Bouton" id="BoutonFacturationInPatient">
+            <div class="flex-row-around" id="div_btn_fac_liste_facturation-InPatient">
+                <button data-backdrop="false" type="button" class="Bouton btn btn-labeled btn-default "
+                    data-original-title="Add" data-toggle="modal" data-target="#Modal" (click)="clearForm()" (click)="onOpenModal('add')">
+                    <span class="label-btn"><i class="fa-lg fa-fw fa fa-plus"></i> </span>
+                    <div class="bouton_style"> Cree</div>
+
+                </button>
+            </div>
+            <div class="flex-row-around" id="div_btn_fac_audit_facturation-InPatient">
+                <button type="button" class="Bouton btn btn-labeled btn-default " data-original-title="Edit"
+                    data-toggle="modal" data-target="#Modal" (click)="onOpenModal('edit')"  >
+
+                    <span class="label-btn"><i class="fa-lg fa fa-pencil"></i> </span>
+                    <div class="bouton_style">Modifier</div>
+                </button>
+
+            </div>
+
+
+            <div class="flex-row-around" id="div_btn_fac_annuler_audit-InPatient">
+                <button type="button" class="Bouton btn btn-labeled btn-default " data-original-title="Delete"
+                    data-toggle="modal" data-target="#ModalDelete" (click)="onOpenModal('delete')">
+                    <span class="label-btn"><i class="fa-lg fa fa-trash-o"></i> </span>
+                    <div class="bouton_style">Supprimer</div>
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+    </aside>
+
+
+
+    <section id="main-container">
+
+        <!-- <div class="container-fluid" id="main-container"> -->
+
+        <div class="material-table">
+
+
+
+            <!-- [ngModelOptions]="{standalone: true}" -->
+            <div class="card">
+                <!-- <p-table id="myTable" [value]="ActifFilaille" selectionMode="single" dataKey="codeSaisie" [tableStyle]="{'min-width': '50rem'}" [(selection)]="selectedProduct" dataKey="code" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
+                    (click)="selectedRow2()"> -->
+                <p-toast></p-toast>
+                <p-table [rowHover]="true" [(selection)]="selectedRow" #dt1 [value]="coloris"
+                    [globalFilterFields]="['adressFilialle.designation', 'filialle.designation']" selectionMode="single"
+                    [metaKeySelection]="false" (onRowSelect)="onRowSelect($event)"
+                    (onRowUnselect)="onRowUnselect($event)" dataKey="code" [tableStyle]="{'min-width': '50rem'}">
+
+
+                    <ng-template pTemplate="caption">
+
+                        <mat-radio-group aria-label="Select an option" class="radio-actif-inactif">
+
+                            <mat-radio-button value="actif" [checked]="check_actif === true"
+                                (click)="GetAllColorisActif()" (click)="clear(dt1)">Actif</mat-radio-button>
+                            <mat-radio-button [checked]="check_inactif === true" value="InActif"
+                                (click)="GetAllColorisInActif()" (click)="clear(dt1)">In Actif </mat-radio-button>
+
+                            <!-- <p-selectButton [options]="cities" [(ngModel)]="selectedCityCode" optionLabel="designation" optionValue="code"></p-selectButton> -->
+                        </mat-radio-group>
+
+
+                        <!-- <p-selectButton [options]="cities" [(ngModel)]="selectedSatisfactionOF" optionLabel="name"></p-selectButton> -->
+                        <!-- <p-selectButton [options]="cities" [(ngModel)]="selectedCity" optionLabel="name"></p-selectButton>
+                        <p-selectButton [options]="cities" [(ngModel)]="selectedCity" optionLabel="name"></p-selectButton> -->
+
+
+
+                        <div class="recherche">
+                            <mat-label class="label-recherche"> Code: </mat-label>
+                            <span class="p-input-icon-left ml-auto">
+                                <input pInputText class="recherche-value" [(ngModel)]="searchTerm" name="zone-recherche"
+                                    type="text" (keyup.enter)="dt1.filterGlobal($any($event.target).value, 'contains')"
+                                    placeholder="Search keyword" />
+                            </span>
+                            <button type="button" class="Bouton-rechercher btn  btn-default " data-original-title="Add"
+                                (click)="dt1.filterGlobal($any($event.target).value, 'contains')">
+                                <div class="bouton_style-2">Recherche</div>
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                            <button type="button" class="Bouton-refresh btn  btn-default " data-original-title="Add"
+                                (click)="clear(dt1)" (click)="GetAllColorisActif()">
+                                <!-- <button type="button" class="Bouton-refresh btn  btn-default " data-original-title="Add" (click)="GetFilialleActif()" (click)="clear(dt1)"> -->
+                                <div class="bouton_style-2">Reinitialiser</div>
+                                <i class="fa-solid fa-arrows-rotate"></i>
+                                <!-- <mat-icon class="search-icon">refresh</mat-icon> -->
+                            </button>
+                            <!-- <p-selectButton [options]="stateOptions" [(ngModel)]="cities" optionLabel="label" optionValue="code"></p-selectButton> -->
+
+                        </div>
+
+
+                        <!-- </div> -->
+                        <!-- </div> -->
+                    </ng-template>
+
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th class="col-1">Code</th>
+                            <th >Designation</th> 
+                            <th class="act-col">Actif</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-fl>
+                        <tr [pSelectableRow]="fl">
+                            <td>{{fl.codeSaisie}}</td>
+                            <td>{{fl.designation}}</td> 
+                            <td class="act-col">
+
+                                <p-checkbox [readonly]="true" [(ngModel)]="fl.actif" [binary]="true"
+                                    inputId="binary">{{fl.actif}}</p-checkbox>
+                            </td>
+
+
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </section>
+    <!-- <aside>aside</aside> -->
+    <footer>footer
+
+        <!-- <div *ngIf="selectedProfile">{{selectedProfile.code}} - {{selectedProfile.designation}}</div> -->
+
+    </footer>
+</body>
+
+
+
+
+<!-- modal primeNG ADD -->
+<p-dialog id="Modal" header="Header" [(visible)]="visibleModal" data-backdrop="false" [modal]="true"
+    styleClass="ModalAdd" [draggable]="false" [resizable]="false">
+    <div>
+        <!-- <ng-template pTemplate="header"> -->
+        <div class="modal-header">
+            <h3 class="footer-dev">
+                <div class="action">
+                    <h2 class="text-center text-default"> {{formHeader}}</h2>
+                    <button class="btn btn-primary save" data-dismiss="modal" (click)="PostColoris()"> <i
+                            class="fa-lg fa-fw fa fa-floppy-o "></i>
+                        Sauvgarde </button>
+                    <button class="btn btn-danger cancel" :closable="false" (click)="clearForm( )" data-dismiss="modal">
+                        <i class="fa-lg fa-fw fa fa-sign-out "></i>Fermer
+                    </button>
+                    <p-toast key="toast1"></p-toast>
+                    <!-- <button type="button" pButton pRipple (click)="show()" label="Show Success" name="notif"></button> -->
+
+                </div>
+            </h3>
+        </div>
+
+        <div class="modal-body">
+            <!-- <form> -->
+            <fieldset>
+                <div class="flex-row-space">
+                    <section class="flex-row-space flex-4" disabled="">
+
+                        <label class="control-label flex-4"
+                            style="padding-left: 30px; position: relative; top: 3px;">Code</label>
+                        <div class="control-input  flex-8">
+                            <input id="codeSaisie" maxlength="4" name="codeSaisie" type="text"
+                                class="onlyForCentral form-control-dev input-xs" required [(ngModel)]="codeSaisie">
+
+                        </div>
+
+                    </section>
+                    <section class="flex-row-space flex-4" disabled="">
+
+                        <label class="control-label flex-4"
+                            style="padding-left: 30px; position: relative; top: 3px;">Designation</label>
+                        <input type="text" id="designation_ar" maxlength="200" name="designation_ar"
+                            class="onlyForCentral form-control-dev input-xs" [(ngModel)]="designation" required>
+
+
+                    </section>
+
+                    <section class="flex-row-space flex-2" style="padding-left: 50px;">
+                        <p-checkbox [binary]="true" class="check-actif" name="actif" value="val3" label="Actif"
+                            [(ngModel)]="actif"></p-checkbox>
+
+                    </section>
+                </div>
+           
+
+                <br />
+
+                
+
+
+
+                <!-- <section class="flex-row-space flex-12">
+                  
+                    
+
+
+                </section> -->
+
+
+            </fieldset>
+
+        </div>
+
+    </div>
+</p-dialog>
+
+<!-- modal primeNG  Delete-->
+<p-dialog class="modal-delete" id="ModalDelete" data-backdrop="false" header="Header" [(visible)]="visDelete"
+    styleClass="ModalDelete" [modal]="true" [draggable]="false" [resizable]="false">
+    <div class="modal-header">
+        <h3 class="footer-dev">
+            <div class="action">
+                <h2 class="text-center text-default"> {{formHeader}}</h2>
+            </div>
+        </h3>
+    </div>
+    <div class="modal-body">
+        <form action="" #addForms="ngForm">
+            <fieldset class="deleteForms">
+                <h4 class="text-delete">Comfirmer La Suppression
+
+                    <!-- <p-button icon="pi pi-save" data-dismiss="modal" label="Supprimer"
+                        styleClass="save-delete p-button-success" (click)="DeleteColoris(code)"></p-button>
+                    <p-button icon="pi pi-sign-out" label="Fermer" styleClass="btn-cancel-delete p-button-danger"
+                        data-dismiss="modal"> </p-button> -->
+
+                        <button class="btn btn-primary save_delete" data-dismiss="modal" (click)="DeleteColoris(code)"> <i
+                            class="fa-lg fa-fw fa fa-floppy-o "></i>
+                            Supprimer </button>
+                    <button class="btn btn-danger cancel_delete" :closable="false" (click)="clearForm( )" data-dismiss="modal">
+                        <i class="fa-lg fa-fw fa fa-sign-out "></i>Fermer
+                    </button>
+
+                </h4>
+            </fieldset>
+            <br>
+        </form>
+    </div>
+</p-dialog>
+<!-- fin modal primeng  -->
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

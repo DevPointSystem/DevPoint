@@ -3,18 +3,20 @@ import { Table } from 'primeng/table';
 import * as alterify from 'alertifyjs';
 import { catchError, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { GcomercialService } from '../Service/gcomercial.service';
+import { GcomercialService } from '../../Service/gcomercial.service'; 
+
+
 @Component({
-  selector: 'app-param-produit',
-  templateUrl: './param-produit.component.html',
-  styleUrls: ['./param-produit.component.css']
+  selector: 'app-composition',
+  templateUrl: './composition.component.html',
+  styleUrls: ['./composition.component.css']
 })
-export class ParamProduitComponent implements OnInit {
+export class CompositionComponent implements OnInit {
 
   constructor(private gcomercial_service: GcomercialService) { }
 
   ngOnInit(): void {
-    this.GetAllProduitActif();
+    this.GetAllComposantActif();
   }
 
   clear(table: Table) {
@@ -22,9 +24,9 @@ export class ParamProduitComponent implements OnInit {
     table.clear();
   }
 
-  OrderFabricationWithDetails = new Array<Produit>();
-  GetAllProduitActif(): void {
-    this.gcomercial_service.GetProduitActif().pipe(
+  composant = new Array<Composant>();
+  GetAllComposantActif(): void {
+    this.gcomercial_service.GetAllComposantActif().pipe(
       catchError((error: HttpErrorResponse) => {
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {
@@ -37,38 +39,38 @@ export class ParamProduitComponent implements OnInit {
 
     )
       .subscribe((data: any) => {
-        this.OrderFabricationWithDetails = data
+        this.composant = data
         this.searchTerm = '';
         this.check_actif = true
         this.check_inactif = false
         this.onRowUnselect(event);
       });
   }
-  GetAllProduitInActif(): void {
-    this.gcomercial_service.GetProduitInActif().pipe(
-      catchError((error: HttpErrorResponse) => {
-        let errorMessage = '';
-        if (error.error instanceof ErrorEvent) {
-        } else {
-          alterify.set('notifier', 'position', 'top-left');
-          alterify.error(` ${error.error.message}` + " Parametrage Failed");
-        }
-        return throwError(errorMessage);
-      })
+  GetAllComposantInActif(): void {
+    // this.gcomercial_service.GetAllComposantInActif().pipe(
+    //   catchError((error: HttpErrorResponse) => {
+    //     let errorMessage = '';
+    //     if (error.error instanceof ErrorEvent) {
+    //     } else {
+    //       alterify.set('notifier', 'position', 'top-left');
+    //       alterify.error(` ${error.error.message}` + " Parametrage Failed");
+    //     }
+    //     return throwError(errorMessage);
+    //   })
 
-    )
-      .subscribe((data: any) => {
-        this.OrderFabricationWithDetails = data
-        this.searchTerm = '';
-        this.check_actif = true
-        this.check_inactif = false
-        this.onRowUnselect(event);
-      });
+    // )
+    //   .subscribe((data: any) => {
+    //     this.composant = data
+    //     this.searchTerm = '';
+    //     this.check_actif = true
+    //     this.check_inactif = false
+    //     this.onRowUnselect(event);
+    //   });
   }
   check_actif = false;
   check_inactif = false;
 
-  formHeader = "إضافة طلب شراء ";
+  formHeader = "Cree Composant";
 
   searchTerm = '';
 
@@ -83,8 +85,8 @@ export class ParamProduitComponent implements OnInit {
   codeOF !: string;
   CodeCommande!: string;
   produit !: string;
-  codeMarque!: number;
-  codeNatureProduit!: number;
+  codeUnite!: number;
+  codeColoris!: number;
   codeInst: any;
   unitess!: Unites[];
 
@@ -93,29 +95,29 @@ export class ParamProduitComponent implements OnInit {
   listUnitesrslt = new Array<any>();
 
 
-  sourceMarques!: Marques[];
-  listMarquespushed = new Array<any>();
-  listMarquesrslt = new Array<any>();
+  // sourceMarques!: Marques[];
+  // listMarquespushed = new Array<any>();
+  // listMarquesrslt = new Array<any>();
 
 
-  sourceNatureProduit!: NatureProduit[];
-  listNatureProduitpushed = new Array<any>();
-  listNatureProduitrslt = new Array<any>();
+  // sourceNatureProduit!: NatureProduit[];
+  // listNatureProduitpushed = new Array<any>();
+  // listNatureProduitrslt = new Array<any>();
 
-  sourceComposant!: Composant[];
-  listComposantpushed = new Array<any>();
-  listComposantrslt = new Array<any>();
+  // sourceComposant!: Composant[];
+  // listComposantpushed = new Array<any>();
+  // listComposantrslt = new Array<any>();
 
 
   selectedComposant: any;
   listDesigCompo = new Array<Composant>();
 
-  Compo = new Array<any>();
+  // Compo = new Array<any>();
   compteur: number = 0;
 
 
 
-  countries  = new Array<Unites>();
+  // countries  = new Array<Unites>();
 
 
 
@@ -145,6 +147,8 @@ export class ParamProduitComponent implements OnInit {
     this.actif = event.data.actif;
     this.codeSaisie = event.data.codeSaisie;
     this.designation = event.data.designation;
+    this.codeUnite = event.data.unite.codeUnite;
+    this.codeColoris = event.data.codeSaisieColoris;
     console.log('vtData : ', event);
   }
 
@@ -158,12 +162,12 @@ export class ParamProduitComponent implements OnInit {
     button.setAttribute('data-toggle', 'modal');
     if (mode == 'add') {
       button.setAttribute('data-target', 'modal');
-      this.formHeader = "Nouveau Produit"
+      this.formHeader = "Nouveau Composant"
       // this.getAllUnitesModal(); 
-      this.GetcomposantActif();
+      // this.GetcomposantActif();
       this.GetUnitesActif();
-      this.GetMarquesActif();
-      this.GetNatureProduitActif();
+      // this.GetMarquesActif();
+      // this.GetNatureProduitActif();
       this.GetColorisActif();
       this.actif = false;
       this.visibleModal = true;
@@ -189,10 +193,11 @@ export class ParamProduitComponent implements OnInit {
       } else {
         this.visDelete = false;
         button.setAttribute('data-target', '#Modal');
-        this.formHeader = "Modifier Produit"
+        this.formHeader = "Modifier Composant"
         this.visibleModal = true;
-        // this.getAllUnitesModal();
-        // this.GetDetailsOrderFabrication();
+        this.onRowSelect;
+        this.GetUnitesActif();
+        this.GetColorisActif();
 
       }
 
@@ -213,7 +218,7 @@ export class ParamProduitComponent implements OnInit {
 
           {
             button.setAttribute('data-target', '#ModalDelete');
-            this.formHeader = "Delete Produit"
+            this.formHeader = "Delete Composant"
             this.visDelete = true;
 
           }
@@ -348,102 +353,31 @@ export class ParamProduitComponent implements OnInit {
 
   }
 
+  // GetUnitesActifForModif(): void {
+  //   this.gcomercial_service.GetAllUnite().pipe(
+  //     catchError((error: HttpErrorResponse) => {
+  //       let errorMessage = '';
+  //       if (error.error instanceof ErrorEvent) {
+  //       } else {
+  //         alterify.set('notifier', 'position', 'top-right');
+  //         alterify.error(` ${error.error.message}` + " Parametrage Failed");
 
-  GetMarquesActif(): void {
-    this.gcomercial_service.GetAllMarqueActif().pipe(
-      catchError((error: HttpErrorResponse) => {
-        let errorMessage = '';
-        if (error.error instanceof ErrorEvent) {
-        } else {
-          alterify.set('notifier', 'position', 'top-right');
-          alterify.error(` ${error.error.message}` + " Parametrage Failed");
+  //       }
+  //       return throwError(errorMessage);
+  //     })
 
-        }
-        return throwError(errorMessage);
-      })
+  //   )
+  //     .subscribe((data: any) => {
+  //       this.sourceUnites = data;
+  //       this.listUnitespushed = [];
+  //       for (let i = 0; i < this.sourceUnites.length; i++) {
+  //         this.listUnitespushed.push({ label: this.sourceUnites[i].designation, value: this.sourceUnites[i].code })
+  //       }
+  //       this.listUnitesrslt = this.listUnitespushed;
+  //     });
 
-    )
-      .subscribe((data: any) => {
-        this.sourceMarques = data;
-        this.listMarquespushed = [];
-        for (let i = 0; i < this.sourceMarques.length; i++) {
-          this.listMarquespushed.push({ label: this.sourceMarques[i].designation, value: this.sourceMarques[i].code })
-        }
-        this.listMarquesrslt = this.listMarquespushed;
-      });
-    // this.targetProducts = [];
+  // }
 
-  }
-
-
-  GetNatureProduitActif(): void {
-    this.gcomercial_service.GetAllNatureProduitActif().pipe(
-      catchError((error: HttpErrorResponse) => {
-        let errorMessage = '';
-        if (error.error instanceof ErrorEvent) {
-        } else {
-          alterify.set('notifier', 'position', 'top-right');
-          alterify.error(` ${error.error.message}` + " Parametrage Failed");
-
-        }
-        return throwError(errorMessage);
-      })
-
-    )
-      .subscribe((data: any) => {
-        this.sourceNatureProduit = data;
-        this.listNatureProduitpushed = [];
-        for (let i = 0; i < this.sourceNatureProduit.length; i++) {
-          this.listNatureProduitpushed.push({ label: this.sourceNatureProduit[i].designation, value: this.sourceNatureProduit[i].code })
-        }
-        this.listNatureProduitrslt = this.listNatureProduitpushed;
-      });
-    // this.targetProducts = [];
-
-  }
-  MouveToTable() {
-    var exist = false;
-    for (var y = 0; y < this.listDesigCompo.length; y++) {
-      if (this.selectedComposant != this.listDesigCompo[y].code) {
-        exist = false;
-        // console.log(exist);
-      } else {
-        exist = true;
-
-        alterify.set('notifier', 'position', 'top-left');
-        alterify.error('Item Used');
-        // console.log(exist);
-        break;
-      }
-    }
-    if ((this.selectedComposant != undefined) && (this.selectedComposant != "") && (!exist)) {
-      this.gcomercial_service.GetComposantByCode(this.selectedComposant).subscribe((xxx: any) => {
-        this.Compo[this.compteur] = xxx;
-        this.compteur = this.compteur + 1;
-
-        this.listDesigCompo.push(xxx);
-        // console.log(xxx);
-        console.log("compteur", this.compteur, "Compo", this.Compo, "DesigMouve", this.listDesigCompo, "SelectedCompo", this.selectedComposant,"CodeColoris",this.codeColoris);
-
-
-      })
-    }
-
-  }
-  clickDropDownUp(dropDownModUp: any) {
-    if ((dropDownModUp.documentClickListener !== undefined && dropDownModUp.selectedOption !== null && dropDownModUp.itemClick) || dropDownModUp.itemClick) {
-      dropDownModUp.focus();
-      if (!dropDownModUp.overlayVisible) {
-        dropDownModUp.show();
-        event!.preventDefault();
-      } else {
-        dropDownModUp.hide();
-        event!.preventDefault();
-      }
-    }
-
-    
-  }
 
   GetDataFromTableEditor: any;
 
@@ -463,45 +397,45 @@ export class ParamProduitComponent implements OnInit {
   }
 
 
-  deleteRow(ri: any) {
+  // deleteRow(ri: any) {
 
-    this.listDesigCompo.splice(ri, 1);
-    this.Compo.splice(ri, 1);
-    this.compteur = this.compteur - 1;
-    console.log("Unite", this.Compo, "Desig", this.listDesigCompo);
+  //   this.listDesigCompo.splice(ri, 1);
+  //   this.Compo.splice(ri, 1);
+  //   this.compteur = this.compteur - 1;
+  //   console.log("Unite", this.Compo, "Desig", this.listDesigCompo);
 
-  }
+  // }
 
 
   
-  GetcomposantActif(): void {
-    this.gcomercial_service.GetAllComposantActif().pipe(
-      catchError((error: HttpErrorResponse) => {
-        let errorMessage = '';
-        if (error.error instanceof ErrorEvent) {
-        } else {
-          alterify.set('notifier', 'position', 'top-right');
-          alterify.error(` ${error.error.message}` + " Parametrage Failed");
+  // GetcomposantActif(): void {
+  //   this.gcomercial_service.GetAllComposantActif().pipe(
+  //     catchError((error: HttpErrorResponse) => {
+  //       let errorMessage = '';
+  //       if (error.error instanceof ErrorEvent) {
+  //       } else {
+  //         alterify.set('notifier', 'position', 'top-right');
+  //         alterify.error(` ${error.error.message}` + " Parametrage Failed");
 
-        }
-        return throwError(errorMessage);
-      })
+  //       }
+  //       return throwError(errorMessage);
+  //     })
 
-    )
-      .subscribe((data: any) => {
-        this.sourceComposant = data;
-        this.listComposantpushed = [];
-        for (let i = 0; i < this.sourceComposant.length; i++) {
-          this.listComposantpushed.push({ label: this.sourceComposant[i].designation, value: this.sourceComposant[i].code })
-        }
-        this.listComposantrslt = this.listComposantpushed;
-      });
-    // this.targetProducts = [];
+  //   )
+  //     .subscribe((data: any) => {
+  //       this.sourceComposant = data;
+  //       this.listComposantpushed = [];
+  //       for (let i = 0; i < this.sourceComposant.length; i++) {
+  //         this.listComposantpushed.push({ label: this.sourceComposant[i].designation, value: this.sourceComposant[i].code })
+  //       }
+  //       this.listComposantrslt = this.listComposantpushed;
+  //     });
+  //   // this.targetProducts = [];
 
-  }
+  // }
 
 
-  codeColoris:any;
+  // codeColoris:any;
   GetColorisActif(): void {
     this.gcomercial_service.GeColorisActif().pipe(
       catchError((error: HttpErrorResponse) => {
@@ -528,16 +462,14 @@ export class ParamProduitComponent implements OnInit {
   }
 
 
-  
-
 }
 
 
 
-interface Produit {
-  code: string;
+// interface Produit {
+//   code: string;
 
-}
+// }
 
 interface Unites {
   code: number;
@@ -549,19 +481,19 @@ interface Unites {
 }
 
 
-interface Marques {
-  code: number;
-  codeSaisie: string;
-  designation?: string;
-  actif?: boolean;
-}
+// interface Marques {
+//   code: number;
+//   codeSaisie: string;
+//   designation?: string;
+//   actif?: boolean;
+// }
 
-interface NatureProduit {
-  code: number;
-  codeSaisie: string;
-  designation?: string;
-  actif?: boolean;
-}
+// interface NatureProduit {
+//   code: number;
+//   codeSaisie: string;
+//   designation?: string;
+//   actif?: boolean;
+// }
 
 interface Composant{
 

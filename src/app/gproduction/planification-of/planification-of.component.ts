@@ -103,6 +103,7 @@ export class PlanificationOfComponent implements OnInit {
         this.searchTerm = '';
         this.check_actif = true
         this.check_inactif = false
+        this.onRowUnselect(event);
       });
   }
 
@@ -135,7 +136,7 @@ export class PlanificationOfComponent implements OnInit {
     table.clear();
   }
 
-  clearForm(ri : any): void {
+  clearForm(ri: any): void {
     this.code == undefined;
     this.designation = '';
     this.actif = false;
@@ -143,10 +144,10 @@ export class PlanificationOfComponent implements OnInit {
     this.codeOF = '';
     this.codeCdeClient = '';
     this.datePrevuLivr = new Date(Date.now());
- 
-this.listDesig.splice(ri,99);
-this.Unitess.splice(ri,99);
-this.compteur = 0;
+
+    this.listDesig.splice(ri, 99);
+    this.Unitess.splice(ri, 99);
+    this.compteur = 0;
 
     this.onRowUnselect(event);
 
@@ -168,6 +169,7 @@ this.compteur = 0;
   actif!: boolean;
   codeOF !: string;
   CodeCommande!: string;
+  produit !: string;
 
   // selectedddeAchat!: DDE_ACHAT;
   selectedddeAchat2!: DDE_ACHAT;
@@ -292,6 +294,8 @@ this.compteur = 0;
     this.selectedUnites = [];
     this.codeFlDde = [];
     this.listDesig = [];
+    this.codeCdeClient = '';
+    this.codeOF = '';
   }
 
   public onOpenModal(mode: string) {
@@ -311,6 +315,7 @@ this.compteur = 0;
       // this.GelAllFlActif();
       // this.code ==null;
       this.clearSelected();
+      this.getAllProduitModal();
       this.actif = false;
       this.visibleModal = true;
       this.code == undefined;
@@ -517,20 +522,45 @@ this.compteur = 0;
       this.listUnitesrslt = this.listUnitespushed;
     })
   }
-  // Unitess!: Unites[];
+  dataProduit = new Array<Produit>();
+  listProduitpushed = new Array<any>();
+  listProduitrslt = new Array<any>();
+ 
+  getAllProduitModal() {
+    this.param_achat_service.GetProduitActif().pipe(
+      catchError((error: HttpErrorResponse) => {
+        let errorMessage = '';
+        if (error.error instanceof ErrorEvent) { } else {
+          alterify.set('notifier', 'position', 'top-right');
+          alterify.error(` ${error.error.message}`);
+        }
+        return throwError(errorMessage);
+      })
+
+    ).subscribe((data: any) => {
+      this.dataProduit = data;
+      this.listProduitpushed = [];
+      for (let i = 0; i < this.dataProduit.length; i++) {
+        this.listProduitpushed.push({ label: this.dataProduit[i].designation, value: this.dataProduit[i].code })
+      }
+      this.listProduitrslt = this.listProduitpushed;
+    })
+  }
+
   Unitess = new Array<any>();
   selectedUnites: any;
   xxx: any;
   compteur: number = 0;
   listDesig = new Array<Details_OF>();
   // listDesig !: Details_OF[];
+
   DAte: any;
 
   dateValue?: Date;
   MouveToTable() {
     var exist = false;
-    for (var y = 0; y < this.Unitess.length; y++) {
-      if (this.selectedUnites != this.Unitess[y].code) {
+    for (var y = 0; y < this.listDesig.length; y++) {
+      if (this.selectedUnites != this.listDesig[y].codeUnite) {
         exist = false;
         // console.log(exist);
       } else {
@@ -546,9 +576,10 @@ this.compteur = 0;
       this.param_achat_service.GetUniteByCode(this.selectedUnites).subscribe((xxx: any) => {
         this.Unitess[this.compteur] = xxx;
         this.compteur = this.compteur + 1;
+
         this.listDesig.push(xxx);
         // console.log(xxx);
-        console.log("compteur", this.compteur, "unite", this.Unitess, "Desig", this.listDesig);
+        console.log("compteur", this.compteur, "unite", this.Unitess, "DesigMouve", this.listDesig, "SelectedUntes", this.selectedUnites);
 
 
       })
@@ -618,8 +649,11 @@ this.compteur = 0;
       })
 
     ).subscribe((data: any) => {
-      this.DetailsOrderFabrication = data;
-
+      // this.listDesig = data;
+      // this.Unitess = data;
+      this.Unitess[this.compteur] = data;
+      this.compteur = this.compteur + 1;
+      this.listDesig = data;
 
 
       // const CodeUnite = data[1];
@@ -643,23 +677,28 @@ this.compteur = 0;
           const firstObject = data[i];
           // const SecondeObject = data[1];
 
-        //   // Extract the third value from the first object
+          const qteDde = data[i].qteDde;
+          //   // Extract the third value from the first object
           const thirdValue = firstObject && firstObject.codeUnite;
-        //   console.log("sooo", thirdValue);
+          //   console.log("sooo", thirdValue);
 
-        this.param_achat_service.GetUniteByCode(thirdValue).subscribe((xxx: any) => {
-          this.Unitess[this.compteur] = xxx;
-          this.compteur = this.compteur + 1;
-          this.listDesig.push(xxx);
-          // console.log(xxx);
-          console.log("compteur", this.compteur, "unite", this.Unitess, "Desig", this.listDesig);
-  
-  
-        })
+          // this.param_achat_service.GetUniteByCode(thirdValue).subscribe((xxx: any) => {
+          //   // this.listDesig = data;
+          //   this.Unitess[this.compteur] = xxx;
+          //   this.compteur = this.compteur + 1;
+          //   this.listDesig.push(xxx);
+
+          //   // console.log(xxx);
+          //   console.log("compteur", this.compteur, "unite", this.Unitess, "Desig", this.listDesig);
+
+
+          // })
+
 
         }
 
-        
+
+
         // this.param_achat_service.GetDetailsUniteByCode(2).pipe(
         //   catchError((error: HttpErrorResponse) => {
         //     let errorMessage = '';
@@ -670,7 +709,7 @@ this.compteur = 0;
         //     }
         //     return throwError(errorMessage);
         //   })
-    
+
         // ).subscribe((rslt: any) => {
         //   // this.selectedUnites = rslt;
         //   // const thirdValue = this.Unitess && this.Unitess.designation;
@@ -679,23 +718,23 @@ this.compteur = 0;
         //   this.Unitess = rslt;  
 
 
-          
 
-          console.log("uni",this.Unitess,"des",this.listDesig)
-          // this.MouveToTable();
-          // this.clickDropDownUp(this.selectedUnites);
+
+        console.log("uni", this.Unitess, "des", this.listDesig)
+        // this.MouveToTable();
+        // this.clickDropDownUp(this.selectedUnites);
         // });
-// this.listDesig=this.Unitess;
+        // this.listDesig=this.Unitess;
         // }
 
-        
+
 
 
 
       }
 
     });
-    
+
   }
 
 
@@ -718,7 +757,7 @@ this.compteur = 0;
 
     // ).subscribe((data: any) => {
     //   this.listDesig = data;
-     
+
     // });
   }
 
@@ -733,11 +772,17 @@ interface SatisfactionOF {
 
 export interface Unites {
   code: number;
-  codeSaisie: string;
+  codeSaisieUnite: string;
   designation?: string;
   actif?: boolean;
 
   qtedde?: number;
+}
+export interface Produit {
+  code: number;
+  codeSaisie: string;
+  designation?: string;
+  actif?: boolean;
 }
 
 export interface DDE_ACHAT {
@@ -747,6 +792,8 @@ export interface DDE_ACHAT {
 interface Details_OF {
   datePrevuLivr: Date;
   codeCdeClient: number;
+  codeUnite: string;
+  qteDde: number;
   unite: {
     code: number;
     codeSaisie: string;

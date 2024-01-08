@@ -98,7 +98,7 @@
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
                             <button type="button" class="Bouton-refresh btn  btn-default " data-original-title="Add"
-                                (click)="clear(dt1)">
+                                (click)="clear(dt1)" (click)="GetAllOFActif()"  >
                                 <!-- <button type="button" class="Bouton-refresh btn  btn-default " data-original-title="Add" (click)="GetFilialleActif()" (click)="clear(dt1)"> -->
                                 <div class="bouton_style-2">Reinitialiser</div>
                                 <i class="fa-solid fa-arrows-rotate"></i>
@@ -236,13 +236,28 @@
 
                     </section>
                 </div>
-                <!-- <div class="flex-row-space">
-                    
-                </div> -->
+                <div class="flex-row-space">
+                    <section class="flex-row-space flex-4">
+                        <label class="control-label flex-4">Produit</label>
+                        <div class="control-input flex-8">
+                            <!-- <input type="text" id="designation_ar" maxlength="200" name="Article"
+                                class="onlyForCentral form-control-dev input-xs" [(ngModel)]="article" required> -->
+
+                                <p-dropdown [resetFilterOnHide]=true  optionLabel="label" optionValue="value" [options]="listProduitrslt"
+                                    [(ngModel)]="produit" 
+                                    placeholder="Choisir un produit" [showClear]="true" [filter]="true"
+                                    filterBy="label,value.name,value.code" [style]="{'width':'100%'}"
+                                     
+                                    [required]="true"></p-dropdown>
+
+                                    <p>{{produit}}</p>
+                        </div>
+                    </section>
+                </div>
                 <br />
 
                 <p-tabView>
-                    <p-tabPanel header="Unite/Quantite" leftIcon="pi pi-bell" rightIcon="pi pi-bookmark">
+                    <p-tabPanel header="Unite/Quantite" leftIcon="pi pi-th-large"  >
                         <section class="flex-row-space flex-4">
                             <label class="control-label flex-4">Unite</label>
                             <div class="dop control-input flex-8">
@@ -289,10 +304,10 @@
                                                 <p-cellEditor>
                                                     <ng-template pTemplate="input">
                                                         <p-inputNumber inputId="integeronly"
-                                                            [(ngModel)]="inst.codeSaisie"> </p-inputNumber>
+                                                            [(ngModel)]="inst.codeSaisieUnite"> </p-inputNumber>
                                                     </ng-template>
                                                     <ng-template pTemplate="output"  >
-                                                        {{inst.codeSaisie}}
+                                                        {{inst.codeSaisieUnite}}
                                                     </ng-template>
                                                 </p-cellEditor>
                                             </td>
@@ -300,22 +315,22 @@
                                                 <p-cellEditor>
                                                     <ng-template pTemplate="input">
                                                         <p-inputNumber inputId="integeronly"
-                                                            [(ngModel)]="inst.designation" #designation>
+                                                            [(ngModel)]="inst.desigUnite" #desigUnite>
                                                         </p-inputNumber>
                                                     </ng-template>
                                                     <ng-template pTemplate="output">
-                                                        {{inst.designation}}
+                                                        {{inst.desigUnite}}
                                                     </ng-template>
                                                 </p-cellEditor>
                                             </td>
                                             <td pEditableColumn ArrowNavigation style="width: 80px">
                                                 <p-cellEditor>
                                                     <ng-template pTemplate="input">
-                                                        <p-inputNumber inputId="qte" [(ngModel)]="inst.qtedde" #qtedde>
+                                                        <p-inputNumber inputId="qte" [(ngModel)]="inst.qteDde" #qtedde>
                                                         </p-inputNumber>
                                                     </ng-template>
                                                     <ng-template pTemplate="output">
-                                                        {{inst.qtedde}}
+                                                        {{inst.qteDde}}
                                                     </ng-template>
                                                 </p-cellEditor>
                                             </td>
@@ -339,8 +354,82 @@
                             </div>
                         </section>
                     </p-tabPanel>
-                    <p-tabPanel header="Header Text" leftIcon="pi pi-bell" rightIcon="pi pi-bookmark">;
-                        Content v2
+                    <p-tabPanel header="Nomenclature" leftIcon="pi pi-list"  >
+                       
+                        <p-toast></p-toast>
+                                <p-table dataKey="qte" editMode="row"   [value]="listDesig" 
+                                    [scrollable]="true" scrollHeight="200px" selectionMode="single"
+                                    [resizableColumns]="true">
+                                    <ng-template pTemplate="caption">
+                                        <div style="text-align: right;">
+                                            <i class="pi " style="display:4px 4px 0 0"></i>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <!-- <th *ngFor="let col of colsAdd" pResizableColumn>
+                                                {{col.header}}
+                                            </th> -->
+                                            <th style="width: 100px">Code</th>
+                                            <th style="width: 250px">Designation</th>
+                                            <th style="width: 90px">Besoin Net</th>
+
+                                            <th style="width: 40px"></th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-inst let-editing="editing" let-ri="rowIndex">
+                                        <tr [pEditableRow]="inst">
+
+                                            <td style="width: 100px">
+                                                <p-cellEditor>
+                                                    <ng-template pTemplate="input">
+                                                        <p-inputNumber inputId="integeronly"
+                                                            [(ngModel)]="inst.codeSaisieUnite"> </p-inputNumber>
+                                                    </ng-template>
+                                                    <ng-template pTemplate="output"  >
+                                                        {{inst.codeSaisieUnite}}
+                                                    </ng-template>
+                                                </p-cellEditor>
+                                            </td>
+                                            <td style="direction: ltr;" style="width: 250px">
+                                                <p-cellEditor>
+                                                    <ng-template pTemplate="input">
+                                                        <p-inputNumber inputId="integeronly"
+                                                            [(ngModel)]="inst.desigUnite" #desigUnite>
+                                                        </p-inputNumber>
+                                                    </ng-template>
+                                                    <ng-template pTemplate="output">
+                                                        {{inst.desigUnite}}
+                                                    </ng-template>
+                                                </p-cellEditor>
+                                            </td>
+                                            <td pEditableColumn ArrowNavigation style="width: 90px">
+                                                <p-cellEditor>
+                                                    <ng-template pTemplate="input">
+                                                        <p-inputNumber inputId="qte" [(ngModel)]="inst.qteDde" #qtedde>
+                                                        </p-inputNumber>
+                                                    </ng-template>
+                                                    <ng-template pTemplate="output">
+                                                        {{inst.qteDde}}
+                                                    </ng-template>
+                                                </p-cellEditor>
+                                            </td>
+                                            <td style="width: 40px">
+                                                <!-- <mat-row *matRowDef="let row; let i = index; columns: colsAdd;" (click)="selectedIndex = i">
+                                                </mat-row> -->
+                                                <button focusable="false" *ngIf="!editing" pButton type="button"
+                                                    pDeleteEditableRow icon="pi pi-trash" class="p-button-item "
+                                                    (click)="deleteRow(ri)"></button>
+                                                <!--  -->
+
+                                                <!-- <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteRow(ri)"></button> -->
+                                            </td>
+
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+
+
                     </p-tabPanel>
                     <p-tabPanel header="Header Text" leftIcon="pi pi-bell" rightIcon="pi pi-bookmark">;
                         Content v3

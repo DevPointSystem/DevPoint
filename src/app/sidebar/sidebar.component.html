@@ -77,11 +77,27 @@
                   <div id="ParametrageProduit" class="panel-collapse collapse">
                     <div class="panel-body">
                       <ul class="nav navbar-nav">
-                        <li [routerLink]="['/parametrage_produit']" ><a>Produit</a></li>
-                        <li [routerLink]="['/composition']"><a>Composition</a></li>
+                        <li [routerLink]="['/parametrage_produit']" ><a>Produit</a></li> 
                         <li [routerLink]="['/fourniture']"><a>Fourniture</a></li>
                         <li [routerLink]="['/categorie_produit']"><a>Categorie Produit</a></li>
                         <li [routerLink]="['/famille_produit']"><a>Famille Produit</a></li>
+                        <!-- <li [routerLink]="['/circuit_validation']"><a>Circuit Validation</a></li> -->
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="panel panel-default" id="dropdown">
+                  <a data-toggle="collapse" href="#ParametrageComposant">
+                    <i class="fa fa-gear"></i> Parametrage Composant <span class="caret"></span>
+                  </a>
+                  <div id="ParametrageComposant" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <ul class="nav navbar-nav">
+                        <li [routerLink]="['/composition']"><a>Composition</a></li>
+                        <li [routerLink]="['/coloris']"><a>Coloris</a></li>
+                        <li [routerLink]="['/categorie_composant']"><a>Categorie Composant</a></li>
+                        <li [routerLink]="['/taille']"><a>Taille</a></li>
                         <!-- <li [routerLink]="['/circuit_validation']"><a>Circuit Validation</a></li> -->
                       </ul>
                     </div>
@@ -497,21 +513,6 @@
       </ul>
     </div><!-- /.navbar-collapse -->
   </nav> 
-  <div class="btn-group"> 
-    <button class="btn btn-success dropdown-toggle" 
-            type="button" 
-            data-bs-toggle="dropdown" 
-            data-bs-auto-close="outside" 
-            aria-expanded="false"> 
-        GeeksforGeeks AutoClose Outside 
-    </button> 
-    <ul class="dropdown-menu"> 
-        <li><a class="dropdown-item" href="#">Java</a></li> 
-        <li><a class="dropdown-item" href="#"> C++</a></li> 
-        <li><a class="dropdown-item" href="#">C#</a></li> 
-        <li><a class="dropdown-item" href="#">Python</a></li> 
-
-    </ul> 
-</div> 
+ 
 </div>
-
+ 
