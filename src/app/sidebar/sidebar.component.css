@@ -1,4 +1,4 @@
-body {
+ /* body {
   font-family: Cairo !important;
   margin-top: 50px;
   background-color: #fff; 
@@ -9,11 +9,9 @@ body {
 .navbar-default {
   background-color: #fff;
   margin-left: 200px;
-}
-/*main side bar*/
+} 
 .msb {
-  width: 100%;
-  /* background-color: #414242; */
+  width: 100%; 
   background-image: linear-gradient(#303030 13%, #1e1e1e 40%, #0c0d11 86%) !important;
   position: relative;
   left: 0;
@@ -69,9 +67,7 @@ ul.nv, ul.ns {
   padding: 0;
   list-style: none;
 }
-.nv {
- /*ns: nav-sub*/
-}
+ 
 .nv li {
   display: block;
   position: relative;
@@ -95,15 +91,12 @@ ul.nv, ul.ns {
 }
 .nv .ns li a {
   padding: 10px 50px;
-}
-/*main content wrapper*/
+} 
 .mcw {
   margin-left: 200px;
   position: relative;
-  min-height: 100%;
- /*content view*/
-}
-/*globals*/
+  min-height: 100%; 
+} 
 a, a:focus, a:hover {
   text-decoration: none;
 }
@@ -154,8 +147,7 @@ body.msb-x .msb {
   animation: slideout 300ms forwards;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
-}
-/* Slide in animation */
+} 
 @-moz-keyframes slidein {
   0% {
     left: -200px;
@@ -259,8 +251,7 @@ li:hover{
   border-radius: 4px;
   color: #ffffff !important;
 }
-a:hover{
-  /* font-weight: bold; */
+a:hover{ 
   color: #ffffff !important;
 }
 
@@ -281,8 +272,7 @@ li#dropdown {
 .nav-item>a:hover {
   color: green;
 }
-
-/*code to change background color*/
+ 
 .nav>.active>a {
   background-color: #C0C0C0;
   color: green;
@@ -294,20 +284,56 @@ li#dropdown {
   --background-secondary: 256, 12%, 12%;
   --background-secondary-dark: 256, 10%, 10%;
   --background-secondary-light: 257, 11%, 16%;
-  --text-primary: 0, 0%, 0%;
-  /* Colors */
+  --text-primary: 0, 0%, 0%; 
   --black: 0, 0%, 0%;
   --white: 0, 0%, 100%;
   --quite-gray: 0, 0%, 50%;
-  --grooble: 10, 28%, 93%;
-  /* Sizes */
+  --grooble: 10, 28%, 93%; 
   --heading-large: 5.6rem;
   --heading-medium: 3.6rem;
   --heading-small: 2.4rem;
   --paragraph: 1.11rem;
-  --navbar-buttons: 2.4rem;
-  /* misc */
-  --transition-main: .175, .685, .32;
-  /* Fonts */
+  --navbar-buttons: 2.4rem; 
+  --transition-main: .175, .685, .32; 
   --font-main: "Poppins";
+}  
+
+ */
+
+
+ #morris-bar-chart {
+  -webkit-transition: all 2s; /* Safari */
+  transition: all 2s;
+}
+
+#morris-table-left-div {
+  /*height: 350px;
+  overflow: hidden;*/
+}
+.header-row {
+  padding: 0 18px;
+}
+.header-column {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  display: inline-block;
+  font-weight: 300;
+  color: #555;
+  /*border: 1px solid grey;*/
+  padding: 0px;
+  width: 24%;
+  box-sizing: border-box; /*content-box|border-box|initial|inherit;*/
+}
+.list-group-column {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  display: inline-block;
+  font-weight: 300;
+  color: #555;
+  /*border: 1px solid grey;*/
+  padding: 0px;
+  width: 24%;
+}
+
+a {
+  color: #384b5b;
+  text-decoration: none;
 }

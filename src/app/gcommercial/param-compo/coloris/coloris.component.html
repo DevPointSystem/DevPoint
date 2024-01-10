@@ -13,7 +13,8 @@
         <div class="Groupe-Bouton" id="BoutonFacturationInPatient">
             <div class="flex-row-around" id="div_btn_fac_liste_facturation-InPatient">
                 <button data-backdrop="false" type="button" class="Bouton btn btn-labeled btn-default "
-                    data-original-title="Add" data-toggle="modal" data-target="#Modal" (click)="clearForm()" (click)="onOpenModal('add')">
+                    data-original-title="Add" data-toggle="modal" data-target="#Modal" (click)="clearForm()"
+                    (click)="onOpenModal('add')">
                     <span class="label-btn"><i class="fa-lg fa-fw fa fa-plus"></i> </span>
                     <div class="bouton_style"> Cree</div>
 
@@ -21,7 +22,7 @@
             </div>
             <div class="flex-row-around" id="div_btn_fac_audit_facturation-InPatient">
                 <button type="button" class="Bouton btn btn-labeled btn-default " data-original-title="Edit"
-                    data-toggle="modal" data-target="#Modal" (click)="onOpenModal('edit')"  >
+                    data-toggle="modal" data-target="#Modal" (click)="onOpenModal('edit')">
 
                     <span class="label-btn"><i class="fa-lg fa fa-pencil"></i> </span>
                     <div class="bouton_style">Modifier</div>
@@ -68,12 +69,13 @@
 
                     <ng-template pTemplate="caption">
 
-                        <mat-radio-group aria-label="Select an option" class="radio-actif-inactif">
+                        <mat-radio-group [(ngModel)]="selectedValue" aria-label="Select an option"
+                            class="radio-actif-inactif">
 
-                            <mat-radio-button value="actif" [checked]="check_actif === true"
-                                (click)="GetAllColorisActif()" (click)="clear(dt1)">Actif</mat-radio-button>
-                            <mat-radio-button [checked]="check_inactif === true" value="InActif"
-                                (click)="GetAllColorisInActif()" (click)="clear(dt1)">In Actif </mat-radio-button>
+                            <mat-radio-button value="actif" [value]="true"
+                                (click)="GetAllColorisActif()">Actif</mat-radio-button>
+                            <mat-radio-button [value]="false" value="InActif" (click)="GetAllColorisInActif()">In Actif
+                            </mat-radio-button>
 
                             <!-- <p-selectButton [options]="cities" [(ngModel)]="selectedCityCode" optionLabel="designation" optionValue="code"></p-selectButton> -->
                         </mat-radio-group>
@@ -116,14 +118,14 @@
                     <ng-template pTemplate="header">
                         <tr>
                             <th class="col-1">Code</th>
-                            <th >Designation</th> 
+                            <th>Designation</th>
                             <th class="act-col">Actif</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-fl>
                         <tr [pSelectableRow]="fl">
                             <td>{{fl.codeSaisie}}</td>
-                            <td>{{fl.designation}}</td> 
+                            <td>{{fl.designation}}</td>
                             <td class="act-col">
 
                                 <p-checkbox [readonly]="true" [(ngModel)]="fl.actif" [binary]="true"
@@ -175,38 +177,41 @@
             <!-- <form> -->
             <fieldset>
                 <div class="flex-row-space">
-                    <section class="flex-row-space flex-4" disabled="">
+                    <!-- <form> -->
+                        <section class="flex-row-space flex-4" disabled="">
 
-                        <label class="control-label flex-4"
-                            style="padding-left: 30px; position: relative; top: 3px;">Code</label>
-                        <div class="control-input  flex-8">
-                            <input id="codeSaisie" maxlength="4" name="codeSaisie" type="text"
-                                class="onlyForCentral form-control-dev input-xs" required [(ngModel)]="codeSaisie">
+                            <label class="control-label flex-4"
+                                style="padding-left: 30px; position: relative; top: 3px;">Code</label>
+                            <div class="control-input  flex-8">
+                                <input (keyup.enter)="myInput.focus()" id="codeSaisie" maxlength="4"
+                                    name="codeSaisie" type="text" class="onlyForCentral form-control-dev input-xs"
+                                    required [(ngModel)]="codeSaisie">
 
-                        </div>
+                            </div>
 
-                    </section>
-                    <section class="flex-row-space flex-4" disabled="">
+                        </section>
+                        <section class="flex-row-space flex-4" disabled="">
 
-                        <label class="control-label flex-4"
-                            style="padding-left: 30px; position: relative; top: 3px;">Designation</label>
-                        <input type="text" id="designation_ar" maxlength="200" name="designation_ar"
-                            class="onlyForCentral form-control-dev input-xs" [(ngModel)]="designation" required>
+                            <label class="control-label flex-4"
+                                style="padding-left: 30px; position: relative; top: 3px;">Designation</label>
+                            <input #myInput type="text" id="designation_ar" maxlength="200" name="designation_ar"
+                                class="onlyForCentral form-control-dev input-xs" [(ngModel)]="designation" required>
 
 
-                    </section>
+                        </section>
 
-                    <section class="flex-row-space flex-2" style="padding-left: 50px;">
-                        <p-checkbox [binary]="true" class="check-actif" name="actif" value="val3" label="Actif"
-                            [(ngModel)]="actif"></p-checkbox>
+                        <section class="flex-row-space flex-2" style="padding-left: 50px;">
+                            <p-checkbox [binary]="true" class="check-actif" name="actif" value="val3" label="Actif"
+                                [(ngModel)]="actif"></p-checkbox>
 
-                    </section>
+                        </section>
+                    <!-- </form> -->
                 </div>
-           
+               
 
                 <br />
 
-                
+
 
 
 
@@ -245,10 +250,11 @@
                     <p-button icon="pi pi-sign-out" label="Fermer" styleClass="btn-cancel-delete p-button-danger"
                         data-dismiss="modal"> </p-button> -->
 
-                        <button class="btn btn-primary save_delete" data-dismiss="modal" (click)="DeleteColoris(code)"> <i
+                    <button class="btn btn-primary save_delete" data-dismiss="modal" (click)="DeleteColoris(code)"> <i
                             class="fa-lg fa-fw fa fa-floppy-o "></i>
-                            Supprimer </button>
-                    <button class="btn btn-danger cancel_delete" :closable="false" (click)="clearForm( )" data-dismiss="modal">
+                        Supprimer </button>
+                    <button class="btn btn-danger cancel_delete" :closable="false" (click)="clearForm( )"
+                        data-dismiss="modal">
                         <i class="fa-lg fa-fw fa fa-sign-out "></i>Fermer
                     </button>
 

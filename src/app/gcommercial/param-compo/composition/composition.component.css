@@ -3,7 +3,7 @@ body {
     /* segoe-ui_normal,Segoe UI,Segoe,Segoe WP,Helvetica Neue,Helvetica,sans-serif; */
     display: grid;
     grid-template-areas: "header header header" "nav section aside" "footer footer footer";
-    grid-template-rows: 30px 1fr 50px;
+    grid-template-rows: 45px 1fr 50px;
     grid-template-columns: 0% 1fr 10%;
     grid-gap: 5px;
     height: 100vh;

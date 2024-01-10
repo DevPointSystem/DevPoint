@@ -26,8 +26,17 @@ body {
 }
 
 header {
-    background: #3f5e66;
+    /* background: #3f5e66; */
     grid-area: header;
+
+
+    background-color: #f8f8f8;
+    border-color: #e7e7e7;
+    position: fixed;
+    top: 0;
+    width: 98.3%;
+    z-index: 1000;
+    border-bottom: 1px solid darkgray;
 }
 
 nav {
@@ -37,7 +46,7 @@ nav {
 }
 
 section {
-    background: #f3f3f3;
+    background: #ffffff;
     grid-area: section;
 }
 
@@ -139,4 +148,17 @@ footer {
     position: relative;
     padding: 5px 5px 5px 5px;
     margin: 2px 1px 1px 1px;
+}
+
+/* .fa{
+    color: white;
+} */
+
+
+:host ::ng-deep .sidebar {
+    z-index: 1;
+    position: relative;
+    width: 230px;
+    margin-top: 0px;
+    border-radius: 6px;
 }

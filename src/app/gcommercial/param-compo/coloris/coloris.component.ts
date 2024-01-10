@@ -1,25 +1,40 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
 import * as alterify from 'alertifyjs';
 import { catchError, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { GcomercialService } from '../../Service/gcomercial.service';
+ 
 @Component({
   selector: 'app-coloris',
   templateUrl: './coloris.component.html',
   styleUrls: ['./coloris.component.css']
 })
 export class ColorisComponent implements OnInit {
+  
+ 
 
+  constructor(private gcomercial_service: GcomercialService ) { 
 
-  constructor(private gcomercial_service: GcomercialService) { }
-
+  
+    // yourControl:AnalyserNode
+  }
+  
+ 
+  // input2:Any
   ngOnInit(): void {
-    this.GetAllColorisActif();
-    this.actif = false;
+    this.GetAllColorisActif();  
+    // this.actif = false;
+    // this.ResteCheckboxValue();
   }
 
+  selectedValue: boolean = true; // Set the default value
+  // ResteCheckboxValue() {
+  //   this.check_actif = true;
+  //   this.check_inactif = false;
+
+  // }
   clear(table: Table) {
     console.log("tab", table)
     table.clear();
@@ -42,8 +57,10 @@ export class ColorisComponent implements OnInit {
       .subscribe((data: any) => {
         this.coloris = data
         this.searchTerm = '';
-        this.check_actif = true;
+
+        // this.check_actif = true;
         this.check_inactif = false;
+
         this.onRowUnselect(event);
       });
   }
@@ -63,8 +80,8 @@ export class ColorisComponent implements OnInit {
       .subscribe((data: any) => {
         this.coloris = data
         this.searchTerm = '';
-        this.check_actif = true
-        this.check_inactif = false
+        // this.check_actif = true
+        // this.check_inactif = false
         this.onRowUnselect(event);
       });
   }
@@ -80,48 +97,10 @@ export class ColorisComponent implements OnInit {
   code!: number | null;
   codeSaisie?: string;
   designation!: string;
-  userCreate!: string;
-  // CodeSaisie!: string;
-  // datePrevuLivr!: Date;
-  actif!: boolean;
-  // codeOF !: string;
-  // CodeCommande!: string;
-  // produit !: string;
-  // codeUnite!: number;
+  userCreate!: string; 
+  actif!: boolean; 
   codeColoris!: number;
   codeInst: any;
-  // unitess!: Unites[];
-
-  // sourceUnites!: Unites[];
-  // listUnitespushed = new Array<any>();
-  // listUnitesrslt = new Array<any>();
-
-
-  // sourceMarques!: Marques[];
-  // listMarquespushed = new Array<any>();
-  // listMarquesrslt = new Array<any>();
-
-
-  // sourceNatureProduit!: NatureProduit[];
-  // listNatureProduitpushed = new Array<any>();
-  // listNatureProduitrslt = new Array<any>();
-
-  // sourceComposant!: Composant[];
-  // listComposantpushed = new Array<any>();
-  // listComposantrslt = new Array<any>();
-
-
-  // selectedComposant: any;
-  // listDesigCompo = new Array<Composant>();
-
-  // // Compo = new Array<any>();
-  // compteur: number = 0;
-
-
-
-  // countries  = new Array<Unites>();
-
-
 
   sourceColoris!: Coloris[];
   listColorispushed = new Array<any>();
@@ -134,7 +113,7 @@ export class ColorisComponent implements OnInit {
     event.data = new Array<any>();
     event.data.code == null;
     // this.clearForm(event);
-    this.removeSelection();
+    this.selectedRow = null;
   }
   selectedRow: any;
   removeSelection() {
@@ -186,19 +165,20 @@ export class ColorisComponent implements OnInit {
     button.setAttribute('data-toggle', 'modal');
     if (mode == 'add') {
       button.setAttribute('data-target', 'modal');
+
+      this.code = null;
+      console.log('codddeee', this.code);
       this.formHeader = "Nouveau Coloris"
       this.clearForm();
 
 
-      this.check_actif = true;
-      this.check_inactif = false;
+      // this.check_actif = true;
+      // this.check_inactif = false;
       this.visibleModal = true;
-      this.code == undefined;
+
 
       this.onRowUnselect(event);
-      // console.log(this.compteur);
-      // console.log(this.Unitess);
-      // console.log(this.listDesig);
+
 
     } else if (mode == 'edit') {
 
@@ -257,14 +237,14 @@ export class ColorisComponent implements OnInit {
 
 
   clearForm(): void {
-    this.code == undefined;
+    this.code == null;
     this.designation = '';
     this.actif = false;
     this.codeSaisie = '';
 
 
 
-    this.onRowUnselect(event);
+    // this.onRowUnselect(event);
 
 
   }
@@ -297,6 +277,7 @@ export class ColorisComponent implements OnInit {
     if (this.code != null) {
       body['code'] = this.code;
 
+      // console.log('code',this.code);
       this.gcomercial_service.PutColoris(body).pipe(
         catchError((error: HttpErrorResponse) => {
           let errorMessage = '';
@@ -313,14 +294,15 @@ export class ColorisComponent implements OnInit {
         (res: any) => {
           alterify.set('notifier', 'position', 'top-right');
           alterify.success("update Success Saved");
-          close();
+          // close();
+          // this.check_actif = true;
+          this.selectedValue = true;
+
           this.clearForm();
           this.GetAllColorisActif();
-          this.check_actif = false;
-          this.check_inactif = false;
-          this.onRowUnselect(event);
-          // this.check_actif = true;
-          // this.check_inactif = false;
+
+          // this.onRowUnselect(event);
+
         }
       );
 
@@ -342,12 +324,11 @@ export class ColorisComponent implements OnInit {
         (res: any) => {
           alterify.set('notifier', 'position', 'top-right');
           alterify.success("Success Saved");
-
+          this.selectedValue = true;
           this.clearForm();
           this.GetAllColorisActif();
           this.code;
-          this.check_actif = true;
-          this.check_inactif = false;
+
           this.onRowUnselect(event);
 
         }
@@ -372,8 +353,7 @@ export class ColorisComponent implements OnInit {
         alterify.set('notifier', 'position', 'top-right');
         alterify.success("Success Deleted");
         this.GetAllColorisActif();
-        this.check_actif = false;
-        this.check_inactif = false;
+        this.selectedValue = true;
         this.onRowUnselect(event);
         this.clearForm();
 
@@ -382,181 +362,10 @@ export class ColorisComponent implements OnInit {
   }
 
 
-  // GetUnitesActif(): void {
-  //   this.gcomercial_service.GetAllUnite().pipe(
-  //     catchError((error: HttpErrorResponse) => {
-  //       let errorMessage = '';
-  //       if (error.error instanceof ErrorEvent) {
-  //       } else {
-  //         alterify.set('notifier', 'position', 'top-right');
-  //         alterify.error(` ${error.error.message}` + " Parametrage Failed");
-
-  //       }
-  //       return throwError(errorMessage);
-  //     })
-
-  //   )
-  //     .subscribe((data: any) => {
-  //       this.sourceUnites = data;
-  //       this.listUnitespushed = [];
-  //       for (let i = 0; i < this.sourceUnites.length; i++) {
-  //         this.listUnitespushed.push({ label: this.sourceUnites[i].designation, value: this.sourceUnites[i].code })
-  //       }
-  //       this.listUnitesrslt = this.listUnitespushed;
-  //     });
-
-  // }
-
-  // GetUnitesActifForModif(): void {
-  //   this.gcomercial_service.GetAllUnite().pipe(
-  //     catchError((error: HttpErrorResponse) => {
-  //       let errorMessage = '';
-  //       if (error.error instanceof ErrorEvent) {
-  //       } else {
-  //         alterify.set('notifier', 'position', 'top-right');
-  //         alterify.error(` ${error.error.message}` + " Parametrage Failed");
-
-  //       }
-  //       return throwError(errorMessage);
-  //     })
-
-  //   )
-  //     .subscribe((data: any) => {
-  //       this.sourceUnites = data;
-  //       this.listUnitespushed = [];
-  //       for (let i = 0; i < this.sourceUnites.length; i++) {
-  //         this.listUnitespushed.push({ label: this.sourceUnites[i].designation, value: this.sourceUnites[i].code })
-  //       }
-  //       this.listUnitesrslt = this.listUnitespushed;
-  //     });
-
-  // }
-
-
-  // GetDataFromTableEditor: any;
-
-  // final = new Array<any>();
-
-  //   GetCodeColoris(){
-  // // this.codeColoris = this.listColorisrslt.code
-  //  for (let y = 0; y < this.listColorisrslt.length; y++) {
-  //       // this.GetDataFromTableEditor = {
-  //          this.codeSaisie =  this.listColorisrslt[y].codeSaisie
-  //       // }
-  //       // this.final.push(this.GetDataFromTableEditor);
-  //     }
-  //     console.log(  "CodeColoris",this.codeSaisie);
-
-
-  //   }
-
-
-  // deleteRow(ri: any) {
-
-  //   this.listDesigCompo.splice(ri, 1);
-  //   this.Compo.splice(ri, 1);
-  //   this.compteur = this.compteur - 1;
-  //   console.log("Unite", this.Compo, "Desig", this.listDesigCompo);
-
-  // }
-
-
-
-  // GetcomposantActif(): void {
-  //   this.gcomercial_service.GetAllComposantActif().pipe(
-  //     catchError((error: HttpErrorResponse) => {
-  //       let errorMessage = '';
-  //       if (error.error instanceof ErrorEvent) {
-  //       } else {
-  //         alterify.set('notifier', 'position', 'top-right');
-  //         alterify.error(` ${error.error.message}` + " Parametrage Failed");
-
-  //       }
-  //       return throwError(errorMessage);
-  //     })
-
-  //   )
-  //     .subscribe((data: any) => {
-  //       this.sourceComposant = data;
-  //       this.listComposantpushed = [];
-  //       for (let i = 0; i < this.sourceComposant.length; i++) {
-  //         this.listComposantpushed.push({ label: this.sourceComposant[i].designation, value: this.sourceComposant[i].code })
-  //       }
-  //       this.listComposantrslt = this.listComposantpushed;
-  //     });
-  //   // this.targetProducts = [];
-
-  // }
-
-
-  // codeColoris:any;
-  // GetColorisActif(): void {
-  //   this.gcomercial_service.GeColorisActif().pipe(
-  //     catchError((error: HttpErrorResponse) => {
-  //       let errorMessage = '';
-  //       if (error.error instanceof ErrorEvent) {
-  //       } else {
-  //         alterify.set('notifier', 'position', 'top-right');
-  //         alterify.error(` ${error.error.message}` + " Parametrage Failed");
-
-  //       }
-  //       return throwError(errorMessage);
-  //     })
-
-  //   )
-  //     .subscribe((data: any) => {
-  //       this.sourceColoris = data;
-  //       this.listColorispushed = [];
-  //       for (let i = 0; i < this.sourceColoris.length; i++) {
-  //         this.listColorispushed.push({ label: this.sourceColoris[i].designation, value: this.sourceColoris[i].codeSaisie })
-  //       }
-  //       this.listColorisrslt = this.listColorispushed;
-  //     });
-
-  // }
-
 
 }
 
 
-
-// interface Produit {
-//   code: string;
-
-// }
-
-// interface Unites {
-//   code: number;
-//   codeSaisieUnite: string;
-//   designation: string;
-//   actif?: boolean;
-
-//   qtedde?: number;
-// }
-
-
-// interface Marques {
-//   code: number;
-//   codeSaisie: string;
-//   designation?: string;
-//   actif?: boolean;
-// }
-
-// interface NatureProduit {
-//   code: number;
-//   codeSaisie: string;
-//   designation?: string;
-//   actif?: boolean;
-// }
-
-// interface Composant {
-
-//   code: number;
-//   codeSaisie: string;
-//   designation?: string;
-//   actif?: boolean;
-
-// }
 
 interface Coloris {
 

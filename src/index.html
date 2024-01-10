@@ -2,12 +2,9 @@
  
 <html lang="en"> 
 
-<head>
+<!-- <head>
   <meta charset="UTF-8">
-  
- 
-    <!-- <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png"> -->
-
+   
     <meta name="apple-mobile-web-app-title" content="DevPointSystem">
  
     <link rel="icon" type="image/x-icon" href="assets/files/logo.ico">
@@ -21,10 +18,7 @@
   <link rel="stylesheet" type="text/css" href="assets/files/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css" />
 
   <script type='text/javascript' src='assets/files/js/jquery.min.js'></script>
-  <script type='text/javascript' src='assets/files/js/bootstrap.min.js'></script>
-    <!-- <link rel="stylesheet" type="text/css" href="assets/style/material-design-iconic-font.min.css" />
-    <link rel="stylesheet" type="text/css" href="assets/style/bootstrap.min.css" /> -->
-    
+  <script type='text/javascript' src='assets/files/js/bootstrap.min.js'></script> 
     <script type='text/javascript' src='assets/style/bootstrap.min.js'></script>
     <script type='text/javascript' src='assets/style/js/jquery.min.js'></script>
 <style>
@@ -35,12 +29,88 @@
   window.console = window.console || function(t) {};
 </script>
 
+  </head> -->
+
+
+  <head>
+
+    <meta charset="UTF-8">
+    <title>DevPointSystem</title>
   
+    <meta name="robots" content="noindex">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/files/logo.ico">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico"> -->
+    <link rel="mask-icon" href="assets/files/logo.ico" color="#111">
+    <link rel="canonical" href="assets/files/logo.ico">
+  
+    <link rel="stylesheet" type="text/css" href="assets/files/StyleCss/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="assets/files/StyleCss/metisMenu.css" />
+  <link rel="stylesheet" type="text/css" href="assets/files/StyleCss/sb-admin-2.css" />
+  <link rel="stylesheet" type="text/css" href="assets/files/StyleCss/morris.css" />
+  <link rel="stylesheet" type="text/css" href="assets/files/StyleCss/font-awesome.css" />
+  <link rel="stylesheet" type="text/css" href="assets/files/StyleCss/timeline.css" />
+
+<!--     
+    
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.5.2/metisMenu.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7/css/sb-admin-2.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+  <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/416491/timeline.css">
+   -->
+    <style id="INLINE_PEN_STYLESHEET_ID">
+      #morris-bar-chart {
+    -webkit-transition: all 2s; /* Safari */
+    transition: all 2s;
+  }
+  
+  #morris-table-left-div {
+    /*height: 350px;
+    overflow: hidden;*/
+  }
+  .header-row {
+    padding: 0 18px;
+  }
+  .header-column {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    display: inline-block;
+    font-weight: 300;
+    color: #555;
+    /*border: 1px solid grey;*/
+    padding: 0px;
+    width: 24%;
+    box-sizing: border-box; /*content-box|border-box|initial|inherit;*/
+  }
+  .list-group-column {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    display: inline-block;
+    font-weight: 300;
+    color: #555;
+    /*border: 1px solid grey;*/
+    padding: 0px;
+    width: 24%;
+  }
+    </style>
+  
+  <script type='text/javascript' src='assets/files/JavaScripte/stopExecutionOnTimeout.js'></script> 
+  <script type='text/javascript' src='assets/files/JavaScripte/iframeConsoleRunner.js'></script> 
+  <script type='text/javascript' src='assets/files/JavaScripte/iframeRefreshCSS.js'></script> 
+  <script type='text/javascript' src='assets/files/JavaScripte/iframeRuntimeErrors.js'></script> 
+
+
+    
+  <!-- <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+  <script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeConsoleRunner-6d8bf8b4b479137260842506acbb12717dace0823c023e08b96360e60b0840d9.js"></script>
+  <script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRefreshCSS-44fe83e49b63affec96918c9af88c0d80b209a862cf87ac46bc933074b8c557d.js"></script>
+  <script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRuntimeErrors-4f205f2c14e769b448bcf477de2938c681660d5038bc464e3700256713ebe261.js"></script> -->
+  </head>
+
+
 <body>
   <app-root></app-root>
 
- 
-  <!-- <script type='text/javascript' src='assets/files/js/jquery-3.1.1.min.js'></script>-->
+<!--   
   <script type='text/javascript' src='assets/files/js/bootstrap.min.js'></script> 
 
  
@@ -49,8 +119,18 @@
       $('#msbo').on('click', function () {
         $('body').toggleClass('msb-x');
       });
-    })();
-    //# sourceURL=pen.js
+    })(); 
         </script>
+
+       -->
+
+       <script type='text/javascript' src='assets/files/JavaScripte/jquery-3.1.0.js'></script> 
+       <script type='text/javascript' src='assets/files/JavaScripte/metisMenu.js'></script> 
+       <script type='text/javascript' src='assets/files/JavaScripte/raphael.js'></script> 
+       <script type='text/javascript' src='assets/files/JavaScripte/bootstrap.min.js'></script> 
+       <script type='text/javascript' src='assets/files/JavaScripte/morris.js'></script> 
+       <script type='text/javascript' src='assets/files/JavaScripte/sb-admin-2.js'></script> 
+       <script type='text/javascript' src='assets/files/JavaScripte/timeline.js'></script> 
+
 </body>
 </html>
